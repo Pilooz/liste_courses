@@ -21,10 +21,12 @@ export class ElderlyClass {
     public postalCode: string;
     public restrictions: string;
     public size: number;
-    public skills: SkillClass[];
+    public skills: SkillClass[] = [];
     public weight: number;
 
     constructor(obj?: any) {
-        Object.assign(this, obj);
+        Object.assign(this, obj, {
+            skills: obj && obj.skills ? obj.skills.map(skill => new SkillClass(skill)) : []
+        });
     }
 }
