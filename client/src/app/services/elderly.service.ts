@@ -36,6 +36,15 @@ export class ElderlyService {
      * @param elderlyId
      */
     getById(elderlyId: number): Observable<ElderlyClass> {
-        return this.restangular.one(UrlSettings.elderlyModel, elderlyId).get().pipe(map(res => new ElderlyClass(res)));
+        return this.restangular.one(UrlSettings.elderlyModel, elderlyId).get({
+            filter: {
+                include: {
+                    relation: 'skills',
+                    scope: {
+                        order: 'label'
+                    }
+                }
+            }
+        }).pipe(map(res => new ElderlyClass(res)));
     }
 }

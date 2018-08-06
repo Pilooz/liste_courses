@@ -1,3 +1,15 @@
-<p>
-  elderly-skills-form works!
-</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <img class="top-img" src="/assets/img/cooking.svg">
+  <div class="skills" fxLayout="row wrap">
+    <div class="background-green skill clickable" *ngFor="let skill of elderly.skills" fxLayout="row" fxLayoutAlign="center center" (click)="removeSkill(skill)">
+      <span>{{skill.label}}</span>
+      <i class="material-icons">close</i>
+    </div>
+    <div class="color-green skill-available clickable" *ngFor="let skill of skills" fxLayout="row" fxLayoutAlign="center center" (click)="addSkill(skill)">
+      <span>{{skill.label}}</span>
+      <i class="material-icons">add</i>
+    </div>
+  </div>
+  <!-- TODO : go to the right place -->
+  <button mat-button>Valider</button>
+</div>
