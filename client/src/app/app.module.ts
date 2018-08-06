@@ -30,6 +30,7 @@ import { UserService } from './services/user.service';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
+import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -77,7 +78,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileFormComponent
   ],
   imports: [
     BrowserModule,
