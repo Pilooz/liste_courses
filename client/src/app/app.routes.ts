@@ -6,17 +6,17 @@ import { AuthGuard } from './guards/auth.guard';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
-import { ProfileFormComponent } from './components/profile/profile-form/profile-form.component';
+import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
 
 const ROUTES: Routes = [{
   path: 'home',
   component: HomeComponent
 }, {
-  path: 'profile',
+  path: 'elderly',
   canActivate: [AuthGuard],
   children: [{
     path: '',
-    component: ProfileFormComponent
+    component: ElderlyProfileFormComponent
   }]
 }, {
   path: '**',
