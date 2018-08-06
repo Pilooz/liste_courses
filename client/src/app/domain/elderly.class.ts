@@ -18,7 +18,7 @@ export class ElderlyClass {
     public mobile: string;
     public phone: string;
     public postalCode: string;
-    public restriction: string;
+    public restrictions: string;
     public size: number;
     public weight: number;
 

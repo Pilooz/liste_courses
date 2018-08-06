@@ -85,35 +85,35 @@
     },
     "allergies": {
       "type": "string",
-      "length": 50,
+      "length": 100,
       "postgresql": {
         "dataType": "character varying"
       }
     },
-    "restriction": {
+    "restrictions": {
       "type": "string",
-      "length": 50,
+      "length": 100,
       "postgresql": {
         "dataType": "character varying"
       }
     },
     "likes": {
       "type": "string",
-      "length": 50,
+      "length": 100,
       "postgresql": {
         "dataType": "character varying"
       }
     },
     "dislikes": {
       "type": "string",
-      "length": 50,
+      "length": 100,
       "postgresql": {
         "dataType": "character varying"
       }
     },
     "habits": {
       "type": "string",
-      "length": 50,
+      "length": 100,
       "postgresql": {
         "dataType": "character varying"
       }
