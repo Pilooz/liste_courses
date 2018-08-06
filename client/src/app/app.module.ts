@@ -46,6 +46,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
 import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
+import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -96,7 +97,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     HomeComponent,
     ElderlyProfileFormComponent,
     ElderlySkillsFormComponent,
-    ElderlyFoodFormComponent
+    ElderlyFoodFormComponent,
+    ElderlyCookingImplicationComponent
   ],
   imports: [
     BrowserModule,

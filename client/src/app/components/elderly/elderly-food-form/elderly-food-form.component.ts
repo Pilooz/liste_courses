@@ -44,7 +44,7 @@ export class ElderlyFoodFormComponent implements OnInit {
       if (this.route.snapshot.queryParamMap.get('showInfo') === 'true') {
         this.showInfoConfirm = true;
       } else {
-        this.router.navigate(['/elderly', this.elderly.id, 'skills']);
+        this.router.navigate(['/elderly', this.elderly.id, 'cookingImplication']);
       }
     });
   }
