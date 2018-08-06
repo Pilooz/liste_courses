@@ -28,7 +28,16 @@
         "permission": "ALLOW",
         "property": "*"
       }
-    ]
+    ],
+    "relation": {
+      "skills": {
+        "type": "hasMany",
+        "model": "skill",
+        "foreignKey": "utilisateurId",
+        "through": "utilisateurSkill",
+        "keyThrough": "skillId"
+      }
+    }
   },
   "AccessToken": {
     "dataSource": "db",
@@ -68,6 +77,10 @@
     }
   },
   "elderly": {
+    "dataSource": "db",
+    "public": true
+  },
+  "skill": {
     "dataSource": "db",
     "public": true
   }
