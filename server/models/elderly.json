@@ -82,6 +82,44 @@
     },
     "size": {
       "type": "number"
+    },
+    "allergies": {
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
+    },
+    "restriction": {
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
+    },
+    "likes": {
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
+    },
+    "dislikes": {
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
+    },
+    "habits": {
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
+    },
+    "cookingImplication": {
+      "type": "number"
     }
   },
   "validations": [],

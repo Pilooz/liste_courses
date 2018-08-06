@@ -1,18 +1,26 @@
+import { CookingImplicationType } from "../enum/cooking-implication-type.enum";
+
 export class ElderlyClass {
 
     public id: number;
-    public firstname: string;
-    public lastname: string;
-    public birthdate: Date;
     public address: string;
-    public postalCode: string;
+    public allergies: string;
+    public birthdate: Date;
     public city: string;
-    public phone: string;
-    public mobile: string;
-    public maritalStatus: string;
+    public cookingImplication: CookingImplicationType;
+    public dislikes: string;
+    public firstname: string;
+    public habits: string;
     public homeStatus: string;
-    public weight: number;
+    public lastname: string;
+    public likes: string;
+    public maritalStatus: string;
+    public mobile: string;
+    public phone: string;
+    public postalCode: string;
+    public restriction: string;
     public size: number;
+    public weight: number;
 
     constructor(obj?: any) {
         Object.assign(this, obj);
