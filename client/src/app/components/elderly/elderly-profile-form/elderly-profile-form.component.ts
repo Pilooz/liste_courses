@@ -41,7 +41,7 @@ export class ElderlyProfileFormComponent implements OnInit {
     Object.assign(this.elderly, value);
     this.elderlyService.create(this.elderly).subscribe((elderly) => {
       Object.assign(this.elderly, elderly);
-      this.router.navigate(['/profile', this.elderly.id, 'food']);
+      this.router.navigate(['/profile', this.elderly.id, 'food'], { queryParams: { showInfo: true } });
     });
   }
 

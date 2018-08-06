@@ -48,3 +48,16 @@ html, body {
 }
 
 /* ----- END Background (usefull for buttons colors) ----- */
+
+/* ----- Profile forms ----- */
+
+form.profile-form {
+    height: 100%;
+    padding: 0 40px;
+}
+
+form.profile-form>*:not(button) {
+    width: 100%;
+}
+
+/* ----- END Profile forms ----- */
