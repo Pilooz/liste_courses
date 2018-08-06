@@ -7,6 +7,8 @@ import { AuthGuard } from './guards/auth.guard';
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
+import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
+import { ElderlyResolver } from './resolver/elderly.resolver';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -17,6 +19,13 @@ const ROUTES: Routes = [{
   children: [{
     path: '',
     component: ElderlyProfileFormComponent
+  }, {
+    path: ':elderlyId',
+    resolve: { elderly: ElderlyResolver},
+    children: [{
+      path: 'skills',
+      component: ElderlySkillsFormComponent
+    }]
   }]
 }, {
   path: '**',

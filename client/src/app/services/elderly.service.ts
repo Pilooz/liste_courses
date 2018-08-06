@@ -13,11 +13,20 @@ export class ElderlyService {
     }
 
     /**
-     * Retrieve user by Id
+     * Create elderly
      *
-     * @param userId
+     * @param elderly
      */
     create(elderly: ElderlyClass): Observable<ElderlyClass> {
         return this.restangular.all(UrlSettings.elderlyModel).post(elderly).pipe(map(res => new ElderlyClass(res)));
+    }
+
+    /**
+     * Retrieve elderly by Id
+     *
+     * @param elderlyId
+     */
+    getById(elderlyId: number): Observable<ElderlyClass> {
+        return this.restangular.one(UrlSettings.elderlyModel, elderlyId).get().pipe(map(res => new ElderlyClass(res)));
     }
 }

@@ -15,6 +15,9 @@ export class UrlSettings {
 
   // Elderly
   public static readonly elderlyModel = 'elderlies';
+  
+  // Skill
+  public static readonly skillModel = 'skills';
 
   // User
   public static readonly userModel = 'users';

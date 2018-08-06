@@ -31,14 +31,19 @@ import { appRoutingProviders, routing } from './app.routes';
 import { AuthGuard } from './guards/auth.guard';
 import { UnauthGuard } from './guards/unauth.guard';
 
+// Resolver
+import { ElderlyResolver } from './resolver/elderly.resolver';
+
 // Services
 import { AuthenticationService } from './services/authentication.service';
+import { SkillService } from './services/skill.service';
 import { ElderlyService } from './services/elderly.service';
 import { UserService } from './services/user.service';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
+import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -87,7 +92,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ElderlyProfileFormComponent
+    ElderlyProfileFormComponent,
+    ElderlySkillsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -119,10 +125,12 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     },
     appRoutingProviders,
     AuthenticationService,
+    SkillService,
     ElderlyService,
     UserService,
     AuthGuard,
-    UnauthGuard
+    UnauthGuard,
+    ElderlyResolver
   ],
   bootstrap: [AppComponent]
 })

@@ -70,5 +70,13 @@
   "elderly": {
     "dataSource": "db",
     "public": true
+  },
+  "skill": {
+    "dataSource": "db",
+    "public": true
+  },
+  "elderlySkill": {
+    "dataSource": "db",
+    "public": false
   }
 }
