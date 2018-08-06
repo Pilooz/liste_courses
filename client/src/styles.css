@@ -6,11 +6,12 @@
     zoom: 1; /* zoom initial à 1.0 (et clin d'oeil aux fans d'IE6/7) */
 }
 
-html, body, .main-content {
+html, body {
     background-color: #efefef;
-    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100%;
-    overflow: hidden;
+    width: 100%;
 }
 
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
