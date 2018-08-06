@@ -13,12 +13,21 @@ export class ElderlyService {
     }
 
     /**
-     * Create elderly
+     * Create an elderly
      *
      * @param elderly
      */
     create(elderly: ElderlyClass): Observable<ElderlyClass> {
         return this.restangular.all(UrlSettings.elderlyModel).post(elderly).pipe(map(res => new ElderlyClass(res)));
+    }
+
+    /**
+     * Update an elderly
+     *
+     * @param elderly
+     */
+    update(elderly: ElderlyClass): Observable<ElderlyClass> {
+        return this.restangular.one(UrlSettings.elderlyModel, elderly.id).patch(elderly).pipe(map(res => new ElderlyClass(res)));
     }
 
     /**

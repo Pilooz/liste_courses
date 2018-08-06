@@ -49,7 +49,7 @@ html, body {
 
 /* ----- END Background (usefull for buttons colors) ----- */
 
-/* ----- Profile forms ----- */
+/* ----- Forms ----- */
 
 form.profile-form {
     height: 100%;
@@ -60,4 +60,24 @@ form.profile-form>*:not(button) {
     width: 100%;
 }
 
-/* ----- END Profile forms ----- */
+.form-info {
+    height: 100%;
+    padding: 0 10%;
+}
+
+.form-info-content {
+    background-color: white;
+    border-radius: 20px;
+    font-size: 1.1rem;
+}
+
+.form-info-content>* {
+    margin: 20px !important;
+}
+
+.form-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* ----- END Forms ----- */

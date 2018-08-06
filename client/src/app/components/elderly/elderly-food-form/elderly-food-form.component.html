@@ -1,10 +1,50 @@
-<div *ngIf="showInfo">
-  <span>Bonjour {{elderly.firstname}} !</span>
+<div *ngIf="showInfo" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
+  <span class="form-title">Bonjour {{elderly.firstname}} !</span>
 
-  <div>
-    Afin de vous préparer les meilleurs repas possibles, nous allons choisir ensemble vos préférences alimentaire.
+  <div fxLayout="column" fxLayoutAlign="center center" class="form-info-content">
+    <span>Afin de vous préparer les meilleurs repas possibles, nous allons choisir ensemble vos préférences alimentaire.</span>
+
+    <button mat-button type="button" (click)="showInfo = false">D'accord</button>
   </div>
 </div>
-<form *ngIf="!showInfo">
+<form *ngIf="showInfo === false && !showInfoConfirm" [formGroup]="profileFoodForm" (ngSubmit)="submitForm(profileFoodForm.value)"
+  fxLayout="column" fxLayoutAlign="center center" class="profile-form">
 
+  <div fxLayoutAlign="center center">
+    <span class="form-title">Préférences alimentaires</span>
+  </div>
+
+  <mat-form-field>
+    <input matInput type="text" formControlName="allergies" maxlength="100" placeholder="Allergies">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" formControlName="restrictions" maxlength="100" placeholder="Restrictions alimentaires">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" formControlName="likes" maxlength="100" placeholder="J'adore">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" formControlName="dislikes" maxlength="100" placeholder="Je déteste">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" formControlName="habits" maxlength="100" placeholder="Habitudes de repas (horaires, en-cas, ...)">
+  </mat-form-field>
+
+  <button mat-button type="submit" [disabled]="profileFoodForm.invalid">Valider</button>
 </form>
+
+<div *ngIf="showInfoConfirm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
+  <span class="form-title">Merci {{elderly.firstname}} !</span>
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="form-info-content">
+    <span>Nous avons bien noté vos préférences !</span>
+
+    <a [routerLink]="['/elderly', elderly.id, 'skills']" [queryParams]="{showInfo: 'true'}">
+      <button mat-button type="button">D'accord</button>
+    </a>
+  </div>
+</div>
