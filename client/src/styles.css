@@ -41,15 +41,15 @@ html, body {
 /* ----- Colors & background ----- */
 
 .background-green {
-    background-color: #83C8B6;
+    background-color: #83C8B6 !important;
 }
 
 .background-orange {
-    background-color: #FBBE5F;
+    background-color: #FBBE5F !important;
 }
 
 .background-red {
-    background-color: #ED6A7A;
+    background-color: #ED6A7A !important;
 }
 
 .color-green {
