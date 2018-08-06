@@ -13,6 +13,9 @@ export class UrlSettings {
 
   /* Models endpoint */
 
+  // Elderly
+  public static readonly elderlyModel = 'elderlies';
+
   // User
   public static readonly userModel = 'users';
   public static readonly userAccessTokens = 'accessTokens';

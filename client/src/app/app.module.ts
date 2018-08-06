@@ -33,6 +33,7 @@ import { UnauthGuard } from './guards/unauth.guard';
 
 // Services
 import { AuthenticationService } from './services/authentication.service';
+import { ElderlyService } from './services/elderly.service';
 import { UserService } from './services/user.service';
 
 // Components
@@ -118,6 +119,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     },
     appRoutingProviders,
     AuthenticationService,
+    ElderlyService,
     UserService,
     AuthGuard,
     UnauthGuard

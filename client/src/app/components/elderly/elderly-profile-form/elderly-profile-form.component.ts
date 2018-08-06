@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ElderlyClass } from '../../../domain/elderly.class';
 import { CustomRegExp } from '../../../util/CustomRegExp';
+import { ElderlyService } from '../../../services/elderly.service';
 
 @Component({
   selector: 'app-elderly-profile-form',
@@ -15,7 +16,9 @@ export class ElderlyProfileFormComponent implements OnInit {
   public profileForm: FormGroup;
   private elderly: ElderlyClass;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private elderlyService: ElderlyService) { }
 
   ngOnInit() {
     this.elderly = this.route.snapshot.data['user'] || new ElderlyClass();
@@ -31,6 +34,14 @@ export class ElderlyProfileFormComponent implements OnInit {
       'postalCode': new FormControl(this.elderly.postalCode, Validators.pattern(CustomRegExp.ZIPCODE)),
       'city': new FormControl(this.elderly.city),
       'phone': new FormControl(this.elderly.phone, Validators.pattern(CustomRegExp.PHONE))
+    });
+  }
+
+  public submitForm(value) {
+    Object.assign(this.elderly, value);
+    this.elderlyService.create(this.elderly).subscribe((elderly) => {
+      Object.assign(this.elderly, elderly);
+      this.router.navigate(['/profile', this.elderly.id, 'food']);
     });
   }
 

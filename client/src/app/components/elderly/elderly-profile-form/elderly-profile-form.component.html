@@ -1,4 +1,4 @@
-<form [formGroup]="profileForm" fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+<form [formGroup]="profileForm" (ngSubmit)="submitForm(profileForm.value)" fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
 
   <div fxLayoutAlign="center center">
     <h3>Je renseigne mon profil</h3>
