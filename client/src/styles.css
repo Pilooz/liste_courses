@@ -92,13 +92,13 @@ form.profile-form>*:not(button) {
     margin: 20px !important;
 }
 
+.form-img {
+    width: 200px;
+}
+
 .form-title {
     font-size: 1.2rem;
     font-weight: bold;
 }
 
 /* ----- END Forms ----- */
-
-.top-img {
-    width: 200px;
-}

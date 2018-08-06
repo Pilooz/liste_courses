@@ -10,7 +10,7 @@
 <form *ngIf="showInfo === false && !showInfoConfirm" [formGroup]="profileFoodForm" (ngSubmit)="submitForm(profileFoodForm.value)"
   fxLayout="column" fxLayoutAlign="center center" class="profile-form">
 
-  <div fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
     <span class="form-title">Préférences alimentaires</span>
   </div>
 
