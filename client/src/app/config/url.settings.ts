@@ -13,6 +13,9 @@ export class UrlSettings {
 
   /* Models endpoint */
 
+  // Skill
+  public static readonly skillModel = 'skills';
+
   // User
   public static readonly userModel = 'users';
   public static readonly userAccessTokens = 'accessTokens';
