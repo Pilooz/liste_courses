@@ -20,6 +20,10 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 // Routing
 import { appRoutingProviders, routing } from './app.routes';
 
+// Guards
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthGuard } from './guards/unauth.guard';
+
 // Services
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
@@ -95,7 +99,9 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     },
     appRoutingProviders,
     AuthenticationService,
-    UserService
+    UserService,
+    AuthGuard,
+    UnauthGuard
   ],
   bootstrap: [AppComponent]
 })
