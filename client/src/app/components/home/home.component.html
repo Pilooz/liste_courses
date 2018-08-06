@@ -4,6 +4,15 @@
   <button mat-button>Connexion</button>
 </div>
 
-<div *ngIf="isConnected()" class="home-off" fxLayoutAlign="center center">
-  <div>Liste des gens</div>
+<div *ngIf="isConnected()" class="home-off" fxLayout="column" fxLayoutAlign="space-between center">
+  <div>Rechercher un profil</div>
+
+  <div>Les profils</div>
+
+  <a routerLink="/profile">
+    <button mat-button type="button">
+      <mat-icon>add</mat-icon>
+      Créer un nouveau profil
+    </button>
+  </a>
 </div>
