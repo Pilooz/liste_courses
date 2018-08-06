@@ -17,7 +17,7 @@
     "dataSource": "db",
     "options": {
       "postgresql": {
-        "schema": "cuisine_collective_dev"
+        "schema": "liste_courses_dev"
       }
     }
   },
@@ -26,7 +26,7 @@
     "public": false,
     "options": {
       "postgresql": {
-        "schema": "cuisine_collective_dev"
+        "schema": "liste_courses_dev"
       }
     }
   },
@@ -35,7 +35,7 @@
     "public": false,
     "options": {
       "postgresql": {
-        "schema": "cuisine_collective_dev"
+        "schema": "liste_courses_dev"
       }
     }
   },
@@ -45,7 +45,7 @@
     "options": {
       "strictObjectIDCoercion": true,
       "postgresql": {
-        "schema": "cuisine_collective_dev"
+        "schema": "liste_courses_dev"
       }
     }
   },
@@ -54,7 +54,7 @@
     "public": false,
     "options": {
       "postgresql": {
-        "schema": "cuisine_collective_dev"
+        "schema": "liste_courses_dev"
       }
     }
   },

@@ -1,5 +1,5 @@
-CREATE DATABASE cuisine_collective_dev
+CREATE DATABASE liste_courses_dev
     WITH 
-    OWNER = cuisine_collective_dev
+    OWNER = liste_courses_dev
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;

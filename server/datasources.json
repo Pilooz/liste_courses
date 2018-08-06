@@ -2,11 +2,11 @@
   "db": {
     "host": "127.0.0.1",
     "port": 5432,
-    "database": "cuisine_collective_dev",
-    "password": "cuisine_collective_dev",
+    "database": "liste_courses_dev",
+    "password": "liste_courses_dev",
     "name": "db",
-    "user": "cuisine_collective_dev",
+    "user": "liste_courses_dev",
     "connector": "postgresql",
-    "schema": "cuisine_collective_dev"
+    "schema": "liste_courses_dev"
   }
 }

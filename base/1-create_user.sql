@@ -1,4 +1,4 @@
-CREATE USER cuisine_collective_dev WITH
+CREATE USER liste_courses_dev WITH
                 LOGIN
                 NOSUPERUSER
                 NOCREATEDB
@@ -6,4 +6,4 @@ CREATE USER cuisine_collective_dev WITH
                 INHERIT
                 NOREPLICATION
                 CONNECTION LIMIT -1
-                PASSWORD 'cuisine_collective_dev';
+                PASSWORD 'liste_courses_dev';
