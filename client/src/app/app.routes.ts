@@ -19,8 +19,11 @@ const ROUTES: Routes = [{
     path: '',
     component: ElderlyProfileFormComponent
   }, {
-    path: ':elderlyId/skills',
-    component: ElderlySkillsFormComponent
+    path: ':elderlyId',
+    children: [{
+      path: 'skills',
+      component: ElderlySkillsFormComponent
+    }]
   }]
 }, {
   path: '**',
