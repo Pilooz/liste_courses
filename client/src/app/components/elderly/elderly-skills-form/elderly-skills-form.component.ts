@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SkillService } from '../../../services/skill.service';
+import { ElderlyClass } from '../../../domain/elderly.class';
 
 @Component({
   selector: 'app-elderly-skills-form',
@@ -8,9 +10,13 @@ import { SkillService } from '../../../services/skill.service';
 })
 export class ElderlySkillsFormComponent implements OnInit {
 
-  constructor(private skillService: SkillService) { }
+  public elderly: ElderlyClass;
+  constructor(private skillService: SkillService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.elderly = this.route.snapshot.data['elderly'];
+
     this.skillService.getAll().subscribe(skills => {
       console.log(skills);
     }, err => {

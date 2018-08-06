@@ -31,6 +31,9 @@ import { appRoutingProviders, routing } from './app.routes';
 import { AuthGuard } from './guards/auth.guard';
 import { UnauthGuard } from './guards/unauth.guard';
 
+// Resolver
+import { ElderlyResolver } from './resolver/elderly.resolver';
+
 // Services
 import { AuthenticationService } from './services/authentication.service';
 import { SkillService } from './services/skill.service';
@@ -126,7 +129,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyService,
     UserService,
     AuthGuard,
-    UnauthGuard
+    UnauthGuard,
+    ElderlyResolver
   ],
   bootstrap: [AppComponent]
 })
