@@ -1,0 +1,7 @@
+form {
+    padding: 0 40px;
+}
+
+form>*:not(button) {
+    width: 100%;
+}
