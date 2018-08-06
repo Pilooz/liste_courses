@@ -57,5 +57,9 @@
         "schema": "cuisine_collective_dev"
       }
     }
+  },
+  "elderly": {
+    "dataSource": "db",
+    "public": true
   }
 }
