@@ -4,6 +4,12 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 
+// Material Design
+import {
+  MatButtonModule,
+  MatIconModule,
+} from '@angular/material';
+
 // Design
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -72,6 +78,9 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
   imports: [
     BrowserModule,
     FlexLayoutModule,
+    // Material
+    MatButtonModule,
+    MatIconModule,
     // Importing RestangularModule and making default configs for restanglar
     RestangularModule.forRoot(RestangularConfigFactory),
     routing
@@ -94,7 +103,6 @@ export class AppModule { }
 
 /*
 MatAutocompleteModule,
-MatButtonModule,
 MatButtonToggleModule,
 MatCardModule,
 MatCheckboxModule,
@@ -103,7 +111,6 @@ MatDatepickerModule,
 MatDialogModule,
 MatExpansionModule,
 MatGridListModule,
-MatIconModule,
 MatInputModule,
 MatListModule,
 MatMenuModule,

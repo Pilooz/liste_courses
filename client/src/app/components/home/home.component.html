@@ -1,3 +1,9 @@
-<p>
-  home works!
-</p>
+<div *ngIf="!isConnected()" class="home-off" fxLayoutAlign="center center">
+  <input mat-input type="text">
+  <input mat-input type="password">
+  <button mat-button>Connexion</button>
+</div>
+
+<div *ngIf="isConnected()" class="home-off" fxLayoutAlign="center center">
+  <div>Liste des gens</div>
+</div>
