@@ -8,32 +8,74 @@
   "properties": {
     "firstname": {
       "type": "string",
-      "required": true
+      "required": true,
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "lastname": {
       "type": "string",
-      "required": true
+      "required": true,
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "birthdate": {
-      "type": "date"
+      "type": "date",
+      "postgresql": {
+        "dataType": "date"
+      }
     },
     "address": {
-      "type": "string"
+      "type": "string",
+      "length": 100,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "postalCode": {
-      "type": "string"
+      "type": "string",
+      "length": 5,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "phone": {
-      "type": "string"
+      "type": "string",
+      "length": 10,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "mobile": {
-      "type": "string"
+      "type": "string",
+      "length": 10,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
-    "status": {
-      "type": "string"
+    "maritalStatus": {
+      "type": "string",
+      "length": 20,
+      "postgresql": {
+        "dataType": "character varying"
+      }
+    },
+    "homeStatus": {
+      "type": "string",
+      "length": 50,
+      "postgresql": {
+        "dataType": "character varying"
+      }
     },
     "weight": {
       "type": "number"
