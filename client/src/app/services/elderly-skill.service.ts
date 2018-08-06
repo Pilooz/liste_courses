@@ -15,9 +15,10 @@ export class SkillService {
 
   /**
    * Get all elerdly's skills
+   * @param elderlyId 
    */
-  getAll(): Observable<SkillClass[]> {
-    return this.restangular.one(UrlSettings.skillModel).getList()
+  getElderlySkills(elderlyId: number): Observable<SkillClass[]> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.skillModel).getList()
       .pipe(map((res: Array<any>) => res.map(skill => new SkillClass(skill))));
   }
 }
