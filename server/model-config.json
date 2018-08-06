@@ -57,5 +57,9 @@
         "schema": "liste_courses_dev"
       }
     }
+  },
+  "elderly": {
+    "dataSource": "db",
+    "public": true
   }
 }
