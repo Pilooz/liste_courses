@@ -14,8 +14,37 @@ html, body {
     width: 100%;
 }
 
+/* ----- Buttons look & feel ----- */
+
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
-    background-color: #5ab5e2;
     color: white;
     border-radius: 5px;
 }
+
+/* Buttons color in header */
+.header .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    background-color: #5ab5e2;
+}
+
+/* Buttons color in main content */
+.main-content .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    background-color: #83C8B6;
+}
+
+/* ----- END Buttons look & feel ----- */
+
+/* ----- Background (usefull for buttons colors) ----- */
+
+.background-green {
+    background-color: #83C8B6;
+}
+
+.background-orange {
+    background-color: #FBBE5F;
+}
+
+.background-red {
+    background-color: #ED6A7A;
+}
+
+/* ----- END Background (usefull for buttons colors) ----- */
