@@ -17,7 +17,7 @@ export class SkillService {
    * Get all skills
    */
   getAll(): Observable<SkillClass[]> {
-    return this.restangular.all(UrlSettings.skillModel).getList()
+    return this.restangular.all(UrlSettings.skillModel).getList({filter: {order : 'label'}})
       .pipe(map((res: Array<any>) => res.map(skill => new SkillClass(skill))));
   }
 }

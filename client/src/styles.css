@@ -12,6 +12,7 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
 }
 
 /* ----- Buttons look & feel ----- */
@@ -47,4 +48,24 @@ html, body {
     background-color: #ED6A7A;
 }
 
+.color-green {
+    color: #83C8B6;
+}
+
+.color-orange {
+    color: #FBBE5F;
+}
+
+.color-red {
+    color: #ED6A7A;
+}
+
 /* ----- END Background (usefull for buttons colors) ----- */
+
+.top-img {
+    width: 200px;
+}
+
+.clickable {
+    cursor: pointer;
+}

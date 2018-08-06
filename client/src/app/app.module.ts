@@ -36,8 +36,9 @@ import { ElderlyResolver } from './resolver/elderly.resolver';
 
 // Services
 import { AuthenticationService } from './services/authentication.service';
-import { SkillService } from './services/skill.service';
 import { ElderlyService } from './services/elderly.service';
+import { ElderlySkillService } from './services/elderly-skill.service';
+import { SkillService } from './services/skill.service';
 import { UserService } from './services/user.service';
 
 // Components
@@ -125,8 +126,9 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     },
     appRoutingProviders,
     AuthenticationService,
-    SkillService,
     ElderlyService,
+    ElderlySkillService,
+    SkillService,
     UserService,
     AuthGuard,
     UnauthGuard,

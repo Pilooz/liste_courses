@@ -1,4 +1,5 @@
 import { CookingImplicationType } from "../enum/cooking-implication-type.enum";
+import { SkillClass } from "./skill.class";
 
 export class ElderlyClass {
 
@@ -20,6 +21,7 @@ export class ElderlyClass {
     public postalCode: string;
     public restriction: string;
     public size: number;
+    public skills: SkillClass[];
     public weight: number;
 
     constructor(obj?: any) {
