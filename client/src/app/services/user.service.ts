@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Restangular } from 'ngx-restangular';
+import { map } from 'rxjs/operators';
 
 import { UrlSettings } from '../config/url.settings';
 
@@ -19,6 +20,6 @@ export class UserService {
    */
   getById(userId: number): Observable<UserClass> {
     return this.restangular.one(UrlSettings.userModel, userId).get()
-      .map(res => new UserClass(res));
+      .pipe(map(res => new UserClass(res)));
   }
 }
