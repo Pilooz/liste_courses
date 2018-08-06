@@ -8,9 +8,13 @@ import { HeaderComponent } from './components/header/header.component';
 // Material Design
 import {
   MatButtonModule,
+  MatDatepickerModule,
   MatIconModule,
   MatInputModule,
+  MatNativeDateModule,
+  DateAdapter,
 } from '@angular/material';
+import { FrenchDateAdapter } from './util/FrenchDateAdapter';
 
 // Design
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -92,8 +96,10 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     BrowserAnimationsModule,
     // Material
     MatButtonModule,
+    MatDatepickerModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
     // Importing RestangularModule and making default configs for restanglar
     RestangularModule.forRoot(RestangularConfigFactory),
     routing
@@ -105,6 +111,10 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
       useFactory: startupServiceFactory,
       deps: [AuthenticationService],
       multi: true
+    },
+    {
+      provide: DateAdapter,
+      useClass: FrenchDateAdapter
     },
     appRoutingProviders,
     AuthenticationService,
@@ -122,13 +132,11 @@ MatButtonToggleModule,
 MatCardModule,
 MatCheckboxModule,
 MatChipsModule,
-MatDatepickerModule,
 MatDialogModule,
 MatExpansionModule,
 MatGridListModule,
 MatListModule,
 MatMenuModule,
-MatNativeDateModule,
 MatPaginatorModule,
 MatProgressBarModule,
 MatProgressSpinnerModule,
