@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -8,10 +9,12 @@ import { HeaderComponent } from './components/header/header.component';
 import {
   MatButtonModule,
   MatIconModule,
+  MatInputModule,
 } from '@angular/material';
 
 // Design
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Restangular
 import { UrlSettings } from './config/url.settings';
@@ -83,10 +86,14 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
+    BrowserAnimationsModule,
     // Material
     MatButtonModule,
     MatIconModule,
+    MatInputModule,
     // Importing RestangularModule and making default configs for restanglar
     RestangularModule.forRoot(RestangularConfigFactory),
     routing
@@ -119,7 +126,6 @@ MatDatepickerModule,
 MatDialogModule,
 MatExpansionModule,
 MatGridListModule,
-MatInputModule,
 MatListModule,
 MatMenuModule,
 MatNativeDateModule,

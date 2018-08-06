@@ -1,7 +1,16 @@
 <div *ngIf="!isConnected()" class="home-off" fxLayoutAlign="center center">
-  <input mat-input type="text">
-  <input mat-input type="password">
-  <button mat-button>Connexion</button>
+  <form [formGroup]="authenticationForm" (ngSubmit)="submitForm(authenticationForm.value)" fxLayout="column">
+
+    <mat-form-field>
+      <input matInput type="text" autocomplete="email" formControlName="email" max="50" placeholder="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" autocomplete="new-password" formControlName="password" max="20" placeholder="password">
+    </mat-form-field>
+
+    <button mat-button type="submit">Connexion</button>
+  </form>
 </div>
 
 <div *ngIf="isConnected()" class="home-off" fxLayout="column" fxLayoutAlign="space-between center">
