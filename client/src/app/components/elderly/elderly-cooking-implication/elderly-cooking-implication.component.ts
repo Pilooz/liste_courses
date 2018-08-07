@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CookingImplicationType } from '../../../enum/cooking-implication-type.enum';
-import { ElderlyClass } from '../../../domain/elderly.class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ElderlyService } from '../../../services/elderly.service';
+import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
+import { HeaderService } from '../../../services/header.services';
 
 @Component({
   selector: 'app-elderly-cooking-implication',
   templateUrl: './elderly-cooking-implication.component.html',
   styleUrls: ['./elderly-cooking-implication.component.css']
 })
-export class ElderlyCookingImplicationComponent implements OnInit {
+export class ElderlyCookingImplicationComponent extends AbstractElderlyModifier implements OnInit {
 
-  public elderly: ElderlyClass;
-
-  constructor(private route: ActivatedRoute,
+  constructor(@Inject(ElderlyService) elderlyService: ElderlyService,
+    @Inject(ActivatedRoute) route: ActivatedRoute,
     private router: Router,
-    private elderlyService: ElderlyService) {
-    this.elderly = this.route.snapshot.data['elderly'];
+    private headerService: HeaderService) {
+    super(elderlyService, route);
   }
 
   ngOnInit() {
+    this.headerService.doReturn = () => this.router.navigate(['/elderly', this.elderly.id, 'food']);
+    this.headerService.showHome = true;
   }
 
   public sayYes() {
@@ -36,14 +38,13 @@ export class ElderlyCookingImplicationComponent implements OnInit {
 
   private setCookingImplication(cookingImplication: CookingImplicationType) {
     this.elderly.cookingImplication = cookingImplication;
-    this.elderlyService.update(this.elderly).subscribe((elderly) => {
-      Object.assign(this.elderly, elderly);
+    this.save(() => {
       switch (this.elderly.cookingImplication) {
         case CookingImplicationType.YES:
         case CookingImplicationType.SOMETIMES:
           return this.router.navigate(['/elderly', this.elderly.id, 'skills']);
         default:
-          return this.router.navigate([]); // TODO redirect to "How many of your close family go shopping for you ?"
+          return this.router.navigate(['/home']); // TODO redirect to "How many of your close family go shopping for you ?"
       }
     });
   }

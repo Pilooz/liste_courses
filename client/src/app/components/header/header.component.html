@@ -1,3 +1,16 @@
-<div *ngIf="isConnected()" class="header">
-  <i class="material-icons">home</i>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div>
+    <button *ngIf="doReturn" mat-button class="background-blue" (click)="doReturn()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      Retour
+    </button>
+  </div>
+
+  <div>
+    <a *ngIf="showHome" routerLink="/home">
+      <button mat-mini-fab>
+        <mat-icon>home</mat-icon>
+      </button>
+    </a>
+  </div>
 </div>

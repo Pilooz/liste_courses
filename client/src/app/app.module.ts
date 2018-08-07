@@ -31,6 +31,7 @@ import { appRoutingProviders, routing } from './app.routes';
 // Guards
 import { AuthGuard } from './guards/auth.guard';
 import { UnauthGuard } from './guards/unauth.guard';
+import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Resolver
 import { ElderlyResolver } from './resolver/elderly.resolver';
@@ -39,6 +40,7 @@ import { ElderlyResolver } from './resolver/elderly.resolver';
 import { AuthenticationService } from './services/authentication.service';
 import { ElderlyService } from './services/elderly.service';
 import { ElderlySkillService } from './services/elderly-skill.service';
+import { HeaderService } from './services/header.services';
 import { SkillService } from './services/skill.service';
 import { UserService } from './services/user.service';
 
@@ -141,10 +143,12 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     AuthenticationService,
     ElderlyService,
     ElderlySkillService,
+    HeaderService,
     SkillService,
     UserService,
     AuthGuard,
     UnauthGuard,
+    UnsavedChangesGuard,
     ElderlyResolver
   ],
   bootstrap: [AppComponent]

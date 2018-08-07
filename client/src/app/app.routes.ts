@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Guards
 import { AuthGuard } from './guards/auth.guard';
+import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
@@ -20,19 +21,27 @@ const ROUTES: Routes = [{
   canActivate: [AuthGuard],
   children: [{
     path: '',
+    canDeactivate: [UnsavedChangesGuard],
     component: ElderlyProfileFormComponent
   }, {
     path: ':elderlyId',
     resolve: { elderly: ElderlyResolver },
     children: [{
+      path: '',
+      component: ElderlyProfileFormComponent,
+      canDeactivate: [UnsavedChangesGuard]
+    }, {
       path: 'food',
-      component: ElderlyFoodFormComponent
+      component: ElderlyFoodFormComponent,
+      canDeactivate: [UnsavedChangesGuard]
     }, {
       path: 'cookingImplication',
-      component: ElderlyCookingImplicationComponent
+      component: ElderlyCookingImplicationComponent,
+      canDeactivate: [UnsavedChangesGuard]
     }, {
       path: 'skills',
-      component: ElderlySkillsFormComponent
+      component: ElderlySkillsFormComponent,
+      canDeactivate: [UnsavedChangesGuard]
     }]
   }]
 }, {

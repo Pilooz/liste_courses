@@ -58,7 +58,7 @@ export class ElderlyService {
     }
 
     getAll(): Observable<ElderlyClass[]> {
-        return this.restangular.all(UrlSettings.elderlyModel).getList()
+        return this.restangular.all(UrlSettings.elderlyModel).getList({filter: {order : 'lastname, firstname'}})
             .pipe(map((res: Array<any>) => res.map(item => new ElderlyClass(item))));
     }
 }

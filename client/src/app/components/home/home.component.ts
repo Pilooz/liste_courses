@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ElderlyClass } from '../../domain/elderly.class';
 import { ElderlyService } from '../../services/elderly.service';
+import { HeaderService } from '../../services/header.services';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +19,12 @@ export class HomeComponent implements OnInit {
   public elderlies: ElderlyClass[] = [];
 
   constructor(private authenticationService: AuthenticationService,
-    private elderlyService: ElderlyService) { }
+    private elderlyService: ElderlyService,
+    private headerService: HeaderService) { }
 
   ngOnInit() {
+    this.headerService.hideReturn();
+    this.headerService.showHome = false;
     this.initForm();
     if (this.authenticationService.isConnected) {
       this.loadElderlies();
