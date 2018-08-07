@@ -15,7 +15,7 @@
 </div>
 
 <!-- The form -->
-<form *ngIf="showInfo === false && !showInfoConfirm" [formGroup]="profileFoodForm" (ngSubmit)="submitForm(profileFoodForm.value)"
+<form *ngIf="showInfo === false && !showInfoConfirm" [formGroup]="elderlyForm" (ngSubmit)="submitForm(elderlyForm.value)"
   fxLayout="column" fxLayoutAlign="center center" class="profile-form">
 
   <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
@@ -42,7 +42,7 @@
     <input matInput type="text" formControlName="habits" maxlength="100" placeholder="Habitudes de repas (horaires, en-cas, ...)">
   </mat-form-field>
 
-  <button mat-button type="submit" [disabled]="profileFoodForm.invalid">Valider</button>
+  <button mat-button type="submit" [disabled]="elderlyForm.invalid">Valider</button>
 </form>
 
 <!-- Info after the form -->

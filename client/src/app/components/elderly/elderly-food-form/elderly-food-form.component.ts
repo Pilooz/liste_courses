@@ -12,7 +12,6 @@ import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifie
 })
 export class ElderlyFoodFormComponent extends AbstractElderlyModifier implements OnInit {
 
-  public profileFoodForm: FormGroup;
   public showInfo: boolean;
   public showInfoConfirm: boolean = false;
 
@@ -45,7 +44,7 @@ export class ElderlyFoodFormComponent extends AbstractElderlyModifier implements
   }
 
   private initForm() {
-    this.profileFoodForm = new FormGroup({
+    this.elderlyForm = new FormGroup({
       'allergies': new FormControl(this.elderly.allergies),
       'restrictions': new FormControl(this.elderly.restrictions),
       'likes': new FormControl(this.elderly.likes),

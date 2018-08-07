@@ -14,7 +14,6 @@ import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifie
 export class ElderlyProfileFormComponent extends AbstractElderlyModifier implements OnInit {
 
   public readonly today: Date = new Date();
-  public profileForm: FormGroup;
 
   constructor(@Inject(ElderlyService) elderlyService: ElderlyService,
     @Inject(ActivatedRoute) route: ActivatedRoute,
@@ -30,7 +29,7 @@ export class ElderlyProfileFormComponent extends AbstractElderlyModifier impleme
   }
 
   private initForm() {
-    this.profileForm = new FormGroup({
+    this.elderlyForm = new FormGroup({
       'firstname': new FormControl(this.elderly.firstname, Validators.required),
       'lastname': new FormControl(this.elderly.lastname, Validators.required),
       'birthdate': new FormControl(this.elderly.birthdate),

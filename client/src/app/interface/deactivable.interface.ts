@@ -1,0 +1,3 @@
+interface Deactivable {
+    canDeactivate(): boolean;
+}
