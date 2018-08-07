@@ -1,9 +1,6 @@
 <!-- Info before the form -->
 <div *ngIf="showInfo" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
   <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <!-- TODO img -->
-    <!-- <img class="form-img" src="/assets/img/cooking.svg"> -->
-
     <span class="form-title">Bonjour {{elderly.firstname}} !</span>
   </div>
 
@@ -23,23 +20,23 @@
   </div>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="allergies" maxlength="100" placeholder="Allergies">
+    <input matInput type="text" autocomplete="new-password" formControlName="allergies" maxlength="100" placeholder="Allergies">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="restrictions" maxlength="100" placeholder="Restrictions alimentaires">
+    <input matInput type="text" autocomplete="new-password" formControlName="restrictions" maxlength="100" placeholder="Restrictions alimentaires">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="likes" maxlength="100" placeholder="J'adore">
+    <input matInput type="text" autocomplete="new-password" formControlName="likes" maxlength="100" placeholder="J'adore">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="dislikes" maxlength="100" placeholder="Je déteste">
+    <input matInput type="text" autocomplete="new-password" formControlName="dislikes" maxlength="100" placeholder="Je déteste">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="habits" maxlength="100" placeholder="Habitudes de repas (horaires, en-cas, ...)">
+    <input matInput type="text" autocomplete="new-password" formControlName="habits" maxlength="100" placeholder="Habitudes de repas (horaires, en-cas, ...)">
   </mat-form-field>
 
   <button mat-button type="submit" [disabled]="profileFoodForm.invalid">Valider</button>
@@ -48,9 +45,7 @@
 <!-- Info after the form -->
 <div *ngIf="showInfoConfirm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
   <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <!-- TODO img -->
-    <!-- <img class="form-img" src="/assets/img/cooking.svg"> -->
-
+    <img class="form-img" src="/assets/img/cutlery.svg">
     <span class="form-title">Merci {{elderly.firstname}} !</span>
   </div>
 

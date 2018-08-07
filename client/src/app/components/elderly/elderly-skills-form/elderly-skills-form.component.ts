@@ -28,7 +28,7 @@ export class ElderlySkillsFormComponent implements OnInit {
 
   loadSkills() {
     this.skillService.getAll().subscribe(skills => {
-      this.skills = skills;
+      this.skills = _.differenceBy(skills, this.elderly.skills, 'id');
     }, err => {
       console.error(err);
     });
