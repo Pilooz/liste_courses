@@ -39,6 +39,7 @@ import { ElderlyResolver } from './resolver/elderly.resolver';
 import { AuthenticationService } from './services/authentication.service';
 import { ElderlyService } from './services/elderly.service';
 import { ElderlySkillService } from './services/elderly-skill.service';
+import { HeaderService } from './services/header.services';
 import { SkillService } from './services/skill.service';
 import { UserService } from './services/user.service';
 
@@ -141,6 +142,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     AuthenticationService,
     ElderlyService,
     ElderlySkillService,
+    HeaderService,
     SkillService,
     UserService,
     AuthGuard,
