@@ -37,7 +37,9 @@ export abstract class AbstractElderlyModifier implements Deactivable {
                 if (this.elderlyForm) {
                     this.elderlyForm.markAsPristine();
                 }
-                Object.assign(this.elderly, elderly);
+                Object.assign(this.elderly, elderly, {
+                    skills: this.elderly.skills
+                });
                 onUpdated()
             });
         }
