@@ -2,18 +2,16 @@
   class="profile-form">
 
   <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <!-- TODO img -->
-    <!-- <img class="form-img" src="/assets/img/cooking.svg"> -->
-
+    <img class="form-img" src="/assets/img/user.svg">
     <span class="form-title">Je renseigne mon profil</span>
   </div>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="firstname" maxlength="50" placeholder="Prénom">
+    <input matInput type="text" autocomplete="new-password" formControlName="firstname" maxlength="50" placeholder="Prénom">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="lastname" maxlength="50" placeholder="Nom">
+    <input matInput type="text" autocomplete="new-password" formControlName="lastname" maxlength="50" placeholder="Nom">
   </mat-form-field>
 
   <mat-form-field>
@@ -23,21 +21,21 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="address" maxlength="100" placeholder="Adresse">
+    <input matInput type="text" autocomplete="new-password" formControlName="address" maxlength="100" placeholder="Adresse">
   </mat-form-field>
 
   <div fxLayout="row" fxLayoutGap="40px">
     <mat-form-field fxFlex="25">
-      <input matInput type="text" formControlName="postalCode" maxlength="5" placeholder="Code postal">
+      <input matInput type="text" autocomplete="new-password" formControlName="postalCode" maxlength="5" placeholder="Code postal">
     </mat-form-field>
 
     <mat-form-field fxFlex>
-      <input matInput type="text" formControlName="city" maxlength="50" placeholder="Ville">
+      <input matInput type="text" autocomplete="new-password" formControlName="city" maxlength="50" placeholder="Ville">
     </mat-form-field>
   </div>
 
   <mat-form-field>
-    <input matInput type="text" formControlName="phone" maxlength="10" placeholder="Téléphone">
+    <input matInput type="text" autocomplete="new-password" formControlName="phone" maxlength="10" placeholder="Téléphone">
   </mat-form-field>
 
   <button mat-button type="submit" [disabled]="elderlyForm.invalid">Valider</button>

@@ -41,7 +41,7 @@ export class ElderlySkillsFormComponent extends AbstractElderlyModifier implemen
 
   private loadSkills() {
     this.skillService.getAll().subscribe(skills => {
-      this.skills = skills;
+      this.skills = _.differenceBy(skills, this.elderly.skills, 'id');
     });
   }
 
