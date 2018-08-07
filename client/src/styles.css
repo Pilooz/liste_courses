@@ -27,13 +27,27 @@ html, body {
 }
 
 /* Buttons color in header */
-.header .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+.header button:not([disabled]) {
     background-color: #5ab5e2;
 }
 
 /* Buttons color in main content */
-.main-content .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+.main-content button:not([disabled]) {
     background-color: #83C8B6;
+}
+
+/* Specific buttons color */
+
+button.background-green:not([disabled]) {
+    background-color: #83C8B6;
+}
+
+button.background-orange:not([disabled]) {
+    background-color: #FBBE5F;
+}
+
+button.background-red:not([disabled]) {
+    background-color: #ED6A7A;
 }
 
 /* ----- END Buttons look & feel ----- */
@@ -41,15 +55,15 @@ html, body {
 /* ----- Colors & background ----- */
 
 .background-green {
-    background-color: #83C8B6 !important;
+    background-color: #83C8B6;
 }
 
 .background-orange {
-    background-color: #FBBE5F !important;
+    background-color: #FBBE5F;
 }
 
 .background-red {
-    background-color: #ED6A7A !important;
+    background-color: #ED6A7A;
 }
 
 .color-green {
