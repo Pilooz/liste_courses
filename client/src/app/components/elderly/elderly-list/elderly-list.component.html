@@ -1,11 +1,14 @@
 <div *ngFor="let elderly of elderlies" fxLayout="row" fxLayoutAlign="space-between center" class="elderly">
   <span fxFlex class="elderly-name">{{elderly.firstname}} {{elderly.lastname | uppercase}}</span>
   <div fxLayout="row" fxLayoutGap="15px" class="elderly-buttons">
-    <!-- Set enabled in US 7 -->
-    <button mat-mini-fab type="button" class="background-green" disabled>
-      <mat-icon>edit</mat-icon>
-    </button>
+    <!-- Edit button -->
+    <a [routerLink]="['/elderly', elderly.id]">
+      <button mat-mini-fab type="button" class="background-green">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </a>
 
+    <!-- Delete button -->
     <button mat-mini-fab type="button" class="background-red" (click)="delete(elderly)">
       <mat-icon>delete</mat-icon>
     </button>
