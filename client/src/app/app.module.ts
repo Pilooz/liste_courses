@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import {
   MatButtonModule,
   MatDatepickerModule,
+  MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatNativeDateModule,
@@ -43,6 +44,7 @@ import { UserService } from './services/user.service';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
 import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
@@ -96,11 +98,15 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    DialogComponent,
     ElderlyProfileFormComponent,
     ElderlySkillsFormComponent,
     ElderlyFoodFormComponent,
     ElderlyCookingImplicationComponent,
     ElderlyListComponent
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +117,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     // Material
     MatButtonModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatIconModule,
     MatInputModule,
     MatNativeDateModule,
@@ -150,7 +157,6 @@ MatButtonToggleModule,
 MatCardModule,
 MatCheckboxModule,
 MatChipsModule,
-MatDialogModule,
 MatExpansionModule,
 MatGridListModule,
 MatListModule,
