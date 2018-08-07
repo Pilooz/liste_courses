@@ -13,8 +13,13 @@
   </form>
 </div>
 
-<div *ngIf="isConnected()" class="home-off" fxLayout="column" fxLayoutAlign="space-between center">
-  <div>Rechercher un profil</div>
+<div *ngIf="isConnected()" class="home-off" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="40px">
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <!-- TODO img -->
+    <!-- <img class="form-img" src="/assets/img/cooking.svg"> -->
+
+    <span class="form-title">Les profils</span>
+  </div>
 
   <app-elderly-list [elderlies]="elderlies" class="elderlies-list"></app-elderly-list>
 

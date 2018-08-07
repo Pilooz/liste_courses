@@ -4,7 +4,7 @@
 }
 
 .elderlies-list {
-    max-height: calc(100% - 150px);
+    height: 100%;
     overflow-y: auto;
     width: 100%;
 }
