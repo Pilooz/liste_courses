@@ -1,4 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
+<!-- The form -->
+<div *ngIf="!showInfoConfirm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
   <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
     <img class="form-img" src="/assets/img/cooking.svg">
 
@@ -17,6 +18,24 @@
       <i class="material-icons">add</i>
     </div>
   </div>
-  <!-- TODO : go to the right place -->
-  <button mat-button>Valider</button>
+
+  <button mat-button type="button" (click)="showInfoConfirm = true">Valider</button>
+</div>
+
+<!-- Info after the form -->
+<div *ngIf="showInfoConfirm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <img class="form-img" src="/assets/img/cooking.svg">
+
+    <span class="form-title">Merci {{elderly.firstname}} !</span>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="form-info-content">
+    <span>Comptez sur nous pour vous impliquer dans la préparation des repas !</span>
+
+    <!-- TODO : go to the right place -->
+    <a [routerLink]="['/elderly', elderly.id, 'cookingImplication']">
+      <button mat-button type="button">D'accord</button>
+    </a>
+  </div>
 </div>

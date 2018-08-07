@@ -1,12 +1,20 @@
+<!-- Info before the form -->
 <div *ngIf="showInfo" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
-  <span class="form-title">Bonjour {{elderly.firstname}} !</span>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <!-- TODO img -->
+    <!-- <img class="form-img" src="/assets/img/cooking.svg"> -->
+
+    <span class="form-title">Bonjour {{elderly.firstname}} !</span>
+  </div>
 
   <div fxLayout="column" fxLayoutAlign="center center" class="form-info-content">
-    <span>Afin de vous préparer les meilleurs repas possibles, nous allons choisir ensemble vos préférences alimentaire.</span>
+    <span>Afin de vous préparer les meilleurs repas possibles, nous allons choisir ensemble vos préférences alimentaires.</span>
 
     <button mat-button type="button" (click)="showInfo = false">D'accord</button>
   </div>
 </div>
+
+<!-- The form -->
 <form *ngIf="showInfo === false && !showInfoConfirm" [formGroup]="profileFoodForm" (ngSubmit)="submitForm(profileFoodForm.value)"
   fxLayout="column" fxLayoutAlign="center center" class="profile-form">
 
@@ -37,8 +45,14 @@
   <button mat-button type="submit" [disabled]="profileFoodForm.invalid">Valider</button>
 </form>
 
+<!-- Info after the form -->
 <div *ngIf="showInfoConfirm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px" class="form-info">
-  <span class="form-title">Merci {{elderly.firstname}} !</span>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <!-- TODO img -->
+    <!-- <img class="form-img" src="/assets/img/cooking.svg"> -->
+
+    <span class="form-title">Merci {{elderly.firstname}} !</span>
+  </div>
 
   <div fxLayout="column" fxLayoutAlign="center center" class="form-info-content">
     <span>Nous avons bien noté vos préférences !</span>
