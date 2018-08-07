@@ -1,29 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ElderlyClass } from '../../../domain/elderly.class';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ElderlyService } from '../../../services/elderly.service';
+import { HeaderService } from '../../../services/header.services';
+import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
 
 @Component({
   selector: 'app-elderly-food-form',
   templateUrl: './elderly-food-form.component.html',
   styleUrls: ['./elderly-food-form.component.css']
 })
-export class ElderlyFoodFormComponent implements OnInit {
+export class ElderlyFoodFormComponent extends AbstractElderlyModifier implements OnInit {
 
-  public elderly: ElderlyClass;
   public profileFoodForm: FormGroup;
   public showInfo: boolean;
   public showInfoConfirm: boolean = false;
 
-  constructor(private route: ActivatedRoute,
+  constructor(@Inject(ElderlyService) elderlyService: ElderlyService,
+    @Inject(ActivatedRoute) route: ActivatedRoute,
     private router: Router,
-    private elderlyService: ElderlyService) {
-    this.showInfo = this.route.snapshot.queryParamMap.get('showInfo') === 'true';
-    this.elderly = this.route.snapshot.data['elderly'];
+    private headerService: HeaderService) {
+    super(elderlyService, route);
+    this.showInfo = this.isShowInfoUrl();
+  }
+
+  private isShowInfoUrl() {
+    return this.route.snapshot.queryParamMap.get('showInfo') === 'true';
   }
 
   ngOnInit() {
+    this.headerService.doReturn = () => {
+      if (!this.isShowInfoUrl()) {
+        this.router.navigate(['/elderly', this.elderly.id]);
+      } else if (this.showInfoConfirm) {
+        this.showInfoConfirm = false;
+      } else if (!this.showInfo) {
+        this.showInfo = true;
+      } else {
+        this.router.navigate(['/elderly', this.elderly.id]);
+      }
+    };
+    this.headerService.showHome = true;
     this.initForm();
   }
 
@@ -39,9 +56,8 @@ export class ElderlyFoodFormComponent implements OnInit {
 
   public submitForm(value) {
     Object.assign(this.elderly, value);
-    this.elderlyService.update(this.elderly).subscribe((elderly) => {
-      Object.assign(this.elderly, elderly);
-      if (this.route.snapshot.queryParamMap.get('showInfo') === 'true') {
+    this.save(() => {
+      if (this.isShowInfoUrl()) {
         this.showInfoConfirm = true;
       } else {
         this.router.navigate(['/elderly', this.elderly.id, 'cookingImplication']);

@@ -25,6 +25,9 @@ const ROUTES: Routes = [{
     path: ':elderlyId',
     resolve: { elderly: ElderlyResolver },
     children: [{
+      path: '',
+      component: ElderlyProfileFormComponent
+    }, {
       path: 'food',
       component: ElderlyFoodFormComponent
     }, {

@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ElderlyClass } from '../../../domain/elderly.class';
 import { CustomRegExp } from '../../../util/CustomRegExp';
 import { ElderlyService } from '../../../services/elderly.service';
+import { HeaderService } from '../../../services/header.services';
+import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
 
 @Component({
   selector: 'app-elderly-profile-form',
   templateUrl: './elderly-profile-form.component.html',
   styleUrls: ['./elderly-profile-form.component.css']
 })
-export class ElderlyProfileFormComponent implements OnInit {
+export class ElderlyProfileFormComponent extends AbstractElderlyModifier implements OnInit {
 
   public readonly today: Date = new Date();
   public profileForm: FormGroup;
-  private elderly: ElderlyClass;
 
-  constructor(private route: ActivatedRoute,
+  constructor(@Inject(ElderlyService) elderlyService: ElderlyService,
+    @Inject(ActivatedRoute) route: ActivatedRoute,
     private router: Router,
-    private elderlyService: ElderlyService) { }
+    private headerService: HeaderService) {
+    super(elderlyService, route);
+  }
 
   ngOnInit() {
-    this.elderly = this.route.snapshot.data['user'] || new ElderlyClass();
+    this.headerService.doReturn = () => this.router.navigate(['/home']);
+    this.headerService.showHome = false;
     this.initForm();
   }
 
@@ -39,10 +43,10 @@ export class ElderlyProfileFormComponent implements OnInit {
 
   public submitForm(value) {
     Object.assign(this.elderly, value);
-    this.elderlyService.create(this.elderly).subscribe((elderly) => {
-      Object.assign(this.elderly, elderly);
-      this.router.navigate(['/elderly', this.elderly.id, 'food'], { queryParams: { showInfo: true } });
-    });
+    this.save(
+      () => this.router.navigate(['/elderly', this.elderly.id, 'food'], { queryParams: { showInfo: true } }),
+      () => this.router.navigate(['/elderly', this.elderly.id, 'food'])
+    );
   }
 
 }
