@@ -52,6 +52,7 @@ import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 import { ElderlyListComponent } from './components/elderly/elderly-list/elderly-list.component';
+import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -105,7 +106,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlySkillsFormComponent,
     ElderlyFoodFormComponent,
     ElderlyCookingImplicationComponent,
-    ElderlyListComponent
+    ElderlyListComponent,
+    ElderlyProfileComponent
   ],
   entryComponents: [
     DialogComponent

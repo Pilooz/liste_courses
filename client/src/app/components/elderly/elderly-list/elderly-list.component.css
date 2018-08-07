@@ -10,3 +10,7 @@
 .elderly>.elderly-buttons .mat-icon {
     color: white;
 }
+
+.elderly>a {
+    line-height: 40px;
+}

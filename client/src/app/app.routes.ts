@@ -12,6 +12,7 @@ import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
+import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -27,6 +28,9 @@ const ROUTES: Routes = [{
     path: ':elderlyId',
     resolve: { elderly: ElderlyResolver },
     children: [{
+      path: '',
+      component: ElderlyProfileComponent
+    }, {
       path: 'edit',
       component: ElderlyProfileFormComponent,
       canDeactivate: [UnsavedChangesGuard]
