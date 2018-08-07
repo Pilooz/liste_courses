@@ -39,19 +39,19 @@ export class ElderlySkillsFormComponent extends AbstractElderlyModifier implemen
     this.loadSkills();
   }
 
-  loadSkills() {
+  private loadSkills() {
     this.skillService.getAll().subscribe(skills => {
       this.skills = skills;
     });
   }
 
-  addSkill(skill) {
+  public addSkill(skill: SkillClass) {
     _.remove(this.skills, { id: skill.id });
     this.elderly.skills.splice(_.sortedIndexBy(this.elderly.skills, skill, 'label'), 0, skill);
     this.elderlySkillService.putElderlySkill(this.elderly.id, skill.id).subscribe();
   }
 
-  removeSkill(skill) {
+  public removeSkill(skill: SkillClass) {
     _.remove(this.elderly.skills, { id: skill.id });
     this.skills.splice(_.sortedIndexBy(this.skills, skill, 'label'), 0, skill);
     this.elderlySkillService.deleteElderlySkill(this.elderly.id, skill.id).subscribe();
