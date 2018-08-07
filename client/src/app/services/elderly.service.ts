@@ -47,4 +47,9 @@ export class ElderlyService {
             }
         }).pipe(map(res => new ElderlyClass(res)));
     }
+
+    getAll(): Observable<ElderlyClass[]> {
+        return this.restangular.all(UrlSettings.elderlyModel).getList()
+            .pipe(map((res: Array<any>) => res.map(item => new ElderlyClass(item))));
+    }
 }

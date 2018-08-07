@@ -1,0 +1,18 @@
+.elderly {
+    background-color: white;
+    padding: 15px;
+}
+
+.elderly:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+.elderly>.elderly-buttons {
+    border-left: 1px solid black;
+    margin: -15px 0;
+    padding: 15px 0 15px 15px;
+}
+
+.elderly>.elderly-buttons .mat-icon {
+    color: white;
+}

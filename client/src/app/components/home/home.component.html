@@ -16,7 +16,7 @@
 <div *ngIf="isConnected()" class="home-off" fxLayout="column" fxLayoutAlign="space-between center">
   <div>Rechercher un profil</div>
 
-  <div>Les profils</div>
+  <app-elderly-list [elderlies]="elderlies" class="elderlies-list"></app-elderly-list>
 
   <a routerLink="/elderly">
     <button mat-button type="button">
