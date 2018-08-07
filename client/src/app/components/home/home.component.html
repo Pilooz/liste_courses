@@ -9,7 +9,7 @@
       <input matInput type="password" autocomplete="new-password" formControlName="password" max="20" placeholder="password">
     </mat-form-field>
 
-    <button mat-button type="submit">Connexion</button>
+    <button mat-button type="submit" [disabled]="authenticationForm.invalid">Connexion</button>
   </form>
 </div>
 

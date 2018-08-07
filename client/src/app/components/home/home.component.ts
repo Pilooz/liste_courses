@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
 
   private initForm() {
     this.authenticationForm = new FormGroup({
-      'email': new FormControl(this.email, Validators.email),
-      'password': new FormControl(this.password),
+      'email': new FormControl(this.email, [Validators.required, Validators.email]),
+      'password': new FormControl(this.password, Validators.required),
     });
   }
 
