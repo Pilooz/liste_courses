@@ -1,3 +1,37 @@
-<p>
-  elderly-profile works!
-</p>
+<div fxLayout="column" fxLayoutGap="30px" class="elderly-profile">
+  <h2 fxFlexAlign="center">{{elderly.firstname}} {{elderly.lastname | uppercase}}</h2>
+
+  <div fxLayout="column" class="sections">
+    <div fxLayout="column" class="section">
+      <span class="section-title">Profil</span>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Carte d'identité</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div fxLayout="column" fxLayoutGap="20px" class="section-content">
+            <div fxLayout="column">
+              <span><strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong></span>
+              <span>Né(e) le {{elderly.birthdate || '??'}} (?? ans)</span>
+              <span>{{elderly.address}}</span>
+              <span>{{elderly.postalCode}} {{elderly.city}}</span>
+              <span>{{elderly.phone}}</span>
+            </div>
+            <div fxLayout="column">
+              <!-- <span><strong>Taille : </strong>{{elderly.size || '??'}} cm</span> -->
+              <!-- <span><strong>Poids : </strong>{{elderly.weight || '??'}} kg</span> -->
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Préférences alimentaires</mat-panel-title>
+          </mat-expansion-panel-header>
+          Bla bla bla les données à afficher
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
