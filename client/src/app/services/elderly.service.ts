@@ -31,6 +31,15 @@ export class ElderlyService {
     }
 
     /**
+     * Delete an elderly
+     * 
+     * @param elderlyId 
+     */
+    delete(elderlyId: number): Observable<ItemsCount> {
+        return this.restangular.one(UrlSettings.elderlyModel, elderlyId).remove();
+    }
+
+    /**
      * Retrieve elderly by Id
      *
      * @param elderlyId

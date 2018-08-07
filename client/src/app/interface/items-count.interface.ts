@@ -1,0 +1,3 @@
+interface ItemsCount {
+    count: number;
+}
