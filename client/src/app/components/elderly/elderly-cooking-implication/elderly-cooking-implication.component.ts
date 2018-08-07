@@ -44,7 +44,7 @@ export class ElderlyCookingImplicationComponent extends AbstractElderlyModifier 
         case CookingImplicationType.SOMETIMES:
           return this.router.navigate(['/elderly', this.elderly.id, 'skills']);
         default:
-          return this.router.navigate([]); // TODO redirect to "How many of your close family go shopping for you ?"
+          return this.router.navigate(['/home']); // TODO redirect to "How many of your close family go shopping for you ?"
       }
     });
   }
