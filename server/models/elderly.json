@@ -133,6 +133,11 @@
       "foreignKey": "elderlyId",
       "through": "elderlySkill",
       "keyThrough": "skillId"
+    },
+    "meals": {
+      "type": "hasMany",
+      "model": "meal",
+      "foreignKey": "elderlyId"
     }
   },
   "acls": [],

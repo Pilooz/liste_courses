@@ -1,33 +1,26 @@
 {
-  "name": "elderlySkill",
+  "name": "meal",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "elderlyId": {
-      "type": "number",
-      "id": 1,
+    "date": {
+      "type": "date",
       "required": true
     },
-    "skillId": {
+    "type": {
       "type": "number",
-      "id": 2,
       "required": true
     }
   },
   "validations": [],
   "relations": {
-    "owner": {
+    "elderly": {
       "type": "belongsTo",
       "model": "elderly",
       "foreignKey": "elderlyId"
-    },
-    "skill": {
-      "type": "belongsTo",
-      "model": "skill",
-      "foreignKey": "skillId"
     }
   },
   "acls": [],
