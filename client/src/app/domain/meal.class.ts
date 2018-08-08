@@ -1,4 +1,6 @@
 import { MealType } from "../enum/meal-type.enum";
+import { DishClass } from "./dish.class";
+import { StarterClass } from "./starter.class";
 
 export class MealClass {
 
@@ -8,10 +10,14 @@ export class MealClass {
     public elderlyId: number;
     public starterId: number;
     public dishId: number;
+    public starter: StarterClass;
+    public dish: DishClass;
 
     constructor(obj?: any) {
         Object.assign(this, obj, {
-            date: obj && obj.date ? new Date(obj.date) : null
+            date: obj && obj.date ? new Date(obj.date) : null,
+            starter: obj && obj.starter ? new StarterClass(obj.starter) : null,
+            dish: obj && obj.dish ? new DishClass(obj.dish) : null,
         });
     }
 
