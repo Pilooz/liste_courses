@@ -51,3 +51,8 @@
     line-height: 25px;
     padding: 20px;
 }
+
+.section-edit {
+    right: 60px;
+    position: absolute;
+}

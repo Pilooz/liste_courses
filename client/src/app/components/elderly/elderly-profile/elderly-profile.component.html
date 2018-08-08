@@ -5,14 +5,23 @@
     <div fxLayout="column" class="section">
       <span class="section-title">Profil</span>
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel [expanded]="showIdentity">
           <mat-expansion-panel-header>
             <mat-panel-title>Carte d'identité</mat-panel-title>
           </mat-expansion-panel-header>
           <div fxLayout="column" fxLayoutGap="20px" class="section-content">
+            <a [routerLink]="['/elderly', elderly.id, 'edit']" [queryParams]="{standalone: true}" class="section-edit">
+              <button mat-button type="button">
+                <mat-icon>edit</mat-icon>
+                Modifier
+              </button>
+            </a>
             <div fxLayout="column">
-              <span><strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong></span>
-              <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}} ans)</span>
+              <span>
+                <strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong>
+              </span>
+              <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years')
+                || '??'}} ans)</span>
               <span>{{elderly.address}}</span>
               <span>{{elderly.postalCode}} {{elderly.city}}</span>
               <span>{{elderly.phone}}</span>

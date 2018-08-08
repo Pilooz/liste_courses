@@ -23,7 +23,12 @@ export class ElderlyProfileFormComponent extends AbstractElderlyModifier impleme
   }
 
   ngOnInit() {
-    this.headerService.doReturn = () => this.router.navigate(['/home']);
+    this.headerService.doReturn = () => {
+      if (this.standalone) {
+        return this.router.navigate(['/elderly', this.elderly.id], {queryParams: {showIdentity: true}});
+      }
+      return this.router.navigate(['/home']);
+    };
     this.headerService.showHome = false;
     this.initForm();
   }
@@ -42,7 +47,10 @@ export class ElderlyProfileFormComponent extends AbstractElderlyModifier impleme
 
   public submitForm(value) {
     Object.assign(this.elderly, value);
-    this.save(
+    if (this.standalone) {
+      return this.save(() => this.router.navigate(['/elderly', this.elderly.id], {queryParams: {showIdentity: true}}));
+    }
+    return this.save(
       () => this.router.navigate(['/elderly', this.elderly.id, 'food'], { queryParams: { showInfo: true } }),
       () => this.router.navigate(['/elderly', this.elderly.id, 'food'])
     );
