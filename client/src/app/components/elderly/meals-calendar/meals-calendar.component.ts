@@ -8,6 +8,7 @@ import { ElderlyClass } from '../../../domain/elderly.class';
 import { MealClass } from '../../../domain/meal.class';
 
 // Utils
+import { HeaderService } from '../../../services/header.services';
 import { ElderlyMealService } from '../../../services/elderly-meal.service';
 import { MealType } from '../../../enum/meal-type.enum';
 
@@ -22,25 +23,31 @@ export class MealsCalendarComponent implements OnInit {
   public meals: MealClass[];
   // Get today's date without time
   public today: Date = new Date(moment().format("DD/MM/YYYY"));
-  public minDate = this.today;
-  public endDate: Date = moment(new Date(moment().format("DD/MM/YYYY"))).add(6, 'days').toDate();
+  public startDate: Date = this.getMondayOfWeek(this.today);
+  public endDate: Date = this.getSundayOfWeek(this.today);
+  public minDate = this.endDate;
   // Build next week dates
   public dates: Date[] = [];
 
   constructor(
-    private route: ActivatedRoute,
+    protected route: ActivatedRoute,
     private router: Router,
+    private headerService: HeaderService,
     private elderlyMealService: ElderlyMealService) {
     this.elderly = this.route.snapshot.data['elderly']
   }
 
   ngOnInit() {
+    this.headerService.doReturn = () => {
+      return this.router.navigate(['/elderly', this.elderly.id]);
+    };
+    this.headerService.showHome = true;
     this.loadMeals();
   }
 
   // Load meals of the elderly
   loadMeals() {
-    this.elderlyMealService.getElderlyFutureMeals(this.elderly.id).subscribe(meals => {
+    this.elderlyMealService.getElderlyMeals(this.elderly.id, this.startDate, this.endDate).subscribe(meals => {
       this.meals = meals;
       const farestMeal = _.maxBy(this.meals, 'date');
       this.minDate = farestMeal.date;
@@ -95,7 +102,7 @@ export class MealsCalendarComponent implements OnInit {
   }
 
   initDates() {
-    var date = this.today;
+    var date = this.startDate;
     this.dates.length = 0;
     this.dates.push(date);
 
@@ -107,5 +114,15 @@ export class MealsCalendarComponent implements OnInit {
   public initMeals() {
     this.elderlyMealService.initMeals(this.elderly.id, this.endDate)
       .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent'], { queryParams: { endDate: this.endDate.getTime() } }));
+  }
+
+  getMondayOfWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? -6 : 1) - day);
+  }
+
+  getSundayOfWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? 0 : 7) - day);
   }
 }
