@@ -3,11 +3,11 @@
   <span class="form-title">Séléctionnez les repas à prévoir</span>
 
   <div fxFlexFill class="meals-calendar">
-    <div class="header" fxLayout="row" fxLayoutAlign="end center">
+    <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
       <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
       <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
     </div>
-    <div class="body" fxLayout="column">
+    <div class="meals-week" fxLayout="column">
       <div *ngFor="let date of dates" class="row" fxLayout="row">
         <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
         <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleLunch(date)">
