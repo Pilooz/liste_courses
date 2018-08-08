@@ -15,6 +15,7 @@ import { ElderlyCookingImplicationComponent } from './components/elderly/elderly
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
+import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -53,7 +54,8 @@ const ROUTES: Routes = [{
       component: MealsCalendarComponent
     }, {
       path: 'mealsCalendarContent',
-      component: MealsCalendarContentComponent
+      component: MealsCalendarContentComponent,
+      resolve: { meals: ElderlyMealsResolver }
     }]
   }]
 }, {

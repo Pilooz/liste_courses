@@ -61,7 +61,7 @@ export class MealsCalendarComponent implements OnInit {
 
   toggleLunch(date) {
     const lunch = this.getLunch(date);
-    lunch ? this.deleteMeal(lunch) : this.addMeal(new MealClass ({
+    lunch ? this.deleteMeal(lunch) : this.addMeal(new MealClass({
       date: date,
       elderlyId: this.elderly.id,
       type: MealType.LUNCH
@@ -70,7 +70,7 @@ export class MealsCalendarComponent implements OnInit {
 
   toggleDinner(date) {
     const dinner = this.getDinner(date);
-    dinner ? this.deleteMeal(dinner) : this.addMeal(new MealClass ({
+    dinner ? this.deleteMeal(dinner) : this.addMeal(new MealClass({
       date: date,
       elderlyId: this.elderly.id,
       type: MealType.DINNER
@@ -106,6 +106,6 @@ export class MealsCalendarComponent implements OnInit {
 
   public initMeals() {
     this.elderlyMealService.initMeals(this.elderly.id, this.endDate)
-      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent']));
+      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent'], { queryParams: { endDate: this.endDate.getTime() } }));
   }
 }
