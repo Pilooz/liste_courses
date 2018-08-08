@@ -125,3 +125,8 @@ form.profile-form>*:not(button) {
 }
 
 /* ----- END Forms ----- */
+
+app-meals-calendar .mat-form-field-infix {
+    margin-left: 10px;
+    width: 90px;
+}

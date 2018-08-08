@@ -22,14 +22,9 @@ export class MealsCalendarComponent implements OnInit {
   public meals: MealClass[];
   // Get today's date without time
   public today: Date = new Date(moment().format("DD/MM/YYYY"));
+  public endDate: Date = moment(new Date(moment().format("DD/MM/YYYY"))).add(7, 'days').toDate();
   // Build next week dates
-  public dates: Date[] = [
-    this.today,
-    moment(this.today).add(1, 'days').toDate(),
-    moment(this.today).add(2, 'days').toDate(),
-    moment(this.today).add(3, 'days').toDate(),
-    moment(this.today).add(4, 'days').toDate()
-  ];
+  public dates: Date[] = [this.today];
 
   constructor(
     protected route: ActivatedRoute,
@@ -45,7 +40,7 @@ export class MealsCalendarComponent implements OnInit {
   loadMeals() {
     this.elderlyMealService.getElderlyFutureMeals(this.elderly.id).subscribe(meals => {
       this.meals = meals;
-      console.log(meals);
+      this.initDates();
     })
   }
 
@@ -87,5 +82,17 @@ export class MealsCalendarComponent implements OnInit {
     this.elderlyMealService.deleteElderlyMeal(meal.elderlyId, meal.id).subscribe(() => {
       _.remove(this.meals, { id: meal.id });
     });
+  }
+
+  setEndDate(event) {
+    console.log(event.target.value);
+  }
+
+  initDates() {
+    var date = this.today;
+
+    while ((date = moment(date).add(1, 'days').toDate()) < this.endDate) {
+      this.dates.push(date);
+    }
   }
 }

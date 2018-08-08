@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
   <img class="form-img" src="/assets/img/user.svg">
-  <span class="form-title">Séléctionnez les repas à prévoir pour cette semaine</span>
+  <span class="form-title">Séléctionnez les repas à prévoir</span>
 </div>
 <div>
   <div class="meals-calendar">
@@ -15,12 +15,17 @@
           <i *ngIf="getLunch(date)" class="material-icons">check</i>
         </div>
         <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleDinner(date)">
-            <i *ngIf="getDinner(date)" class="material-icons">check</i>
+          <i *ngIf="getDinner(date)" class="material-icons">check</i>
         </div>
       </div>
     </div>
-    <div class="footer">
-
-    </div>
   </div>
+  <!-- <div fxLayout="row" fxLayoutAlign="center center">
+    <span>Jusqu'à quelle date souhaitez-vous préparer vos repas ?</span>
+    <mat-form-field>
+      <input matInput [matDatepicker]="endDate" [min]="today" [value]="endDate" (dateChange)="setEndDate($event)" disabled>
+      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker #endDate disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div> -->
 </div>
