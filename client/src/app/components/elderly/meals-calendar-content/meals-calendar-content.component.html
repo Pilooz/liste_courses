@@ -3,17 +3,24 @@
   <span class="form-title">Repas prévus</span>
 
   <div fxFlexFill class="meals-calendar">
-    <div class="header" fxLayout="row" fxLayoutAlign="end center">
+    <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
       <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
       <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
     </div>
-    <div class="body" fxLayout="column">
+    <div class="meals-week" fxLayout="column">
       <div *ngFor="let date of dates" class="row" fxLayout="row">
         <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
-        <!-- TODO starters & dishes -->
+        <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getLunch(date)}"></ng-container>
+        <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getDinner(date)}"></ng-container>
+        <ng-template #meal let-meal="meal">
+          <div fxFlex="40" fxLayout="column" class="meals-cell">
+            <ng-container *ngIf="meal">
+              <span><strong>Entrée :</strong> {{meal.starter.name}}</span>
+              <span><strong>Plat:</strong> {{meal.dish.name}}</span>
+            </ng-container>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
-
-  <button mat-button type="button" >Valider</button>
 </div>

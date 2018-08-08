@@ -183,4 +183,9 @@ app-meals-calendar .mat-form-field-infix {
     color: #83C8B6;
 }
 
+.meals-calendar .meals-cell {
+    color: black;
+    padding: 5px 10px;
+}
+
 /* ----- END Meals calendar ----- */
