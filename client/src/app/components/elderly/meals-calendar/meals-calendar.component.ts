@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import * as moment from 'moment'
 import * as _ from 'lodash'
+
+// Classes
+import { ElderlyClass } from '../../../domain/elderly.class';
 import { MealClass } from '../../../domain/meal.class';
+
+// Utils
+import { ElderlyMealService } from '../../../services/elderly-meal.service';
 import { MealType } from '../../../enum/meal-type.enum';
 
 @Component({
@@ -10,47 +18,74 @@ import { MealType } from '../../../enum/meal-type.enum';
 })
 export class MealsCalendarComponent implements OnInit {
 
-  public meals: MealClass[] = [
-    new MealClass({
-      date: new Date("08/06/2018"),
-      type: MealType.DINNER
-    }),
-    new MealClass({
-      date: new Date("08/07/2018"),
-      type: MealType.LUNCH
-    }),
-    new MealClass({
-      date: new Date("08/07/2018"),
-      type: MealType.DINNER
-    }),
-    new MealClass({
-      date: new Date("08/08/2018"),
-      type: MealType.LUNCH
-    }),
-    new MealClass({
-      date: new Date("08/08/2018"),
-      type: MealType.DINNER
-    }),
-    new MealClass({
-      date: new Date("08/09/2018"),
-      type: MealType.LUNCH
-    }),
-    new MealClass({
-      date: new Date("08/09/2018"),
-      type: MealType.DINNER
-    }),
-    new MealClass({
-      date: new Date("08/10/2018"),
-      type: MealType.LUNCH
-    })
+  public elderly: ElderlyClass;
+  public meals: MealClass[];
+  // Get today's date without time
+  public today: Date = new Date(moment().format("DD/MM/YYYY"));
+  // Build next week dates
+  public dates: Date[] = [
+    this.today,
+    moment(this.today).add(1, 'days').toDate(),
+    moment(this.today).add(2, 'days').toDate(),
+    moment(this.today).add(3, 'days').toDate(),
+    moment(this.today).add(4, 'days').toDate()
   ];
-  public mealsList: any;
 
-  constructor() { }
-
-  ngOnInit() {
-    this.mealsList = _.sortBy(_.groupBy(this.meals, 'date'), [function(o) { return o.date; }]);
-    console.log(this.mealsList);
+  constructor(
+    protected route: ActivatedRoute,
+    private elderlyMealService: ElderlyMealService) {
+    this.elderly = this.route.snapshot.data['elderly']
   }
 
+  ngOnInit() {
+    this.loadMeals();
+  }
+
+  // Load meals of the elderly
+  loadMeals() {
+    this.elderlyMealService.getElderlyFutureMeals(this.elderly.id).subscribe(meals => {
+      this.meals = meals;
+      console.log(meals);
+    })
+  }
+
+  getLunch(date: Date): MealClass {
+    const lunches: MealClass[] = _.filter(this.meals, { date: date, type: MealType.LUNCH }) as MealClass[];
+    return lunches.length ? lunches[0] : null;
+  }
+
+  getDinner(date): MealClass {
+    const dinners: MealClass[] = _.filter(this.meals, { date: date, type: MealType.DINNER }) as MealClass[];
+    return dinners.length ? dinners[0] : undefined;
+  }
+
+  toggleLunch(date) {
+    const lunch = this.getLunch(date);
+    lunch ? this.deleteMeal(lunch) : this.addMeal(new MealClass ({
+      date: date,
+      elderlyId: this.elderly.id,
+      type: MealType.LUNCH
+    }));
+  }
+
+  toggleDinner(date) {
+    const dinner = this.getDinner(date);
+    dinner ? this.deleteMeal(dinner) : this.addMeal(new MealClass ({
+      date: date,
+      elderlyId: this.elderly.id,
+      type: MealType.DINNER
+    }));
+  }
+
+  addMeal(meal: MealClass) {
+    this.elderlyMealService.addElderlyMeal(meal).subscribe(meal => {
+      this.meals.push(meal);
+    });
+  }
+
+  deleteMeal(meal: MealClass) {
+    this.elderlyMealService.deleteElderlyMeal(meal.elderlyId, meal.id).subscribe(() => {
+      _.remove(this.meals, { id: meal.id });
+    });
+  }
 }

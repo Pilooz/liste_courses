@@ -9,13 +9,13 @@
       <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
     </div>
     <div class="body" fxLayout="column">
-      <div *ngFor="let meals of mealsList" class="row" fxLayout="row">
-        <div fxFlex="20%">{{meals[0].date | date:'EEE dd/LL'}}</div>
-        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center">
-          <i *ngIf="meals[0].isLunch() || meals[1] && meals[1].isLunch()" class="material-icons">check</i>
+      <div *ngFor="let date of dates" class="row" fxLayout="row">
+        <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
+        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleLunch(date)">
+          <i *ngIf="getLunch(date)" class="material-icons">check</i>
         </div>
-        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center">
-          <i *ngIf="meals[0].isDinner() || meals[1] && meals[1].isDinner()" class="material-icons">check</i>
+        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleDinner(date)">
+            <i *ngIf="getDinner(date)" class="material-icons">check</i>
         </div>
       </div>
     </div>
