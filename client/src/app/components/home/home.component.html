@@ -9,6 +9,8 @@
       <input matInput type="password" autocomplete="new-password" formControlName="password" max="20" placeholder="password">
     </mat-form-field>
 
+    <small *ngIf="badCredentials" class="credential-error color-red">Identifiants incorrects</small>
+
     <button mat-button type="submit" [disabled]="authenticationForm.invalid">Connexion</button>
   </form>
 </div>
