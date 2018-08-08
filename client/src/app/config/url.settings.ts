@@ -15,6 +15,8 @@ export class UrlSettings {
 
   // Elderly
   public static readonly elderlyModel = 'elderlies';
+  public static readonly elderlyMeals = 'meals';
+  public static readonly elderlyMealsInit = 'init';
 
   // Meal
   public static readonly mealModel = 'meals';

@@ -46,4 +46,15 @@ export class ElderlyMealService {
   deleteElderlyMeal(elderlyId: number, mealId: number): Observable<any> {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).one(UrlSettings.mealModel, mealId).remove();
   }
+
+  /**
+   * Init meals for a given elderly, from now to the given endDate
+   * 
+   * @param elderlyId 
+   * @param endDate 
+   */
+  initMeals(elderlyId: number, endDate: Date): Observable<void> {
+      return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals)
+          .customPOST({ endDate: endDate }, UrlSettings.elderlyMealsInit);
+  }
 }
