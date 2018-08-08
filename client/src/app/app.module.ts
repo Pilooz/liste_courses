@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
+// Locale
+import { LOCALE_ID } from '@angular/core';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 
 // Material Design
 import {
@@ -21,6 +23,9 @@ import { FrenchDateAdapter } from './util/FrenchDateAdapter';
 // Design
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Pipes
+import { DateDiffPipe } from './pipes/DateDiffPipe';
 
 // Restangular
 import { UrlSettings } from './config/url.settings';
@@ -47,6 +52,8 @@ import { SkillService } from './services/skill.service';
 import { UserService } from './services/user.service';
 
 // Components
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
@@ -56,6 +63,7 @@ import { ElderlyCookingImplicationComponent } from './components/elderly/elderly
 import { ElderlyListComponent } from './components/elderly/elderly-list/elderly-list.component';
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
+import { registerLocaleData } from '@angular/common';
 
 /**
  * Function for settting the default restangular configuration
@@ -101,6 +109,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
 
 @NgModule({
   declarations: [
+    DateDiffPipe,
     AppComponent,
     HeaderComponent,
     HomeComponent,
@@ -146,6 +155,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
       provide: DateAdapter,
       useClass: FrenchDateAdapter
     },
+    { provide: LOCALE_ID, useValue: 'fr' },
     appRoutingProviders,
     AuthenticationService,
     ElderlyService,

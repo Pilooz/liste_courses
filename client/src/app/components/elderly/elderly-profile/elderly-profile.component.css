@@ -20,6 +20,7 @@
 
 .mat-expansion-panel {
     background-color: #83C8B6;
+    margin: 0;
 }
 
 .mat-expansion-panel-header {
@@ -50,4 +51,13 @@
     font-size: 1.2rem;
     line-height: 25px;
     padding: 20px;
+}
+
+.elderly-skill {
+    background-color: white;
+    border-radius: 10px;
+    color: #83C8B6;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 3px 8px;
 }

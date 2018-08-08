@@ -29,6 +29,9 @@ export class ElderlyFoodFormComponent extends AbstractElderlyModifier implements
 
   ngOnInit() {
     this.headerService.doReturn = () => {
+      if (this.standalone) {
+        return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showFood: true } });
+      }
       if (!this.isShowInfoUrl()) {
         this.router.navigate(['/elderly', this.elderly.id, 'edit']);
       } else if (this.showInfoConfirm) {
@@ -55,7 +58,10 @@ export class ElderlyFoodFormComponent extends AbstractElderlyModifier implements
 
   public submitForm(value) {
     Object.assign(this.elderly, value);
-    this.save(() => {
+    if (this.standalone) {
+      return this.save(() => this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showFood: true } }));
+    }
+    return this.save(() => {
       if (this.isShowInfoUrl()) {
         this.showInfoConfirm = true;
       } else {

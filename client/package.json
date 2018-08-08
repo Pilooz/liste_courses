@@ -25,6 +25,7 @@
     "@angular/router": "6.1.0",
     "core-js": "2.5.7",
     "lodash": "4.17.10",
+    "moment": "2.22.2",
     "ngx-restangular": "3.0.0",
     "rxjs": "6.2.2",
     "zone.js": "0.8.26"
@@ -36,6 +37,7 @@
     "@angular/language-service": "6.1.0",
     "@types/jasmine": "2.8.6",
     "@types/jasminewd2": "2.0.3",
+    "@types/moment": "2.13.0",
     "@types/node": "8.9.4",
     "codelyzer": "4.4.2",
     "jasmine-core": "2.99.1",

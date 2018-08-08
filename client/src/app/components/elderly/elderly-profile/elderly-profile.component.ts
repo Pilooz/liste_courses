@@ -11,15 +11,22 @@ import { HeaderService } from '../../../services/header.services';
 export class ElderlyProfileComponent implements OnInit {
 
   public elderly: ElderlyClass;
+  public showIdentity: boolean;
+  public showFood: boolean;
+  public showSkills: boolean;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private headerService: HeaderService) {
     this.elderly = this.route.snapshot.data['elderly'];
+    this.showIdentity = this.route.snapshot.queryParamMap.get('showIdentity') === 'true';
+    this.showFood = this.route.snapshot.queryParamMap.get('showFood') === 'true';
+    this.showSkills = this.route.snapshot.queryParamMap.get('showSkills') === 'true';
   }
 
   ngOnInit() {
     this.headerService.doReturn = () => this.router.navigate(['/home']);
+    this.headerService.showHome = false;
   }
 
 }

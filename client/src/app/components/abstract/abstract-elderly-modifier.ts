@@ -7,10 +7,12 @@ export abstract class AbstractElderlyModifier implements Deactivable {
 
     public elderly: ElderlyClass;
     public elderlyForm: FormGroup;
+    public standalone: boolean;
 
     constructor(protected elderlyService: ElderlyService,
         protected route: ActivatedRoute) {
         this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
+        this.standalone = this.route.snapshot.queryParamMap.get('standalone') === 'true';
     }
 
     /**

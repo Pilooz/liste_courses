@@ -1,5 +1,5 @@
 <div *ngFor="let elderly of elderlies" fxLayout="row" fxLayoutAlign="space-between center" class="elderly">
-  <a fxFlex [routerLink]="['/elderly', elderly.id]">
+  <a fxFlex [routerLink]="['/elderly', elderly.id]" [queryParams]="{showIdentity: true}">
     {{elderly.firstname}} {{elderly.lastname | uppercase}}
   </a>
   <button mat-mini-fab type="button" class="background-red" (click)="delete(elderly)">

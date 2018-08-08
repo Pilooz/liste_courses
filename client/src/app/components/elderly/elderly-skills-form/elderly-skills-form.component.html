@@ -19,7 +19,14 @@
     </div>
   </div>
 
-  <button mat-button type="button" (click)="showInfoConfirm = true">Valider</button>
+  <ng-container *ngIf="standalone">
+    <a [routerLink]="['/elderly', elderly.id]" [queryParams]="{showSkills: true}">
+      <button mat-button type="button">Valider</button>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="!standalone">
+    <button mat-button type="button" (click)="showInfoConfirm = true">Valider</button>
+  </ng-container>
 </div>
 
 <!-- Info after the form -->
