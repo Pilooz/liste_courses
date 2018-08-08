@@ -31,6 +31,10 @@ a, a:hover {
     border-radius: 5px;
 }
 
+.mat-calendar-period-button {
+    color: inherit;
+}
+
 /* Buttons color in header */
 .header button:not([disabled]) {
     background-color: #5ab5e2;

@@ -1,0 +1,53 @@
+.elderly-profile {
+    height: calc(100% + 40px);
+    margin-bottom: -40px;
+}
+
+.section {
+    margin: 0 -40px;
+}
+
+.section>* {
+    line-height: 50px;
+}
+
+.section-title {
+    background-color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 40px;
+}
+
+.mat-expansion-panel {
+    background-color: #83C8B6;
+}
+
+.mat-expansion-panel-header {
+    background-color: #83C8B6 !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 40px;
+}
+
+.mat-expansion-panel-header-title {
+    color: white;
+}
+
+::ng-deep.mat-expansion-indicator::after {
+    border-width: 0 4px 4px 0 !important;
+    color: white;
+    margin-top: -8px;
+    height: 8px;
+    width: 8px;
+}
+
+::ng-deep.mat-expansion-panel-body {
+    background-color: #DAEEE9;
+    padding: 0 40px !important;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    line-height: 25px;
+    padding: 20px;
+}
