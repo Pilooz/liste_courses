@@ -105,7 +105,7 @@ export class MealsCalendarComponent implements OnInit {
   }
 
   public initMeals() {
-    this.elderlyMealService.initMeals(this.elderly.id, new Date())
+    this.elderlyMealService.initMeals(this.elderly.id, this.endDate)
       .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent']));
   }
 }
