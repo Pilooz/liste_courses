@@ -6,6 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
+    "elderlyId": {
+      "type": "number",
+      "required": true
+    },
     "date": {
       "type": "date",
       "required": true
