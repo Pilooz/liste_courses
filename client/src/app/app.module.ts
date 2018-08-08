@@ -41,6 +41,7 @@ import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Resolver
 import { ElderlyResolver } from './resolver/elderly.resolver';
+import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 
 // Services
 import { AuthenticationService } from './services/authentication.service';
@@ -169,7 +170,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     AuthGuard,
     UnauthGuard,
     UnsavedChangesGuard,
-    ElderlyResolver
+    ElderlyResolver,
+    ElderlyMealsResolver
   ],
   bootstrap: [AppComponent]
 })
