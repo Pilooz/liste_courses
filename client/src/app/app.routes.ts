@@ -14,6 +14,7 @@ import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
+import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -49,8 +50,10 @@ const ROUTES: Routes = [{
       canDeactivate: [UnsavedChangesGuard]
     }, {
       path: 'meals-calendar',
-      component: MealsCalendarComponent,
-      canDeactivate: [UnsavedChangesGuard]
+      component: MealsCalendarComponent
+    }, {
+      path: 'mealsCalendarContent',
+      component: MealsCalendarContentComponent
     }]
   }]
 }, {
