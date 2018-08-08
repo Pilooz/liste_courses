@@ -15,7 +15,7 @@ module.exports = function(Elderly) {
     const meals = await getMeals(elderlyId, endDate);
     // Do not compute anything if all meals are already linked to a starter and a dish
     if (meals.every(meal => meal.starterId && meal.dishId)) {
-      return meals;
+      return;
     }
     // Get all starters & dishes, and shuffle the lists (random)
     let starters = await Elderly.app.models.starter.find();
@@ -28,23 +28,21 @@ module.exports = function(Elderly) {
       await meals[i].dish(dishes[i % dishes.length]);
       await meals[i].save();
     }
-    return getMeals(elderlyId, endDate);
   };
 
   function getMeals(elderlyId, endDate) {
     return Elderly.app.models.meal.find({where: {
       elderlyId: elderlyId,
       and: [{date: {gte: new Date()}}, {date: {lte: endDate}}],
-    }, include: ['starter', 'dish']});
+    }});
   }
 
   Elderly.remoteMethod('initMeals', {
     description: '[Custom] Init all meels for the given period',
     accepts: [
       {arg: 'id', type: 'number'},
-      {arg: 'endDate', type: 'date'},
+      {arg: 'endDate', type: 'date', required: true},
     ],
     http: {path: '/:id/meals/init', verb: 'post'},
-    returns: {arg: 'meals', type: '[meal]', root: true},
   });
 };

@@ -64,6 +64,7 @@ import { ElderlyListComponent } from './components/elderly/elderly-list/elderly-
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { registerLocaleData } from '@angular/common';
+import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -120,7 +121,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyCookingImplicationComponent,
     ElderlyListComponent,
     ElderlyProfileComponent,
-    MealsCalendarComponent
+    MealsCalendarComponent,
+    MealsCalendarContentComponent
   ],
   entryComponents: [
     DialogComponent

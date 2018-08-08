@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { UrlSettings } from '../config/url.settings';
 import { ElderlyClass } from '../domain/elderly.class';
+import { MealClass } from '../domain/meal.class';
 
 @Injectable()
 export class ElderlyService {
@@ -57,8 +58,11 @@ export class ElderlyService {
         }).pipe(map(res => new ElderlyClass(res)));
     }
 
+    /**
+     * Get all elderlies
+     */
     getAll(): Observable<ElderlyClass[]> {
-        return this.restangular.all(UrlSettings.elderlyModel).getList({filter: {order : 'lastname, firstname'}})
+        return this.restangular.all(UrlSettings.elderlyModel).getList({ filter: { order: 'lastname, firstname' } })
             .pipe(map((res: Array<any>) => res.map(item => new ElderlyClass(item))));
     }
 }

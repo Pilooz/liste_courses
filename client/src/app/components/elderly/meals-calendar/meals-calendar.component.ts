@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 import * as moment from 'moment'
 import * as _ from 'lodash'
 
@@ -31,8 +31,8 @@ export class MealsCalendarComponent implements OnInit {
   constructor(
     protected route: ActivatedRoute,
     private router: Router,
-    private elderlyMealService: ElderlyMealService,
-    private headerService: HeaderService) {
+    private headerService: HeaderService,
+    private elderlyMealService: ElderlyMealService) {
     this.elderly = this.route.snapshot.data['elderly']
   }
 
@@ -108,5 +108,10 @@ export class MealsCalendarComponent implements OnInit {
     while ((date = moment(date).add(1, 'days').toDate()) <= this.endDate) {
       this.dates.push(date);
     }
+  }
+
+  public initMeals() {
+    this.elderlyMealService.initMeals(this.elderly.id, this.endDate)
+      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent']));
   }
 }
