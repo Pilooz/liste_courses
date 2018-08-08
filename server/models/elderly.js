@@ -12,10 +12,7 @@ module.exports = function(Elderly) {
    */
   Elderly.initMeals = async function(elderlyId, endDate) {
     // Retrieve elderly's meals for the given period
-    const meals = await Elderly.app.models.meal.find({where: {
-      elderlyId: elderlyId,
-      and: [{date: {gte: new Date()}}, {date: {lte: endDate}}],
-    }});
+    const meals = await getMeals(elderlyId, endDate);
     // Do not compute anything if all meals are already linked to a starter and a dish
     if (meals.every(meal => meal.starterId && meal.dishId)) {
       return meals;
@@ -31,8 +28,15 @@ module.exports = function(Elderly) {
       await meals[i].dish(dishes[i % dishes.length]);
       await meals[i].save();
     }
-    return meals;
+    return getMeals(elderlyId, endDate);
   };
+
+  function getMeals(elderlyId, endDate) {
+    return Elderly.app.models.meal.find({where: {
+      elderlyId: elderlyId,
+      and: [{date: {gte: new Date()}}, {date: {lte: endDate}}],
+    }, include: ['starter', 'dish']});
+  }
 
   Elderly.remoteMethod('initMeals', {
     description: '[Custom] Init all meels for the given period',
