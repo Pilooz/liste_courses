@@ -17,16 +17,21 @@ export class ElderlyMealService {
   /**
    * Get elderly meals
    * @param elderlyId 
+   * @param startDate 
+   * @param endDate 
    */
-  getElderlyFutureMeals(elderlyId: number): Observable<MealClass[]> {
+  getElderlyMeals(elderlyId: number, startDate, endDate): Observable<MealClass[]> {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.mealModel).getList({
       filter: {
         where: {
-          date: {gte: new Date(moment().format("DD/MM/YYYY"))}
+          or: [{
+            date: { gte: startDate }
+          }, {
+            date: { lte: startDate }
+          }]
         }
       }
-    })
-    .pipe(map((res: Array<any>) => res.map(item => new MealClass(item))));
+    }).pipe(map((res: Array<any>) => res.map(item => new MealClass(item))));
   }
 
   /**
@@ -35,7 +40,7 @@ export class ElderlyMealService {
    */
   addElderlyMeal(meal: MealClass): Observable<MealClass> {
     return this.restangular.one(UrlSettings.elderlyModel, meal.elderlyId).all(UrlSettings.mealModel).post(meal)
-    .pipe(map(res => new MealClass(res)));;
+      .pipe(map(res => new MealClass(res)));;
   }
 
   /**
@@ -54,7 +59,7 @@ export class ElderlyMealService {
    * @param endDate 
    */
   initMeals(elderlyId: number, endDate: Date): Observable<void> {
-      return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals)
-          .customPOST({ endDate: endDate }, UrlSettings.elderlyMealsInit);
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals)
+      .customPOST({ endDate: endDate }, UrlSettings.elderlyMealsInit);
   }
 }

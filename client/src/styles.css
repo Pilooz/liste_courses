@@ -59,6 +59,10 @@ button.background-red:not([disabled]) {
     background-color: #ED6A7A;
 }
 
+button.background-blue:not([disabled]) {
+    background-color: #5ab5e2;
+}
+
 /* ----- END Buttons look & feel ----- */
 
 /* ----- Colors & background ----- */
@@ -73,6 +77,14 @@ button.background-red:not([disabled]) {
 
 .background-red {
     background-color: #ED6A7A;
+}
+
+.background-blue {
+    background-color: #5ab5e2;
+}
+
+.background-blue-light {
+    background-color: #cceaf9;
 }
 
 .color-green {
