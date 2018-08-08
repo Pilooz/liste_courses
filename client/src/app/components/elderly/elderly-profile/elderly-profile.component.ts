@@ -12,12 +12,14 @@ export class ElderlyProfileComponent implements OnInit {
 
   public elderly: ElderlyClass;
   public showIdentity: boolean;
+  public showFood: boolean;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private headerService: HeaderService) {
     this.elderly = this.route.snapshot.data['elderly'];
     this.showIdentity = this.route.snapshot.queryParamMap.get('showIdentity') === 'true';
+    this.showFood = this.route.snapshot.queryParamMap.get('showFood') === 'true';
   }
 
   ngOnInit() {

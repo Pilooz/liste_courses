@@ -20,6 +20,7 @@
 
 .mat-expansion-panel {
     background-color: #83C8B6;
+    margin: 0;
 }
 
 .mat-expansion-panel-header {
@@ -50,9 +51,4 @@
     font-size: 1.2rem;
     line-height: 25px;
     padding: 20px;
-}
-
-.section-edit {
-    right: 60px;
-    position: absolute;
 }
