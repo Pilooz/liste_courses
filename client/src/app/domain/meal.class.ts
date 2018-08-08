@@ -6,6 +6,8 @@ export class MealClass {
     public date: Date;
     public type: MealType;
     public elderlyId: number;
+    public starterId: number;
+    public dishId: number;
 
     constructor(obj?: any) {
         Object.assign(this, obj, {

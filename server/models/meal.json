@@ -21,6 +21,16 @@
       "type": "belongsTo",
       "model": "elderly",
       "foreignKey": "elderlyId"
+    },
+    "starter": {
+      "type": "belongsTo",
+      "model": "starter",
+      "foreignKey": "starterId"
+    },
+    "dish": {
+      "type": "belongsTo",
+      "model": "dish",
+      "foreignKey": "dishId"
     }
   },
   "acls": [],
