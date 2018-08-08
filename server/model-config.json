@@ -79,5 +79,9 @@
   "elderlySkill": {
     "dataSource": "db",
     "public": false
+  },
+  "meal": {
+    "dataSource": "db",
+    "public": false
   }
 }
