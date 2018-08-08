@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment'
 import * as _ from 'lodash'
 
@@ -8,6 +8,7 @@ import { ElderlyClass } from '../../../domain/elderly.class';
 import { MealClass } from '../../../domain/meal.class';
 
 // Utils
+import { HeaderService } from '../../../services/header.services';
 import { ElderlyMealService } from '../../../services/elderly-meal.service';
 import { MealType } from '../../../enum/meal-type.enum';
 
@@ -29,11 +30,17 @@ export class MealsCalendarComponent implements OnInit {
 
   constructor(
     protected route: ActivatedRoute,
-    private elderlyMealService: ElderlyMealService) {
+    private router: Router,
+    private elderlyMealService: ElderlyMealService,
+    private headerService: HeaderService) {
     this.elderly = this.route.snapshot.data['elderly']
   }
 
   ngOnInit() {
+    this.headerService.doReturn = () => {
+      return this.router.navigate(['/elderly', this.elderly.id]);
+    };
+    this.headerService.showHome = true;
     this.loadMeals();
   }
 

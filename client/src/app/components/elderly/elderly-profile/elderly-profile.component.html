@@ -33,6 +33,14 @@
         </ng-template>
       </mat-accordion>
     </div>
+    <div fxLayout="column" class="section">
+      <span class="section-title">Semaine du</span>
+      <div fxLayoutAlign="center center">
+        <a [routerLink]="['/elderly', elderly.id, 'meals-calendar']">
+          <button mat-button type="button">Planifier la semaine</button>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
