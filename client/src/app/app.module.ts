@@ -40,6 +40,7 @@ import { ElderlyResolver } from './resolver/elderly.resolver';
 // Services
 import { AuthenticationService } from './services/authentication.service';
 import { ElderlyService } from './services/elderly.service';
+import { ElderlyMealService } from './services/elderly-meal.service';
 import { ElderlySkillService } from './services/elderly-skill.service';
 import { HeaderService } from './services/header.services';
 import { SkillService } from './services/skill.service';
@@ -146,6 +147,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     appRoutingProviders,
     AuthenticationService,
     ElderlyService,
+    ElderlyMealService,
     ElderlySkillService,
     HeaderService,
     SkillService,
