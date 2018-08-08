@@ -12,7 +12,7 @@
           <div fxLayout="column" fxLayoutGap="20px" class="section-content">
             <div fxLayout="column">
               <span><strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong></span>
-              <span>Né(e) le {{elderly.birthdate || '??'}} (?? ans)</span>
+              <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}} ans)</span>
               <span>{{elderly.address}}</span>
               <span>{{elderly.postalCode}} {{elderly.city}}</span>
               <span>{{elderly.phone}}</span>
