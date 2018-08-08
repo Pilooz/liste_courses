@@ -83,5 +83,13 @@
   "meal": {
     "dataSource": "db",
     "public": false
+  },
+  "dish": {
+    "dataSource": "db",
+    "public": true
+  },
+  "starter": {
+    "dataSource": "db",
+    "public": true
   }
 }
