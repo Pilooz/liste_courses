@@ -5,70 +5,71 @@
     <div fxLayout="column" class="section">
       <span class="section-title">Profil</span>
       <mat-accordion>
-        <!-- Identity section -->
-        <mat-expansion-panel [expanded]="showIdentity">
-          <mat-expansion-panel-header>
-            <mat-panel-title>Carte d'identité</mat-panel-title>
-          </mat-expansion-panel-header>
-          <div fxLayout="row" class="section-content">
-            <div fxFlex fxLayout="column" fxLayoutGap="20px">
-              <div fxLayout="column">
-                <span>
-                  <strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong>
-                </span>
-                <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years')
-                  || '??'}} ans)</span>
-                <span>{{elderly.address}}</span>
-                <span>{{elderly.postalCode}} {{elderly.city}}</span>
-                <span>{{elderly.phone}}</span>
+        <!-- Identity -->
+        <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showIdentity, title: 'Carte d\'identité', content: identity, editPage: 'edit'}"></ng-container>
+        <!-- Prefered food -->
+        <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showFood, title: 'Préférences alimentaires', content: food, editPage: 'food'}"></ng-container>
+
+        <!-- Panel template -->
+        <ng-template #panel let-expanded="expanded" let-title="title" let-content="content" let-editPage="editPage">
+          <mat-expansion-panel [expanded]="expanded">
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{title}}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" class="section-content">
+              <div fxFlex fxLayout="column" fxLayoutGap="20px">
+                <ng-container [ngTemplateOutlet]="content" [ngTemplateOutletContext]="{elderly: elderly}"></ng-container>
               </div>
-              <div fxLayout="column">
-                <!-- <span><strong>Taille : </strong>{{elderly.size || '??'}} cm</span> -->
-                <!-- <span><strong>Poids : </strong>{{elderly.weight || '??'}} kg</span> -->
-              </div>
+              <a [routerLink]="['/elderly', elderly.id, editPage]" [queryParams]="{standalone: true}">
+                <button mat-button type="button">
+                  <mat-icon>edit</mat-icon>
+                  Modifier
+                </button>
+              </a>
             </div>
-            <a [routerLink]="['/elderly', elderly.id, 'edit']" [queryParams]="{standalone: true}">
-              <button mat-button type="button">
-                <mat-icon>edit</mat-icon>
-                Modifier
-              </button>
-            </a>
-          </div>
-        </mat-expansion-panel>
-        <!-- Prefered food section -->
-        <mat-expansion-panel [expanded]="showFood">
-          <mat-expansion-panel-header>
-            <mat-panel-title>Préférences alimentaires</mat-panel-title>
-          </mat-expansion-panel-header>
-          <div fxLayout="row" class="section-content">
-            <div fxFlex fxLayout="column" fxLayoutGap="20px">
-              <div fxLayout="column">
-                <span>
-                  <strong>Allergies :</strong> {{elderly.allergies}}
-                </span>
-                <span>
-                  <strong>Restrictions alimentaires :</strong> {{elderly.restrictions}}
-                </span>
-                <span>
-                  <strong>Adore :</strong> {{elderly.likes}}
-                </span>
-                <span>
-                  <strong>Déteste :</strong> {{elderly.dislikes}}
-                </span>
-                <span>
-                  <strong>Habitudes de repas :</strong> {{elderly.habits}}
-                </span>
-              </div>
-            </div>
-            <a [routerLink]="['/elderly', elderly.id, 'food']" [queryParams]="{standalone: true}">
-              <button mat-button type="button">
-                <mat-icon>edit</mat-icon>
-                Modifier
-              </button>
-            </a>
-          </div>
-        </mat-expansion-panel>
+          </mat-expansion-panel>
+        </ng-template>
       </mat-accordion>
     </div>
   </div>
 </div>
+
+<!-- Identity template, to be injected in panel  -->
+<ng-template #identity let-elderly="elderly">
+  <div fxLayout="column">
+    <span>
+      <strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong>
+    </span>
+    <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}}
+      ans)
+    </span>
+    <span>{{elderly.address}}</span>
+    <span>{{elderly.postalCode}} {{elderly.city}}</span>
+    <span>{{elderly.phone}}</span>
+  </div>
+  <div fxLayout="column">
+    <!-- <span><strong>Taille : </strong>{{elderly.size || '??'}} cm</span> -->
+    <!-- <span><strong>Poids : </strong>{{elderly.weight || '??'}} kg</span> -->
+  </div>
+</ng-template>
+
+<!-- Food template, to be injected in panel -->
+<ng-template #food let-elderly="elderly">
+  <div fxLayout="column">
+    <span>
+      <strong>Allergies :</strong> {{elderly.allergies}}
+    </span>
+    <span>
+      <strong>Restrictions alimentaires :</strong> {{elderly.restrictions}}
+    </span>
+    <span>
+      <strong>Adore :</strong> {{elderly.likes}}
+    </span>
+    <span>
+      <strong>Déteste :</strong> {{elderly.dislikes}}
+    </span>
+    <span>
+      <strong>Habitudes de repas :</strong> {{elderly.habits}}
+    </span>
+  </div>
+</ng-template>
