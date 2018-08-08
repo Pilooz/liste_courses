@@ -7,7 +7,7 @@ export abstract class AbstractElderlyModifier implements Deactivable {
 
     public elderly: ElderlyClass;
     public elderlyForm: FormGroup;
-    protected standalone: boolean;
+    public standalone: boolean;
 
     constructor(protected elderlyService: ElderlyService,
         protected route: ActivatedRoute) {

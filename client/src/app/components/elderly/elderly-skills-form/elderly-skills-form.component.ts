@@ -29,6 +29,9 @@ export class ElderlySkillsFormComponent extends AbstractElderlyModifier implemen
 
   ngOnInit() {
     this.headerService.doReturn = () => {
+      if (this.standalone) {
+        return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showSkills: true } });
+      }
       if (this.showInfoConfirm) {
         this.showInfoConfirm = false;
       } else {

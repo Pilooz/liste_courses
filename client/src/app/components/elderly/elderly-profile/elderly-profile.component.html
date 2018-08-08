@@ -9,6 +9,8 @@
         <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showIdentity, title: 'Carte d\'identité', content: identity, editPage: 'edit'}"></ng-container>
         <!-- Prefered food -->
         <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showFood, title: 'Préférences alimentaires', content: food, editPage: 'food'}"></ng-container>
+        <!-- Skills section -->
+        <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showSkills, title: 'Compétences culinaires', content: skills, editPage: 'skills'}"></ng-container>
 
         <!-- Panel template -->
         <ng-template #panel let-expanded="expanded" let-title="title" let-content="content" let-editPage="editPage">
@@ -17,7 +19,7 @@
               <mat-panel-title>{{title}}</mat-panel-title>
             </mat-expansion-panel-header>
             <div fxLayout="row" class="section-content">
-              <div fxFlex fxLayout="column" fxLayoutGap="20px">
+              <div fxFlex fxLayout="column">
                 <ng-container [ngTemplateOutlet]="content" [ngTemplateOutletContext]="{elderly: elderly}"></ng-container>
               </div>
               <a [routerLink]="['/elderly', elderly.id, editPage]" [queryParams]="{standalone: true}">
@@ -36,40 +38,40 @@
 
 <!-- Identity template, to be injected in panel  -->
 <ng-template #identity let-elderly="elderly">
-  <div fxLayout="column">
-    <span>
-      <strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong>
-    </span>
-    <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}}
-      ans)
-    </span>
-    <span>{{elderly.address}}</span>
-    <span>{{elderly.postalCode}} {{elderly.city}}</span>
-    <span>{{elderly.phone}}</span>
-  </div>
-  <div fxLayout="column">
-    <!-- <span><strong>Taille : </strong>{{elderly.size || '??'}} cm</span> -->
-    <!-- <span><strong>Poids : </strong>{{elderly.weight || '??'}} kg</span> -->
-  </div>
+  <span>
+    <strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong>
+  </span>
+  <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}} ans)
+  </span>
+  <span>{{elderly.address}}</span>
+  <span>{{elderly.postalCode}} {{elderly.city}}</span>
+  <span>{{elderly.phone}}</span>
 </ng-template>
 
 <!-- Food template, to be injected in panel -->
 <ng-template #food let-elderly="elderly">
-  <div fxLayout="column">
-    <span>
-      <strong>Allergies :</strong> {{elderly.allergies}}
-    </span>
-    <span>
-      <strong>Restrictions alimentaires :</strong> {{elderly.restrictions}}
-    </span>
-    <span>
-      <strong>Adore :</strong> {{elderly.likes}}
-    </span>
-    <span>
-      <strong>Déteste :</strong> {{elderly.dislikes}}
-    </span>
-    <span>
-      <strong>Habitudes de repas :</strong> {{elderly.habits}}
-    </span>
+  <span>
+    <strong>Allergies :</strong> {{elderly.allergies}}
+  </span>
+  <span>
+    <strong>Restrictions alimentaires :</strong> {{elderly.restrictions}}
+  </span>
+  <span>
+    <strong>Adore :</strong> {{elderly.likes}}
+  </span>
+  <span>
+    <strong>Déteste :</strong> {{elderly.dislikes}}
+  </span>
+  <span>
+    <strong>Habitudes de repas :</strong> {{elderly.habits}}
+  </span>
+</ng-template>
+
+<ng-template #skills let-elderly="elderly">
+  <span>
+    <strong>{{elderly.firstname}} peut :</strong>
+  </span>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <span *ngFor="let skill of elderly.skills" class="elderly-skill">{{skill.label}}</span>
   </div>
 </ng-template>

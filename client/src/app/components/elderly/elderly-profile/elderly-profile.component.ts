@@ -13,6 +13,7 @@ export class ElderlyProfileComponent implements OnInit {
   public elderly: ElderlyClass;
   public showIdentity: boolean;
   public showFood: boolean;
+  public showSkills: boolean;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -20,6 +21,7 @@ export class ElderlyProfileComponent implements OnInit {
     this.elderly = this.route.snapshot.data['elderly'];
     this.showIdentity = this.route.snapshot.queryParamMap.get('showIdentity') === 'true';
     this.showFood = this.route.snapshot.queryParamMap.get('showFood') === 'true';
+    this.showSkills = this.route.snapshot.queryParamMap.get('showSkills') === 'true';
   }
 
   ngOnInit() {
