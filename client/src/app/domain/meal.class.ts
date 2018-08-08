@@ -10,4 +10,16 @@ export class MealClass {
     constructor(obj?: any) {
         Object.assign(this, obj);
     }
+
+    isBreakfast() {
+        return this.type === MealType.BREAKFAST;
+    }
+
+    isLunch() {
+        return this.type === MealType.LUNCH;
+    }
+
+    isDinner() {
+        return this.type === MealType.DINNER;
+    }
 }

@@ -13,6 +13,7 @@ import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
+import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -45,6 +46,10 @@ const ROUTES: Routes = [{
     }, {
       path: 'skills',
       component: ElderlySkillsFormComponent,
+      canDeactivate: [UnsavedChangesGuard]
+    }, {
+      path: 'meals-calendar',
+      component: MealsCalendarComponent,
       canDeactivate: [UnsavedChangesGuard]
     }]
   }]
