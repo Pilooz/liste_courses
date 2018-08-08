@@ -62,6 +62,7 @@ import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 import { ElderlyListComponent } from './components/elderly/elderly-list/elderly-list.component';
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
+import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { registerLocaleData } from '@angular/common';
 
 /**
@@ -118,7 +119,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyFoodFormComponent,
     ElderlyCookingImplicationComponent,
     ElderlyListComponent,
-    ElderlyProfileComponent
+    ElderlyProfileComponent,
+    MealsCalendarComponent
   ],
   entryComponents: [
     DialogComponent

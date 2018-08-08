@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Restangular } from 'ngx-restangular';
 import { map } from 'rxjs/operators';
+import * as moment from 'moment'
 
 import { UrlSettings } from '../config/url.settings';
 import { MealClass } from '../domain/meal.class';
@@ -17,8 +18,14 @@ export class ElderlyMealService {
    * Get elderly meals
    * @param elderlyId 
    */
-  getElderlyMeal(elderlyId: number): Observable<MealClass[]> {
-    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.mealModel).getList()
+  getElderlyFutureMeals(elderlyId: number): Observable<MealClass[]> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.mealModel).getList({
+      filter: {
+        where: {
+          date: {gte: new Date(moment().format("DD/MM/YYYY"))}
+        }
+      }
+    })
     .pipe(map((res: Array<any>) => res.map(item => new MealClass(item))));
   }
 

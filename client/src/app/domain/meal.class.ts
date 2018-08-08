@@ -8,6 +8,20 @@ export class MealClass {
     public elderlyId: number;
 
     constructor(obj?: any) {
-        Object.assign(this, obj);
+        Object.assign(this, obj, {
+            date: obj && obj.date ? new Date(obj.date) : null
+        });
+    }
+
+    isBreakfast() {
+        return this.type === MealType.BREAKFAST;
+    }
+
+    isLunch() {
+        return this.type === MealType.LUNCH;
+    }
+
+    isDinner() {
+        return this.type === MealType.DINNER;
     }
 }

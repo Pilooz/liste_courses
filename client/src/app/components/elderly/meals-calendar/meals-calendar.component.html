@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+  <img class="form-img" src="/assets/img/user.svg">
+  <span class="form-title">Séléctionnez les repas à prévoir pour cette semaine</span>
+</div>
+<div>
+  <div class="meals-calendar">
+    <div class="header" fxLayout="row" fxLayoutAlign="end center">
+      <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
+      <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
+    </div>
+    <div class="body" fxLayout="column">
+      <div *ngFor="let date of dates" class="row" fxLayout="row">
+        <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
+        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleLunch(date)">
+          <i *ngIf="getLunch(date)" class="material-icons">check</i>
+        </div>
+        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleDinner(date)">
+            <i *ngIf="getDinner(date)" class="material-icons">check</i>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+
+    </div>
+  </div>
+</div>
