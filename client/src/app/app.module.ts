@@ -2,9 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-
 // Material Design
 import {
   MatButtonModule,
@@ -21,6 +18,9 @@ import { FrenchDateAdapter } from './util/FrenchDateAdapter';
 // Design
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Pipes
+import { DateDiffPipe } from './pipes/DateDiffPipe';
 
 // Restangular
 import { UrlSettings } from './config/url.settings';
@@ -46,6 +46,8 @@ import { SkillService } from './services/skill.service';
 import { UserService } from './services/user.service';
 
 // Components
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
@@ -99,6 +101,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
 
 @NgModule({
   declarations: [
+    DateDiffPipe,
     AppComponent,
     HeaderComponent,
     HomeComponent,
