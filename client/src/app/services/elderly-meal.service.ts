@@ -24,10 +24,10 @@ export class ElderlyMealService {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals).getList({
       filter: {
         where: {
-          or: [{
+          and: [{
             date: { gte: startDate }
           }, {
-            date: { lte: startDate }
+            date: { lte: endDate }
           }]
         }
       }
@@ -58,9 +58,9 @@ export class ElderlyMealService {
    * @param elderlyId 
    * @param endDate 
    */
-  initMeals(elderlyId: number, endDate: Date): Observable<void> {
+  initMeals(elderlyId: number, startDate: Date, endDate: Date): Observable<void> {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals)
-      .customPOST({ endDate: endDate }, UrlSettings.elderlyMealsInit);
+      .customPOST({ startDate: startDate, endDate: endDate }, UrlSettings.elderlyMealsInit);
   }
 
   /**

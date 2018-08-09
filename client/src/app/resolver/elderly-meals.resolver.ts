@@ -14,10 +14,11 @@ export class ElderlyMealsResolver implements Resolve<MealClass[]> {
 
     resolve(route: ActivatedRouteSnapshot) {
         const elderlyId = +route.paramMap.get('elderlyId');
+        const startDate = new Date(+route.queryParamMap.get('startDate'));
         const endDate = new Date(+route.queryParamMap.get('endDate'));
         return this.elderlyMealService.getAll(elderlyId, {
             where: {
-                and: [{ date: { gte: new Date() } }, { date: { lte: endDate } }],
+                and: [{ date: { gte: startDate } }, { date: { lte: endDate } }],
             },
             include: ['starter', 'dish']
         });

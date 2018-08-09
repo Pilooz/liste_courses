@@ -49,10 +49,6 @@ module.exports = {
       'elderlyId': 1,
       'date': '2018-08-12T00:00:00.000',
       'type': mealType.DINNER,
-    }, {
-      'elderlyId': 1,
-      'date': '2018-08-13T00:00:00.000',
-      'type': mealType.LUNCH,
     }];
 
     return entityUtils.createInOrder(app.models.meal, elderlyMeals);

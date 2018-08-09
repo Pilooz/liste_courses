@@ -10,13 +10,10 @@ module.exports = function(Elderly) {
    * @param {Date} startDate
    * @param {Date} endDate
    */
-  Elderly.initMeals = async function(elderlyId, endDate) {
+  Elderly.initMeals = async function(elderlyId, startDate, endDate) {
     // Retrieve elderly's meals for the given period
-    const meals = await getMeals(elderlyId, endDate);
-    // Do not compute anything if all meals are already linked to a starter and a dish
-    if (meals.every(meal => meal.starterId && meal.dishId)) {
-      return;
-    }
+
+    const meals = await getEmptyMeals(elderlyId, startDate, endDate);
     // Get all starters & dishes, and shuffle the lists (random)
     let starters = await Elderly.app.models.starter.find();
     starters = _.shuffle(starters);
@@ -30,10 +27,13 @@ module.exports = function(Elderly) {
     }
   };
 
-  function getMeals(elderlyId, endDate) {
+  function getEmptyMeals(elderlyId, startDate, endDate) {
     return Elderly.app.models.meal.find({where: {
       elderlyId: elderlyId,
-      and: [{date: {gte: new Date()}}, {date: {lte: endDate}}],
+      date: {gte: startDate},
+      date: {lte: endDate},
+      starterId: null,
+      dishId: null,
     }});
   }
 
@@ -41,6 +41,7 @@ module.exports = function(Elderly) {
     description: '[Custom] Init all meels for the given period',
     accepts: [
       {arg: 'id', type: 'number'},
+      {arg: 'startDate', type: 'date', required: true},
       {arg: 'endDate', type: 'date', required: true},
     ],
     http: {path: '/:id/meals/init', verb: 'post'},

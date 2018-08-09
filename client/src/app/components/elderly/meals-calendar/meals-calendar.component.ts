@@ -22,7 +22,7 @@ export class MealsCalendarComponent implements OnInit {
   public elderly: ElderlyClass;
   public meals: MealClass[];
   // Get today's date without time
-  public today: Date = new Date(moment().format("DD/MM/YYYY"));
+  public today: Date = new Date(moment().format("MM/DD/YYYY"));
   public startDate: Date = this.getMondayOfWeek(this.today);
   public endDate: Date = this.getSundayOfWeek(this.today);
   public minDate = this.endDate;
@@ -51,19 +51,17 @@ export class MealsCalendarComponent implements OnInit {
       this.meals = meals;
       const farestMeal = _.maxBy(this.meals, 'date');
       this.minDate = farestMeal.date;
-      this.endDate = farestMeal.date > this.endDate ? farestMeal.date : this.endDate;
+      this.endDate = farestMeal.date.getTime() > this.endDate.getTime() ? farestMeal.date : this.endDate;
       this.initDates();
     })
   }
 
   getLunch(date: Date): MealClass {
-    const lunches: MealClass[] = _.filter(this.meals, { date: date, type: MealType.LUNCH }) as MealClass[];
-    return lunches.length ? lunches[0] : null;
+    return _.find(this.meals, (meal) => meal.date.getTime() === date.getTime() && meal.isLunch());
   }
 
   getDinner(date): MealClass {
-    const dinners: MealClass[] = _.filter(this.meals, { date: date, type: MealType.DINNER }) as MealClass[];
-    return dinners.length ? dinners[0] : undefined;
+    return _.find(this.meals, (meal) => meal.date.getTime() === date.getTime() && meal.isDinner());
   }
 
   toggleLunch(date) {
@@ -112,8 +110,8 @@ export class MealsCalendarComponent implements OnInit {
   }
 
   public initMeals() {
-    this.elderlyMealService.initMeals(this.elderly.id, this.endDate)
-      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent'], { queryParams: { endDate: this.endDate.getTime() } }));
+    this.elderlyMealService.initMeals(this.elderly.id, this.startDate, this.endDate)
+      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent'], { queryParams: { startDate: this.startDate.getTime(), endDate: this.endDate.getTime() } }));
   }
 
   getMondayOfWeek(d) {
