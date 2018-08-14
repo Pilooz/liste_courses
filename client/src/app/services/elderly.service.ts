@@ -65,4 +65,24 @@ export class ElderlyService {
         return this.restangular.all(UrlSettings.elderlyModel).getList({ filter: { order: 'lastname, firstname' } })
             .pipe(map((res: Array<any>) => res.map(item => new ElderlyClass(item))));
     }
+
+    /**
+     * Get all elderlies with a filter
+     *
+     * @param searchString
+     */
+    getFiltered(searchString?: string): Observable<ElderlyClass[]> {
+        return this.restangular.all(UrlSettings.elderlyModel).getList({
+            filter: {
+                where: {
+                    or: [{
+                        firstname: { ilike: '%' + searchString + '%' }
+                    }, {
+                        lastname: { ilike: '%' + searchString + '%' }
+                    }]
+                },
+                order: 'lastname, firstname'
+            }
+        }).pipe(map((res: Array<any>) => res.map(item => new ElderlyClass(item))));
+    }
 }

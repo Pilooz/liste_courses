@@ -12,3 +12,20 @@
     overflow-y: auto;
     width: 100%;
 }
+
+.search-bar {
+    width: 90%;
+    background-color: white;
+    height: 50px;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.search-bar input {
+    border: none;
+    width: 100%;
+}
+
+.search-bar input:focus {
+    outline: none;
+}

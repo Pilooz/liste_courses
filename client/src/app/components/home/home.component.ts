@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public password: string;
   public badCredentials: boolean = false;
   public elderlies: ElderlyClass[] = [];
+  public searchString: string;
 
   constructor(private authenticationService: AuthenticationService,
     private elderlyService: ElderlyService,
@@ -52,5 +53,13 @@ export class HomeComponent implements OnInit {
 
   private loadElderlies() {
     this.elderlyService.getAll().subscribe((elderlies) => this.elderlies = elderlies);
+  }
+
+  public search() {
+    if (this.searchString.trim().length) {
+      this.elderlyService.getFiltered(this.searchString).subscribe((elderlies) => this.elderlies = elderlies);
+    } else {
+      this.elderlyService.getAll().subscribe((elderlies) => this.elderlies = elderlies);
+    }
   }
 }
