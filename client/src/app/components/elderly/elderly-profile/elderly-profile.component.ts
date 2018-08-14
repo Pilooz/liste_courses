@@ -16,7 +16,7 @@ export class ElderlyProfileComponent implements OnInit {
   public showFood: boolean;
   public showSkills: boolean;
   // Get today's date without time
-  public today: Date = new Date(moment().format("DD/MM/YYYY"));
+  public today: Date = new Date(moment().format("MM/DD/YYYY"));
   public startDate: Date = this.getMondayOfWeek(this.today);
   public endDate: Date = this.getSundayOfWeek(this.today);
 
@@ -43,5 +43,4 @@ export class ElderlyProfileComponent implements OnInit {
     var day = d.getDay();
     return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? 0 : 7) - day);
   }
-
 }

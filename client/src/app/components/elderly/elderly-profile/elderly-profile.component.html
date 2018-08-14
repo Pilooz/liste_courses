@@ -1,4 +1,5 @@
 <div fxLayout="column" fxLayoutGap="30px" class="elderly-profile">
+  <img fxFlexAlign="center" class="form-img" src="/assets/img/user.svg">
   <h2 fxFlexAlign="center">{{elderly.firstname}} {{elderly.lastname | uppercase}}</h2>
 
   <div fxLayout="column" class="sections">
@@ -34,11 +35,23 @@
       </mat-accordion>
     </div>
     <div fxLayout="column" class="section">
-      <span class="section-title">Semaine du {{startDate | date:'dd/MM/yyyy'}} au {{startDate | date:'dd/MM/yyyy'}}</span>
-      <div fxLayoutAlign="center center" class="background-blue-light">
+      <span class="section-title">Semaine du {{startDate | date:'dd/MM/yyyy'}} au {{endDate | date:'dd/MM/yyyy'}}</span>
+      <div fxLayout="column" fxLayoutAlign="center center" class="week-section background-blue-light" fxLayoutGap="10px">
         <a [routerLink]="['/elderly', elderly.id, 'meals-calendar']">
           <button class="background-blue" mat-button type="button">Planifier la semaine</button>
         </a>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+          <a [routerLink]="['/elderly', elderly.id, 'mealsCalendarContent']" [queryParams]="{standalone: true, startDate: this.startDate.getTime(), endDate: this.endDate.getTime()}">
+            <div class="menu-button background-blue clickable" fxLayout="column" fxLayoutAlign="center center">
+              <img class="form-img" src="/assets/img/cutlery.svg">
+              <span>Voir le menu</span>
+            </div>
+          </a>
+          <div class="list-button background-blue clickable" fxLayout="column" fxLayoutAlign="center center">
+            <img class="form-img" src="/assets/img/cutlery.svg">
+            <span>Voir la liste de courses</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

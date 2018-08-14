@@ -61,3 +61,17 @@
     margin-top: 10px;
     padding: 3px 8px;
 }
+
+.week-section {
+    padding: 10px;
+}
+
+.menu-button, .list-button {
+    color: white;
+    padding: 15px 15px 0px 15px;
+}
+
+.menu-button img, .list-button img {
+    color: white;
+    width: 70px;
+}
