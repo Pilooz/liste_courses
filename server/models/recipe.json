@@ -1,0 +1,26 @@
+{
+  "name": "recipe",
+  "plural": "recipes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "ingredients": {
+      "type": "hasMany",
+      "model": "ingredient",
+      "foreignKey": "recipeId",
+      "through": "ingredientsList",
+      "keyThrough": "ingredientId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

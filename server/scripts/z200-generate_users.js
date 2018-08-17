@@ -4,8 +4,6 @@ const entityUtils = require('../util/EntityUtils');
 
 module.exports = {
   generate: function(app) {
-    const User = app.models.User;
-
     const user = [{
       'password': 'Gestion',
       'email': 'jeanne.martin@lc.com',
@@ -20,6 +18,6 @@ module.exports = {
       'emailVerified': true,
     }];
 
-    return entityUtils.createInOrder(User, user);
+    return entityUtils.createInOrder(app.models.User, user);
   },
 };

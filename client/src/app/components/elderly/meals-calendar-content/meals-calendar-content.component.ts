@@ -59,4 +59,9 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
     return _.find(this.meals, (meal) => meal.date.getTime() === date.getTime() && meal.isDinner());
   }
 
+  public goToShoppingList() {
+    // TODO
+    /* this.elderlyMealService.initMeals(this.elderly.id, this.startDate, this.endDate)
+      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent'], { queryParams: { startDate: this.startDate.getTime(), endDate: this.endDate.getTime() } })); */
+  }
 }

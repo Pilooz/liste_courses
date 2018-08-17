@@ -91,5 +91,21 @@
   "starter": {
     "dataSource": "db",
     "public": true
+  },
+  "ingredient": {
+    "dataSource": "db",
+    "public": true
+  },
+  "unit": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ingredientsList": {
+    "dataSource": "db",
+    "public": false
+  },
+  "recipe": {
+    "dataSource": "db",
+    "public": true
   }
 }

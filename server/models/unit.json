@@ -1,5 +1,5 @@
 {
-  "name": "dish",
+  "name": "unit",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -9,16 +9,14 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "shortName": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
-  "relations": {
-    "recipe": {
-      "type": "belongsTo",
-      "model": "recipe",
-      "foreignKey": "recipeId"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

@@ -1,5 +1,6 @@
 {
-  "name": "dish",
+  "name": "ingredient",
+  "plural": "ingredients",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -9,16 +10,13 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "unit": {
+      "type": "string"
     }
   },
   "validations": [],
-  "relations": {
-    "recipe": {
-      "type": "belongsTo",
-      "model": "recipe",
-      "foreignKey": "recipeId"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

@@ -12,7 +12,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "recipe": {
+      "type": "belongsTo",
+      "model": "recipe",
+      "foreignKey": "recipeId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
