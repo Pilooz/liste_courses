@@ -1,0 +1,41 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <object class="form-img" type="image/svg+xml" data="/assets/img/notepad.svg"></object>
+  <span class="form-title">Votre liste de courses</span>
+
+  <div fxFlexFill class="shopping-list">
+    <div class="shopping-list-header" fxLayout="row" fxLayoutAlign="end center">
+      <div fxFlex="60" fxLayoutAlign="center">Ingrédient</div>
+      <div fxFlex="40" fxLayoutAlign="center">Quantité</div>
+    </div>
+    <div class="shopping-list-body" fxLayout="column">
+      <div *ngFor="let ingredient of ingredients" class="row" fxLayout="row">
+        <div fxFlex="60" fxLayoutAlign="start center">
+          <span>{{ingredient.name}}</span>
+        </div>
+        <div fxFlex="40" fxLayoutAlign="center center" fxLayout="row">
+          <div fxFlex="60" fxLayoutAlign="center center">
+            <span>{{ingredient.quantity}} {{ingredient.unit}}</span>
+          </div>
+          <div fxFlex="40" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <button mat-mini-fab type="button" class="background-green" (click)="remove(ingredient)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab type="button" class="background-red" (click)="remove(ingredient)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div fxLayout="row" fxLayoutAlign="center center">
+      <span>Jusqu'à quelle date souhaitez-vous préparer vos repas ?</span>
+      <mat-form-field>
+        <input matInput [matDatepicker]="endDate" [min]="minDate" [value]="endDate" (dateChange)="setEndDate($event)" disabled>
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div> -->
+
+  <button mat-button type="button" (click)="initMeals()">Valider</button>
+</div>

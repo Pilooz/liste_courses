@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <img class="form-img" src="/assets/img/user.svg">
+  <img class="form-img" src="/assets/img/cutlery.svg">
   <span class="form-title">Repas prévus pour la semaine du {{dates[0] | date:'dd/MM/yyyy'}} au {{dates[6] | date:'dd/MM/yyyy'}}</span>
 
   <div fxFlexFill class="meals-calendar">
@@ -15,8 +15,10 @@
         <ng-template #meal let-meal="meal">
           <div fxFlex="40" fxLayout="column" class="meals-cell">
             <ng-container *ngIf="meal">
-              <span><strong>Entrée :</strong> {{meal.starter.name}}</span>
-              <span><strong>Plat:</strong> {{meal.dish.name}}</span>
+              <span>
+                <strong>Entrée :</strong> {{meal.starter.name}}</span>
+              <span>
+                <strong>Plat:</strong> {{meal.dish.name}}</span>
             </ng-container>
           </div>
         </ng-template>

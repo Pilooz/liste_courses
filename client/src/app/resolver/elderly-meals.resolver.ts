@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import * as moment from 'moment';
 import { MealClass } from '../domain/meal.class';
 import { ElderlyMealService } from '../services/elderly-meal.service';
 

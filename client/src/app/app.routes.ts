@@ -16,6 +16,7 @@ import { ElderlyProfileComponent } from './components/elderly/elderly-profile/el
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
+import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -56,6 +57,9 @@ const ROUTES: Routes = [{
       path: 'mealsCalendarContent',
       component: MealsCalendarContentComponent,
       resolve: { meals: ElderlyMealsResolver }
+    }, {
+      path: 'shopping-list',
+      component: ShoppingListComponent
     }]
   }]
 }, {
