@@ -61,12 +61,16 @@ module.exports = function(Elderly) {
    * @param {Date} endDate
    */
   Elderly.initShoppingList = async function(elderlyId, startDate, endDate) {
-    var shoppingList = {
-      elderlyId: elderlyId,
-      startDate: startDate,
-      endDate: endDate,
-      ingredients: [],
-    };
+    var ingredientsList = [];
+    var shoppingList = await getShoppingList(elderlyId, startDate, endDate);
+
+    if (!shoppingList) {
+      shoppingList = {
+        elderlyId: elderlyId,
+        startDate: startDate,
+        endDate: endDate,
+      };
+    }
 
     // Retrieve elderly's meals for the given period
     var meals = await getMeals(elderlyId, startDate, endDate);
@@ -74,14 +78,18 @@ module.exports = function(Elderly) {
 
     for (let i = 0; i < meals.length; i++) {
       var ingredients = await getRecipeWithIngredientsquantity(meals[i].starter.recipeId);
-      shoppingList = addToShoppingList(shoppingList, ingredients);
+      ingredientsList = addToShoppingList(ingredientsList, ingredients);
 
       ingredients = await getRecipeWithIngredientsquantity(meals[i].dish.recipeId);
-      shoppingList = addToShoppingList(shoppingList, ingredients);
+      ingredientsList = addToShoppingList(ingredientsList, ingredients);
     }
 
-    shoppingList.id = (await Elderly.app.models.shoppingList.create(shoppingList)).id;
-    await Elderly.app.models.shoppingListIngredients.create(_.map(shoppingList.ingredients, (ingredient) => {
+    if (!shoppingList.id) {
+      shoppingList.id = (await Elderly.app.models.shoppingList.create(shoppingList)).id;
+    } else {
+      await Elderly.app.models.shoppingListIngredients.destroyAll({shoppingListId: shoppingList.id});
+    }
+    await Elderly.app.models.shoppingListIngredients.create(_.map(ingredientsList, (ingredient) => {
       return {
         shoppingListId: shoppingList.id,
         ingredientId: ingredient.id,
@@ -89,6 +97,20 @@ module.exports = function(Elderly) {
       };
     }));
   };
+
+  function getShoppingList(elderlyId, startDate, endDate) {
+    return Elderly.app.models.shoppingList.findOne({
+      where: {
+        and: [{
+          elderlyId: elderlyId,
+        }, {
+          startDate: startDate,
+        }, {
+          endDate: endDate,
+        }],
+      },
+    });
+  }
 
   function getMeals(elderlyId, startDate, endDate) {
     return Elderly.app.models.meal.find({
@@ -138,18 +160,18 @@ module.exports = function(Elderly) {
    * Add or push an item to the shopping list wether it exists
    * @param ingredients
    */
-  function addToShoppingList(shoppingList, ingredients) {
+  function addToShoppingList(ingredientsList, ingredients) {
     _.each(ingredients, ingredient => {
-      var item = _.find(shoppingList.ingredients, {id: ingredient.id});
+      var item = _.find(ingredientsList, {id: ingredient.id});
 
       if (item) {
         item.quantity += ingredient.quantity;
       } else {
-        shoppingList.ingredients.push(ingredient);
+        ingredientsList.push(ingredient);
       }
     });
 
-    return shoppingList;
+    return ingredientsList;
   }
 
   Elderly.remoteMethod('initShoppingList', {
@@ -169,7 +191,7 @@ module.exports = function(Elderly) {
    */
   Elderly.getShoppinglistWithIngredients = async function(elderlyId, date) {
     // Get shopping list with ingredients
-    var shoppingList = await getShoppinglistIncludeIngredients(elderlyId, date);
+    var shoppingList = await getShoppingListIncludeIngredients(elderlyId, date);
     shoppingList = jsonUtils.toJsonIfExists(shoppingList);
 
     // Attribute its quantity to each ingredient
@@ -190,7 +212,7 @@ module.exports = function(Elderly) {
     return shoppingList;
   };
 
-  function getShoppinglistIncludeIngredients(elderlyId, date) {
+  function getShoppingListIncludeIngredients(elderlyId, date) {
     return Elderly.app.models.shoppingList.findOne({
       where: {
         and: [{
