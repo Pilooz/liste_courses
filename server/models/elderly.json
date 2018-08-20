@@ -138,6 +138,11 @@
       "type": "hasMany",
       "model": "meal",
       "foreignKey": "elderlyId"
+    },
+    "shoppingLists": {
+      "type": "hasMany",
+      "model": "shoppingList",
+      "foreignKey": "elderlyId"
     }
   },
   "acls": [],

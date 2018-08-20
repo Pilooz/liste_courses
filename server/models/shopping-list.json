@@ -1,0 +1,39 @@
+{
+  "name": "shoppingList",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "elderlyId": {
+      "type": "date",
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "elderly": {
+      "type": "belongsTo",
+      "model": "elderly",
+      "foreignKey": "elderlyId"
+    },
+    "ingredients": {
+      "type": "hasMany",
+      "model": "ingredient",
+      "foreignKey": "shoppingListId",
+      "through": "shoppingListIngredients",
+      "keyThrough": "ingredientId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

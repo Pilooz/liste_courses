@@ -1,14 +1,16 @@
 {
-  "name": "starter",
+  "name": "recipeIngredients",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
+    "quantity": {
+      "type": "number",
+      "postgresql": {
+        "dataType": "double precision"
+      }
     }
   },
   "validations": [],
@@ -17,6 +19,11 @@
       "type": "belongsTo",
       "model": "recipe",
       "foreignKey": "recipeId"
+    },
+    "ingredient": {
+      "type": "belongsTo",
+      "model": "ingredient",
+      "foreignKey": "ingredientId"
     }
   },
   "acls": [],

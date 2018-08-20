@@ -15,6 +15,15 @@ html, body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
 }
 
+app-home, app-elderly-profile, app-elderly-profile>*, app-shopping-list, app-shopping-list>*, 
+app-elderly-profile-form, app-elderly-profile-form>*, app-elderly-food-form, app-elderly-food-form>*,
+app-elderly-cooking-implication, app-elderly-cooking-implication>*, app-elderly-skills-form,
+app-elderly-skills-form>*, app-elderly-skills-form, app-elderly-skills-form>*, app-meals-calendar,
+app-meals-calendar>*, app-meals-calendar-content, app-meals-calendar-content>* {
+    width: 100%;
+    display: flex;
+}
+
 a, a:hover {
     color: black;
     text-decoration: none;
@@ -29,6 +38,7 @@ a, a:hover {
 .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
     color: white;
     border-radius: 5px;
+    min-height: 36px;
 }
 
 .mat-calendar-period-button {
@@ -150,6 +160,7 @@ app-meals-calendar .mat-form-field-infix {
 }
 
 .meals-calendar, .shopping-list {
+    width: 100%;
     padding: 20px;
     color: white;
 }

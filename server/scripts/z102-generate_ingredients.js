@@ -9,27 +9,27 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Ail',
-      unit: 'gousse',
+      unit: 'gousses',
     }, {
       name: 'Aneth',
+      unit: 'càc',
     }, {
       name: 'Artichauts',
       unit: null,
     }, {
       name: 'Aubergines',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Bacon',
-      unit: 'tranche',
+      unit: 'tranches',
     }, {
       name: 'Basilic',
       unit: 'feuilles',
     }, {
-      name: 'Surimi',
-      unit: 'batpnnet',
+      name: 'Bâton de surimi',
+      unit: null,
     }, {
       name: 'Betteraves',
-      unit: 'g',
     }, {
       name: 'Beurre',
       unit: 'g',
@@ -37,8 +37,8 @@ module.exports = {
       name: 'Bleu (fromage)',
       unit: 'g',
     }, {
-      name: 'Bouillon cube',
-      unit: null,
+      name: 'Bouillon de légumes',
+      unit: 'cl',
     }, {
       name: 'Bouquet garni',
       unit: null,
@@ -46,14 +46,11 @@ module.exports = {
       name: 'Brocolis',
       unit: 'g',
     }, {
-      name: 'Bûchette de fromage de chèvre',
-      unit: 'g',
-    }, {
       name: 'Cannelle',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Carottes',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Champignons de Paris',
       unit: 'g',
@@ -62,58 +59,49 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Chili',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Chipolatas',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Choux blanc',
       unit: 'g',
     }, {
       name: 'Ciboulette',
-      unit: 'brin',
+      unit: 'càs',
     }, {
       name: 'Cidre brut',
       unit: 'cl',
-    }, {
-      name: 'Citron jaune',
-      unit: 'g',
-    }, {
-      name: 'Citron vert',
-      unit: 'g',
     }, {
       name: 'Clou de girofle',
       unit: null,
     }, {
       name: 'Coeurs d\'artichauts',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Coeurs de palmiers',
       unit: 'g',
     }, {
       name: 'Concombres',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Cornichons',
       unit: null,
     }, {
       name: 'Courgettes',
-      unit: 'g',
-    }, {
-      name: 'Crème de gruyère',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Crème fraîche',
-      unit: 'g',
+      unit: 'càs',
     }, {
       name: 'Crème liquide',
       unit: 'cl',
     }, {
       name: 'Cumin',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Curcuma',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Eau',
       unit: 'cl',
@@ -131,16 +119,16 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Filets de cabillaud',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Filets de merlan',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Filets de poisson blanc',
       unit: 'g',
     }, {
       name: 'Filets de volaille',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Fleur de maïs (Maïzena)',
       unit: 'g',
@@ -148,11 +136,8 @@ module.exports = {
       name: 'Fromage blanc',
       unit: 'g',
     }, {
-      name: 'Fromage de chèvre frais',
-      unit: 'g',
-    }, {
       name: 'Gros sel',
-      unit: 'g',
+      unit: 'pincées',
     }, {
       name: 'Gruyère râpé',
       unit: 'g',
@@ -161,25 +146,22 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Herbes de provence',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Huile d\'olive',
-      unit: 'cl',
+      unit: 'càc',
     }, {
       name: 'Huile de colza',
-      unit: 'cl',
+      unit: 'càc',
     }, {
       name: 'Jambon blanc',
-      unit: 'g',
+      unit: 'tranches',
     }, {
       name: 'Jambon fumé',
-      unit: 'g',
-    }, {
-      name: 'Jaune d\'Œufs',
-      unit: null,
+      unit: 'tranches',
     }, {
       name: 'Jus de citron',
-      unit: 'cl',
+      unit: 'càc',
     }, {
       name: 'Lait',
       unit: 'cl',
@@ -188,7 +170,7 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Laurier',
-      unit: 'feuille',
+      unit: 'càc',
     }, {
       name: 'Lentilles',
       unit: 'g',
@@ -200,22 +182,19 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Mayonnaise',
-      unit: 'g',
+      unit: 'càs',
     }, {
       name: 'Melons',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Menthe',
-      unit: 'feuille',
+      unit: 'feuilles',
     }, {
       name: 'Moutarde',
       unit: 'g',
     }, {
-      name: 'Moutarde à l\'ancienne',
-      unit: 'g',
-    }, {
       name: 'Noix de muscade',
-      unit: 'g',
+      unit: 'pincées',
     }, {
       name: 'Œufs',
       unit: null,
@@ -226,14 +205,14 @@ module.exports = {
       name: 'Oignons rouges',
       unit: null,
     }, {
-      name: 'Olives noires',
-      unit: 'g',
+      name: 'Olives',
+      unit: null,
     }, {
       name: 'Pain de campagne',
-      unit: 'g',
+      unit: 'tranches',
     }, {
       name: 'Paprika',
-      unit: 'g',
+      unit: 'pincées',
     }, {
       name: 'Parmesan',
       unit: 'g',
@@ -248,34 +227,34 @@ module.exports = {
       unit: 'branche',
     }, {
       name: 'Petits Suisses',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Pignons de pin',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Piment en poudre',
-      unit: 'g',
+      unit: 'càc',
     }, {
       name: 'Poireaux',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Poivre',
-      unit: 'g',
+      unit: 'pincées',
     }, {
       name: 'Poivrons jaunes',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Poivrons rouges',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Polenta',
       unit: 'g',
     }, {
       name: 'Pommes de terre',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Pommes golden',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Purée',
       unit: 'g',
@@ -284,25 +263,25 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Râble de lapin',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Riz à risotto (aborio)',
       unit: 'g',
     }, {
       name: 'Saumon fumé',
-      unit: 'g',
+      unit: 'tranches',
     }, {
       name: 'Sel',
-      unit: 'g',
+      unit: 'pincées',
     }, {
       name: 'Thon',
       unit: 'g',
     }, {
       name: 'Thym',
-      unit: 'branche',
+      unit: 'càc',
     }, {
       name: 'Tomates',
-      unit: 'g',
+      unit: null,
     }, {
       name: 'Tomates cerises',
       unit: 'g',
@@ -311,10 +290,10 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Tomates séchées',
-      unit: 'g',
+      unit: null,
     }, {
-      name: 'Potiron',
-      unit: 'g',
+      name: 'Tranches de potiron',
+      unit: null,
     }, {
       name: 'Veau à blanquette',
       unit: 'g',
@@ -326,16 +305,16 @@ module.exports = {
       unit: 'cl',
     }, {
       name: 'Vinaigre balsamique',
-      unit: 'cl',
+      unit: 'càc',
     }, {
       name: 'Vinaigre de cidre',
-      unit: 'cl',
+      unit: 'càc',
     }, {
       name: 'Vinaigre de vin',
-      unit: 'cl',
+      unit: 'càc',
     }, {
       name: 'Yaourt nature',
-      unit: 'g',
+      unit: null,
     }];
 
     return entityUtils.createInOrder(app.models.ingredient, ingredients);

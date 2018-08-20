@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Restangular } from 'ngx-restangular';
-import { map } from 'rxjs/operators';
-
 import { UrlSettings } from '../config/url.settings';
 
-import { SkillClass } from '../domain/skill.class';
 
 @Injectable()
 export class ElderlySkillService {

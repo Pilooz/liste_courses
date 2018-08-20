@@ -1,14 +1,14 @@
 <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <object class="form-img" type="image/svg+xml" data="/assets/img/notepad.svg"></object>
+  <img fxFlexAlign="center" class="form-img" src="/assets/img/notepad.svg">
   <span class="form-title">Votre liste de courses</span>
 
-  <div fxFlexFill class="shopping-list">
-    <div class="shopping-list-header" fxLayout="row" fxLayoutAlign="end center">
-      <div fxFlex="60" fxLayoutAlign="center">Ingrédient</div>
-      <div fxFlex="40" fxLayoutAlign="center">Quantité</div>
+  <div class="shopping-list" fxLayout="column">
+    <div class="shopping-list-header" fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex="60" fxLayoutAlign="center center">Ingrédient</div>
+      <div fxFlex="40" fxLayoutAlign="center center">Quantité</div>
     </div>
     <div class="shopping-list-body" fxLayout="column">
-      <div *ngFor="let ingredient of ingredients" class="row" fxLayout="row">
+      <div *ngFor="let ingredient of shoppingList.ingredients" class="row" fxLayout="row">
         <div fxFlex="60" fxLayoutAlign="start center">
           <span>{{ingredient.name}}</span>
         </div>

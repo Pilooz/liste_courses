@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 
 import { UrlSettings } from '../config/url.settings';
 import { ElderlyClass } from '../domain/elderly.class';
-import { MealClass } from '../domain/meal.class';
 
 @Injectable()
 export class ElderlyService {

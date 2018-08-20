@@ -42,13 +42,16 @@ import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 // Resolver
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
+import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
 
 // Services
 import { AuthenticationService } from './services/authentication.service';
 import { ElderlyService } from './services/elderly.service';
 import { ElderlyMealService } from './services/elderly-meal.service';
+import { ElderlyShoppingListService } from './services/elderly-shoppingList.service';
 import { ElderlySkillService } from './services/elderly-skill.service';
 import { HeaderService } from './services/header.services';
+import { RecipeService } from './services/recipe.service';
 import { SkillService } from './services/skill.service';
 import { UserService } from './services/user.service';
 
@@ -165,15 +168,18 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     AuthenticationService,
     ElderlyService,
     ElderlyMealService,
+    ElderlyShoppingListService,
     ElderlySkillService,
     HeaderService,
+    RecipeService,
     SkillService,
     UserService,
     AuthGuard,
     UnauthGuard,
     UnsavedChangesGuard,
     ElderlyResolver,
-    ElderlyMealsResolver
+    ElderlyMealsResolver,
+    ElderlyShoppingListResolver
   ],
   bootstrap: [AppComponent]
 })

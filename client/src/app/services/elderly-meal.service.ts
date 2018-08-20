@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Restangular } from 'ngx-restangular';
 import { map } from 'rxjs/operators';
-import * as moment from 'moment'
 
 import { UrlSettings } from '../config/url.settings';
 import { MealClass } from '../domain/meal.class';
@@ -40,7 +39,7 @@ export class ElderlyMealService {
    */
   addElderlyMeal(meal: MealClass): Observable<MealClass> {
     return this.restangular.one(UrlSettings.elderlyModel, meal.elderlyId).all(UrlSettings.elderlyMeals).post(meal)
-      .pipe(map(res => new MealClass(res)));;
+      .pipe(map(res => new MealClass(res)));
   }
 
   /**

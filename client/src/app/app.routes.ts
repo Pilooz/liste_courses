@@ -9,14 +9,17 @@ import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
 import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
-import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
-import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
+
+// Resolvers
+import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
+import { ElderlyResolver } from './resolver/elderly.resolver';
+import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -59,7 +62,8 @@ const ROUTES: Routes = [{
       resolve: { meals: ElderlyMealsResolver }
     }, {
       path: 'shopping-list',
-      component: ShoppingListComponent
+      component: ShoppingListComponent,
+      resolve: { shoppingList: ElderlyShoppingListResolver }
     }]
   }]
 }, {

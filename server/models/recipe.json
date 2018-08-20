@@ -17,7 +17,7 @@
       "type": "hasMany",
       "model": "ingredient",
       "foreignKey": "recipeId",
-      "through": "ingredientsList",
+      "through": "recipeIngredients",
       "keyThrough": "ingredientId"
     }
   },

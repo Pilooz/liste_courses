@@ -1,11 +1,18 @@
+// Utils
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
+
+// Classes
 import { MealClass } from '../../../domain/meal.class';
+
+// Services
 import { ElderlyService } from '../../../services/elderly.service';
 import { HeaderService } from '../../../services/header.services';
-import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
+import { RecipeService } from '../../../services/recipe.service';
+import { ElderlyShoppingListService } from '../../../services/elderly-shoppingList.service';
 
 @Component({
   selector: 'app-meals-calendar-content',
@@ -18,16 +25,25 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
   public startDate: Date;
   public endDate: Date;
   public dates: Date[] = [];
+  public today: Date = new Date(moment().format("MM/DD/YYYY"));
 
   constructor(
     @Inject(ElderlyService) elderlyService: ElderlyService,
     @Inject(ActivatedRoute) route: ActivatedRoute,
     private router: Router,
-    private headerService: HeaderService) {
+    private headerService: HeaderService,
+    private elderlyShoppingListService: ElderlyShoppingListService) {
     super(elderlyService, route);
     this.meals = this.route.snapshot.data['meals'];
-    this.startDate = new Date(parseInt(this.route.snapshot.queryParamMap.get('startDate')));
-    this.endDate = new Date(parseInt(this.route.snapshot.queryParamMap.get('endDate')));
+
+    // Initialize dates
+    if (!this.route.snapshot.queryParamMap.get('startDate') || !this.route.snapshot.queryParamMap.get('endDate')) {
+      this.startDate = this.getMondayOfWeek(this.today);
+      this.endDate = this.getSundayOfWeek(this.today);
+    } else {
+      this.startDate = new Date(parseInt(this.route.snapshot.queryParamMap.get('startDate')));
+      this.endDate = new Date(parseInt(this.route.snapshot.queryParamMap.get('endDate')));
+    }
   }
 
   ngOnInit() {
@@ -60,10 +76,18 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
   }
 
   public goToShoppingList() {
-    // TODO
-    /* this.elderlyMealService.initMeals(this.elderly.id, this.startDate, this.endDate)
-      .subscribe(() => this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent'], { queryParams: { startDate: this.startDate.getTime(), endDate: this.endDate.getTime() } })); */
+    this.elderlyShoppingListService.initElderlyShoppingList(this.elderly.id, this.startDate, this.endDate).subscribe(() => {
+      this.router.navigate(['/elderly', this.elderly.id, 'shopping-list']);
+    })
+  }
 
-    this.router.navigate(['/elderly', this.elderly.id, 'shopping-list']);
+  getMondayOfWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? -6 : 1) - day);
+  }
+
+  getSundayOfWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? 0 : 7) - day);
   }
 }

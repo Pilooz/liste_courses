@@ -100,12 +100,20 @@
     "dataSource": "db",
     "public": false
   },
-  "ingredientsList": {
-    "dataSource": "db",
-    "public": false
-  },
   "recipe": {
     "dataSource": "db",
     "public": true
+  },
+  "recipeIngredients": {
+    "dataSource": "db",
+    "public": false
+  },
+  "shoppingList": {
+    "dataSource": "db",
+    "public": false
+  },
+  "shoppingListIngredients": {
+    "dataSource": "db",
+    "public": false
   }
 }

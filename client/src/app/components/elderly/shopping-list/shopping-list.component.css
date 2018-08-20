@@ -1,0 +1,7 @@
+.shopping-list-body {
+    overflow-y: auto;
+}
+
+.shopping-list-header, .shopping-list-header div, .shopping-list-body .row {
+    min-height: 50px;
+}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { MealClass } from '../domain/meal.class';
 import { ElderlyMealService } from '../services/elderly-meal.service';
+import * as moment from 'moment';
 
 /**
  * Get the elderly, identified by his ID.
@@ -13,8 +14,16 @@ export class ElderlyMealsResolver implements Resolve<MealClass[]> {
 
     resolve(route: ActivatedRouteSnapshot) {
         const elderlyId = +route.paramMap.get('elderlyId');
-        const startDate = new Date(+route.queryParamMap.get('startDate'));
-        const endDate = new Date(+route.queryParamMap.get('endDate'));
+        var startDate;
+        var endDate;
+        if (!route.queryParamMap.get('startDate') || !route.queryParamMap.get('endDate')) {
+            const today: Date = new Date(moment().format("MM/DD/YYYY"));
+            startDate = this.getMondayOfWeek(today);
+            endDate = this.getSundayOfWeek(today);
+        } else {
+            startDate = new Date(+route.queryParamMap.get('startDate'));
+            endDate = new Date(+route.queryParamMap.get('endDate'));
+        }
         return this.elderlyMealService.getAll(elderlyId, {
             where: {
                 and: [{ date: { gte: startDate } }, { date: { lte: endDate } }],
@@ -23,4 +32,13 @@ export class ElderlyMealsResolver implements Resolve<MealClass[]> {
         });
     }
 
+    getMondayOfWeek(d) {
+        var day = d.getDay();
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? -6 : 1) - day);
+    }
+
+    getSundayOfWeek(d) {
+        var day = d.getDay();
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? 0 : 7) - day);
+    }
 }

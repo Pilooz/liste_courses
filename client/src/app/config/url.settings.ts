@@ -17,6 +17,12 @@ export class UrlSettings {
   public static readonly elderlyModel = 'elderlies';
   public static readonly elderlyMeals = 'meals';
   public static readonly elderlyMealsInit = 'init';
+  public static readonly elderlyShoppingLists = 'shoppinglists';
+  public static readonly elderlyShoppingListInit = 'init';
+  
+  // Recipe
+  public static readonly recipeModel = 'recipes';
+  public static readonly recipeIngredients = 'ingredients';
   
   // Skill
   public static readonly skillModel = 'skills';

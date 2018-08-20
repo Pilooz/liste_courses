@@ -1,21 +1,29 @@
 {
-  "name": "ingredientsList",
+  "name": "shoppingListIngredients",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
+    "shoppingListId": {
+      "type": "number",
+      "required": true
+    },
+    "ingredientId": {
+      "type": "number",
+      "required": true
+    },
     "quantity": {
       "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "recipe": {
+    "shoppingList": {
       "type": "belongsTo",
-      "model": "recipe",
-      "foreignKey": "recipeId"
+      "model": "shoppingList",
+      "foreignKey": "shoppingListId"
     },
     "ingredient": {
       "type": "belongsTo",
