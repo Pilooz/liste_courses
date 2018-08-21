@@ -1,4 +1,4 @@
 export const environment = {
-  baseUrl: 'https://int.lyve-lyon.alpha.grandlyon.com/api:3000',
+  baseUrl: 'https://int.lyve-lyon.alpha.grandlyon.com',
   production: true
 };
