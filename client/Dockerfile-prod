@@ -1,7 +1,7 @@
 FROM nginx:1.12.2
 
 # Add application files
-ADD ./client/dist /var/www/htdocs
+ADD ./client/dist/client /var/www/htdocs
 ADD ./client/nginx/nginx.conf /etc/nginx/nginx.conf 
 ADD ./client/nginx/site-prod.conf /etc/nginx/conf.d/default.conf 
 
