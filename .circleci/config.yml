@@ -37,7 +37,7 @@ jobs:
       - run:
           name: build front
           command: |
-            cd client && ng build --prod --build-optimizer=true --aot=true --output-hashing=all --sourcemaps=false --extract-css=true --named-chunks=false --vendor-chunk=true
+            cd client && ng build --prod
       - setup_remote_docker:   
           docker_layer_caching: true 
       - run: |
