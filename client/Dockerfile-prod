@@ -1,9 +1,9 @@
 FROM nginx:1.12.2
 
 # Add application files
-ADD ./liste_courses/client/dist /var/www/htdocs
-ADD ./liste_courses/client/nginx/nginx.conf /etc/nginx/nginx.conf 
-ADD ./liste_courses/client/nginx/site-prod.conf /etc/nginx/conf.d/default.conf 
+ADD ./client/dist /var/www/htdocs
+ADD ./client/nginx/nginx.conf /etc/nginx/nginx.conf 
+ADD ./client/nginx/site-prod.conf /etc/nginx/conf.d/default.conf 
 
 RUN touch /var/run/nginx.pid && \
     chown -R www-data: /etc/nginx/ && \
