@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "lc-db",
+    "port": 5432,
+    "database": "liste_courses_dev",
+    "password": "liste_courses_dev",
+    "name": "db",
+    "user": "liste_courses_dev",
+    "connector": "postgresql",
+    "schema": "liste_courses_dev"
+  }
+}
