@@ -25,6 +25,7 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
   public endDate: Date;
   public dates: Date[] = [];
   public today: Date = new Date(moment().format("MM/DD/YYYY"));
+  public meal: MealClass;
 
   constructor(
     @Inject(ElderlyService) elderlyService: ElderlyService,
@@ -46,12 +47,7 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
   }
 
   ngOnInit() {
-    this.headerService.doReturn = () => {
-      if (this.standalone) {
-        return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showIdentity: true } });
-      }
-      return this.router.navigate(['/elderly', this.elderly.id, 'meals-calendar']);
-    };
+    this.initDoReturn();
     this.headerService.showHome = true;
     this.initDates();
   }
@@ -88,5 +84,25 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
   getSundayOfWeek(d) {
     var day = d.getDay();
     return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0 ? 0 : 7) - day);
+  }
+
+  viewMeal(meal) {
+    this.meal = meal;
+  }
+
+  closeMeal(neawMeal) {
+    var oldMeal = _.find(this.meals, this.meal);
+    this.meal = undefined;
+    Object.assign(oldMeal, neawMeal);
+    this.initDoReturn();
+  }
+
+  initDoReturn() {
+    this.headerService.doReturn = () => {
+      if (this.standalone) {
+        return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showIdentity: true } });
+      }
+      return this.router.navigate(['/elderly', this.elderly.id, 'meals-calendar']);
+    };
   }
 }

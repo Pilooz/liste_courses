@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+<div *ngIf="!meal" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
   <img class="form-img" src="/assets/img/cutlery.svg">
   <span class="form-title">Repas prévus pour la semaine du {{dates[0] | date:'dd/MM/yyyy'}} au {{dates[6] | date:'dd/MM/yyyy'}}</span>
 
@@ -13,7 +13,7 @@
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getLunch(date)}"></ng-container>
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getDinner(date)}"></ng-container>
         <ng-template #meal let-meal="meal">
-          <div fxFlex="40" fxLayout="column" class="meals-cell">
+          <div fxFlex="40" fxLayout="column" class="meals-cell" (click)="viewMeal(meal)">
             <ng-container *ngIf="meal">
               <span>
                 <strong>Entrée :</strong> {{meal.starter.name}}</span>
@@ -28,3 +28,5 @@
 
   <button mat-button type="button" (click)="goToShoppingList()">Accéder à la liste de courses</button>
 </div>
+
+<app-elderly-meal *ngIf="meal" [meal]="meal" [startDate]="startDate" [endDate]="endDate" (closeMeal)="closeMeal($event)"></app-elderly-meal>

@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 
 import { UrlSettings } from '../config/url.settings';
 import { MealClass } from '../domain/meal.class';
+import { StarterClass } from '../domain/starter.class';
+import { DishClass } from '../domain/dish.class';
 
 
 @Injectable()
@@ -72,5 +74,33 @@ export class ElderlyMealService {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals)
       .getList({ filter: filter })
       .pipe(map((res: Array<any>) => res.map(item => new MealClass(item))));
+  }
+
+  /**
+   * Replace starter of a given meal
+   * 
+   * @param elderlyId 
+   * @param mealId 
+   * @param startDate 
+   * @param endDate 
+   */
+  replaceMealStarter(elderlyId: number, mealId: number, startDate, endDate): Observable<StarterClass> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).one(UrlSettings.elderlyMeals, mealId)
+      .customPOST({ startDate: startDate, endDate: endDate }, UrlSettings.elderlyReplaceStarter)
+      .pipe(map(res => new StarterClass(res)));
+  }
+
+  /**
+   * Replace dish of a given meal
+   * 
+   * @param elderlyId 
+   * @param mealId 
+   * @param startDate 
+   * @param endDate 
+   */
+  replaceMealDish(elderlyId: number, mealId: number, startDate, endDate): Observable<DishClass> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).one(UrlSettings.elderlyMeals, mealId)
+      .customPOST({ startDate: startDate, endDate: endDate }, UrlSettings.elderlyReplaceDish)
+      .pipe(map(res => new DishClass(res)));
   }
 }

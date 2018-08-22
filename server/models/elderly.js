@@ -19,7 +19,7 @@ module.exports = function(Elderly) {
     // Get all starters but planned, and shuffle the lists (random)
     let availableStarters = await Elderly.app.models.starter.find({
       where: {
-        starterId: {nin: plannedStarters},
+        id: {nin: plannedStarters},
       },
     });
     availableStarters = _.shuffle(availableStarters);
@@ -27,7 +27,7 @@ module.exports = function(Elderly) {
     // Get all dishes but planned, and shuffle the lists (random)
     let dishes = await Elderly.app.models.dish.find({
       where: {
-        dishId: {nin: plannedDishes},
+        id: {nin: plannedDishes},
       },
     });
     dishes = _.shuffle(dishes);
@@ -292,7 +292,7 @@ module.exports = function(Elderly) {
     // Get all starters but planned, and shuffle the lists (random)
     let availableStarters = await Elderly.app.models.starter.find({
       where: {
-        starterId: {nin: plannedStarters},
+        id: {nin: plannedStarters},
       },
     });
     availableStarters = _.shuffle(availableStarters);
@@ -301,7 +301,7 @@ module.exports = function(Elderly) {
     meal.starterId = availableStarters[0].id;
     meal.save();
 
-    return meal;
+    return availableStarters[0];
   };
 
   Elderly.remoteMethod('replaceStarter', {
@@ -312,7 +312,7 @@ module.exports = function(Elderly) {
       {arg: 'startDate', type: 'date', required: true},
       {arg: 'endDate', type: 'date', required: true},
     ],
-    returns: {arg: 'meal', type: 'meal', root: true},
+    returns: {arg: 'starter', type: 'starter', root: true},
     http: {path: '/:id/meals/:fk/replaceStarter', verb: 'post'},
   });
 
@@ -331,7 +331,7 @@ module.exports = function(Elderly) {
     // Get all dishes but planned, and shuffle the lists (random)
     let availableDishes = await Elderly.app.models.dish.find({
       where: {
-        dishId: {nin: plannedDishes},
+        id: {nin: plannedDishes},
       },
     });
     availableDishes = _.shuffle(availableDishes);
@@ -340,7 +340,7 @@ module.exports = function(Elderly) {
     meal.dishId = availableDishes[0].id;
     meal.save();
 
-    return meal;
+    return availableDishes[0];
   };
 
   Elderly.remoteMethod('replaceDish', {
@@ -351,7 +351,7 @@ module.exports = function(Elderly) {
       {arg: 'startDate', type: 'date', required: true},
       {arg: 'endDate', type: 'date', required: true},
     ],
-    returns: {arg: 'meal', type: 'meal', root: true},
+    returns: {arg: 'dish', type: 'dish', root: true},
     http: {path: '/:id/meals/:fk/replaceDish', verb: 'post'},
   });
 };

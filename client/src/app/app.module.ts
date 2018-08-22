@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -60,20 +61,20 @@ import { UserService } from './services/user.service';
 
 // Components
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
+import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
+import { ElderlyListComponent } from './components/elderly/elderly-list/elderly-list.component';
+import { ElderlyMealComponent } from './components/elderly/elderly-meal/elderly-meal.component';
+import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
 import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
-import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
-import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
-import { ElderlyListComponent } from './components/elderly/elderly-list/elderly-list.component';
-import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
-import { registerLocaleData } from '@angular/common';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
-import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -133,7 +134,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     MealsCalendarComponent,
     MealsCalendarContentComponent,
     ShoppingListComponent,
-    RecipeComponent
+    RecipeComponent,
+    ElderlyMealComponent
   ],
   entryComponents: [
     DialogComponent

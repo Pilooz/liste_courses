@@ -32,4 +32,15 @@ export class MealClass {
     isDinner() {
         return this.type === MealType.DINNER;
     }
+
+    getTypeName() {
+        switch (this.type) {
+            case MealType.BREAKFAST:
+                return 'Petit déjeuner';
+            case MealType.LUNCH:
+                return 'Déjeuner';
+            case MealType.DINNER:
+                return 'Dîner';
+        }
+    }
 }

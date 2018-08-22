@@ -19,7 +19,8 @@ app-home, app-elderly-profile, app-elderly-profile>*, app-shopping-list, app-sho
 app-elderly-profile-form, app-elderly-profile-form>*, app-elderly-food-form, app-elderly-food-form>*,
 app-elderly-cooking-implication, app-elderly-cooking-implication>*, app-elderly-skills-form,
 app-elderly-skills-form>*, app-elderly-skills-form, app-elderly-skills-form>*, app-meals-calendar,
-app-meals-calendar>*, app-meals-calendar-content, app-meals-calendar-content>*, app-recipe, app-recipe>* {
+app-meals-calendar>*, app-meals-calendar-content, app-meals-calendar-content>*, app-recipe, app-recipe>*,
+app-elderly-meal, app-elderly-meal>* {
     width: 100%;
     display: flex;
 }
