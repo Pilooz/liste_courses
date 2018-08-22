@@ -6,6 +6,9 @@ import { StarterClass } from '../../domain/starter.class';
 import { DishClass } from '../../domain/dish.class';
 import { ElderlyClass } from '../../domain/elderly.class';
 
+// Services
+import { HeaderService } from '../../services/header.services';
+
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -13,17 +16,23 @@ import { ElderlyClass } from '../../domain/elderly.class';
 })
 export class RecipeComponent implements OnInit {
 
-  public recipe: StarterClass|DishClass;
+  public recipe: StarterClass | DishClass;
   public elderly: ElderlyClass;
   public showIngredients: boolean = true;
   public showRecipe: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private headerService: HeaderService) {
     this.recipe = this.route.snapshot.data['recipe'];
     this.elderly = this.route.snapshot.data['elderly'];
   }
 
   ngOnInit() {
+    this.headerService.doReturn = () => {
+      return this.router.navigate(['/elderly', this.elderly.id]);
+    };
+    this.headerService.showHome = true;
   }
 
   toggleDisplay() {
@@ -31,6 +40,6 @@ export class RecipeComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['elderly', this.elderly.id])
+    this.headerService.doReturn();
   }
 }
