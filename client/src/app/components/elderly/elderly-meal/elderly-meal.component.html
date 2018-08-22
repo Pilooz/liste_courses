@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <img class="form-img" src="/assets/img/cutlery.svg">
+  <span class="form-title">{{meal.getTypeName()}} du {{meal.date | date:'dd/MM/yyyy'}}</span>
+
+  <span>{{meal.starter.name}}</span>
+  <button mat-button type="button" (click)="replaceStarter()">Une autre entrée</button>
+
+  <span>{{meal.dish.name}}</span>
+  <button mat-button type="button" (click)="replaceDish()">Un autre plat</button>
+</div>
