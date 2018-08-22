@@ -1,6 +1,8 @@
 'use strict';
 
 const _ = require('lodash');
+const ejs = require('ejs');
+const nodemailer = require('nodemailer');
 const jsonUtils = require('../util/JsonUtils');
 
 module.exports = function(Elderly) {
@@ -235,5 +237,49 @@ module.exports = function(Elderly) {
     ],
     returns: {arg: 'ingredients', type: '[ingredients]', root: true},
     http: {path: '/:id/shoppingLists/:date', verb: 'get'},
+  });
+
+  Elderly.sendShoppingListMail = async function(id, date) {
+    let data = await Elderly.getShoppinglistWithIngredients(id, date);
+    try {
+      let body = await ejs.renderFile('./server/views/mail.ejs', data);
+      console.log(body);
+      let transporter = nodemailer.createTransport({
+        host: 'smtp.erasme.org',
+        port: 465,
+        secure: true,
+        auth: {
+          'user': 'lyve-lyon',
+          'pass': 'Lyve14052018',
+        },
+      });
+
+      let mailOptions = {
+        from: '"Liste de courses" <listedecourses@example.com>',
+        to: 'guerric.phalippou@soprasteria.com, baz@yopmail.com, guerricphalippou34@hotmail.com',
+        subject: 'Votre liste de courses',
+        html: body,
+        attachments: [{
+          filename: 'notepad.svg',
+          path: './server/views/notepad.svg',
+          cid: 'notepad_image',
+        }],
+      };
+
+      let info = await transporter.sendMail(mailOptions);
+
+      console.log(info);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  Elderly.remoteMethod('sendShoppingListMail', {
+    description: '[Custom] sends the shopping list in a mail',
+    accepts: [
+      {arg: 'id', type: 'number'},
+      {arg: 'date', type: 'date', required: true},
+    ],
+    http: {path: '/:id/shoppingLists/sendMail', verb: 'post'},
   });
 };
