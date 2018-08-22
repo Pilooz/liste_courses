@@ -12,16 +12,31 @@ module.exports = function(Elderly) {
    * @param {Date} endDate
    */
   Elderly.initMeals = async function(elderlyId, startDate, endDate) {
-    // Retrieve elderly's meals for the given period
-    const meals = await getEmptyMeals(elderlyId, startDate, endDate);
-    // Get all starters & dishes, and shuffle the lists (random)
-    let starters = await Elderly.app.models.starter.find();
-    starters = _.shuffle(starters);
-    let dishes = await Elderly.app.models.dish.find();
+    let plannedMeals = await getMeals(elderlyId, startDate, endDate);
+    plannedMeals = jsonUtils.toJsonIfExists(plannedMeals);
+    const plannedStarters = _.map(plannedMeals, (meal) => { return meal.starter.id; });
+    const plannedDishes = _.map(plannedMeals, (meal) => { return meal.dish.id; });
+    // Get all starters but planned, and shuffle the lists (random)
+    let availableStarters = await Elderly.app.models.starter.find({
+      where: {
+        starterId: {nin: plannedStarters},
+      },
+    });
+    availableStarters = _.shuffle(availableStarters);
+
+    // Get all dishes but planned, and shuffle the lists (random)
+    let dishes = await Elderly.app.models.dish.find({
+      where: {
+        dishId: {nin: plannedDishes},
+      },
+    });
     dishes = _.shuffle(dishes);
+
+    // Retrieve elderly's empty meals for the given period
+    const meals = await getEmptyMeals(elderlyId, startDate, endDate);
     // Attribute each starter and dish to meals
     for (let i = 0; i < meals.length; i++) {
-      await meals[i].starter(starters[i % starters.length]);
+      await meals[i].starter(availableStarters[i % availableStarters.length]);
       await meals[i].dish(dishes[i % dishes.length]);
       await meals[i].save();
     }
@@ -258,7 +273,85 @@ module.exports = function(Elderly) {
       {arg: 'id', type: 'number'},
       {arg: 'date', type: 'date', required: true},
     ],
-    returns: {arg: 'ingredients', type: '[ingredients]', root: true},
+    returns: {arg: 'ingredients', type: '[ingredient]', root: true},
     http: {path: '/:id/shoppingLists/:date', verb: 'get'},
+  });
+
+  /**
+   * Replace a starter of a meal
+   *
+   * @param {number} elderlyId
+   * @param {number} mealId
+   * @param {Date} startDate
+   * @param {Date} endDate
+   */
+  Elderly.replaceStarter = async function(elderlyId, mealId, startDate, endDate) {
+    let plannedMeals = await getMeals(elderlyId, startDate, endDate);
+    plannedMeals = jsonUtils.toJsonIfExists(plannedMeals);
+    const plannedStarters = _.map(plannedMeals, (meal) => { return meal.starter.id; });
+    // Get all starters but planned, and shuffle the lists (random)
+    let availableStarters = await Elderly.app.models.starter.find({
+      where: {
+        starterId: {nin: plannedStarters},
+      },
+    });
+    availableStarters = _.shuffle(availableStarters);
+
+    let meal = await Elderly.app.models.meal.findById(mealId);
+    meal.starterId = availableStarters[0].id;
+    meal.save();
+
+    return meal;
+  };
+
+  Elderly.remoteMethod('replaceStarter', {
+    description: '[Custom] replace starter of the given meal',
+    accepts: [
+      {arg: 'id', type: 'number'},
+      {arg: 'fk', type: 'number'},
+      {arg: 'startDate', type: 'date', required: true},
+      {arg: 'endDate', type: 'date', required: true},
+    ],
+    returns: {arg: 'meal', type: 'meal', root: true},
+    http: {path: '/:id/meals/:fk/replaceStarter', verb: 'post'},
+  });
+
+  /**
+   * Replace a dish of a meal
+   *
+   * @param {number} elderlyId
+   * @param {number} mealId
+   * @param {Date} startDate
+   * @param {Date} endDate
+   */
+  Elderly.replaceDish = async function(elderlyId, mealId, startDate, endDate) {
+    let plannedMeals = await getMeals(elderlyId, startDate, endDate);
+    plannedMeals = jsonUtils.toJsonIfExists(plannedMeals);
+    const plannedDishes = _.map(plannedMeals, (meal) => { return meal.dish.id; });
+    // Get all dishes but planned, and shuffle the lists (random)
+    let availableDishes = await Elderly.app.models.dish.find({
+      where: {
+        dishId: {nin: plannedDishes},
+      },
+    });
+    availableDishes = _.shuffle(availableDishes);
+
+    let meal = await Elderly.app.models.meal.findById(mealId);
+    meal.dishId = availableDishes[0].id;
+    meal.save();
+
+    return meal;
+  };
+
+  Elderly.remoteMethod('replaceDish', {
+    description: '[Custom] replace dish of the given meal',
+    accepts: [
+      {arg: 'id', type: 'number'},
+      {arg: 'fk', type: 'number'},
+      {arg: 'startDate', type: 'date', required: true},
+      {arg: 'endDate', type: 'date', required: true},
+    ],
+    returns: {arg: 'meal', type: 'meal', root: true},
+    http: {path: '/:id/meals/:fk/replaceDish', verb: 'post'},
   });
 };
