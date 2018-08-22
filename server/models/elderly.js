@@ -77,10 +77,10 @@ module.exports = function(Elderly) {
     meals = jsonUtils.toJsonIfExists(meals);
 
     for (let i = 0; i < meals.length; i++) {
-      var ingredients = await getRecipeWithIngredientsquantity(meals[i].starter.recipeId);
+      var ingredients = await getStarterWithIngredientsquantity(meals[i].starter.id);
       ingredientsList = addToShoppingList(ingredientsList, ingredients);
 
-      ingredients = await getRecipeWithIngredientsquantity(meals[i].dish.recipeId);
+      ingredients = await getDishWithIngredientsquantity(meals[i].dish.id);
       ingredientsList = addToShoppingList(ingredientsList, ingredients);
     }
 
@@ -131,29 +131,54 @@ module.exports = function(Elderly) {
     });
   }
 
-  async function getRecipeWithIngredientsquantity(recipeId) {
-    var recipe = await Elderly.app.models.recipe.findOne({
-      where: {id: recipeId},
+  async function getStarterWithIngredientsquantity(starterId) {
+    var starter = await Elderly.app.models.starter.findOne({
+      where: {id: starterId},
       include: {relation: 'ingredients'},
     });
-    recipe = jsonUtils.toJsonIfExists(recipe);
+    starter = jsonUtils.toJsonIfExists(starter);
 
     // Attribute its quantity to each ingredient
-    for (let i = 0; i < recipe.ingredients.length; i++) {
-      var recipeIngredient = await Elderly.app.models.recipeIngredients.findOne({
+    for (let i = 0; i < starter.ingredients.length; i++) {
+      var starterIngredient = await Elderly.app.models.starterIngredients.findOne({
         where: {
           and: [{
-            recipeId: recipeId,
+            starterId: starterId,
           }, {
-            ingredientId: recipe.ingredients[i].id,
+            ingredientId: starter.ingredients[i].id,
           }],
         },
       });
 
-      Object.assign(recipe.ingredients[i], _.pick(recipeIngredient, ['quantity']));
+      Object.assign(starter.ingredients[i], _.pick(starterIngredient, ['quantity']));
     }
 
-    return recipe.ingredients;
+    return starter.ingredients;
+  }
+
+  async function getDishWithIngredientsquantity(dishId) {
+    var dish = await Elderly.app.models.dish.findOne({
+      where: {id: dishId},
+      include: {relation: 'ingredients'},
+    });
+    dish = jsonUtils.toJsonIfExists(dish);
+
+    // Attribute its quantity to each ingredient
+    for (let i = 0; i < dish.ingredients.length; i++) {
+      var dishIngredient = await Elderly.app.models.dishIngredients.findOne({
+        where: {
+          and: [{
+            dishId: dishId,
+          }, {
+            ingredientId: dish.ingredients[i].id,
+          }],
+        },
+      });
+
+      Object.assign(dish.ingredients[i], _.pick(dishIngredient, ['quantity']));
+    }
+
+    return dish.ingredients;
   }
 
   /**

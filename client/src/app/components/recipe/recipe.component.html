@@ -1,0 +1,25 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <img fxFlexAlign="center" class="form-img" src="/assets/img/cooking.svg">
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div class="recipe-header" fxLayout="row">
+      <span>Plat</span>
+      <span>Recette</span>
+    </div>
+
+    <div class="recipe-body" fxLayoutAlign="center center">
+      <div *ngIf="showIngredients" fxLayout="column">
+        <span>Préparez les ingrédients</span>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">
+            {{ingredient.quantity}} {{ingredient.unit}} {{ingredient.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="showRecipe">{{recipe.description}}</div>
+    </div>
+    
+    <button mat-button type="button">Suivant</button>
+  </div>
+</div>

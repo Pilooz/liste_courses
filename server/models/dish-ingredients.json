@@ -1,0 +1,31 @@
+{
+  "name": "dishIngredients",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "quantity": {
+      "type": "number",
+      "postgresql": {
+        "dataType": "double precision"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "dish": {
+      "type": "belongsTo",
+      "model": "dish",
+      "foreignKey": "dishId"
+    },
+    "ingredient": {
+      "type": "belongsTo",
+      "model": "ingredient",
+      "foreignKey": "ingredientId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

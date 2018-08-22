@@ -14,12 +14,15 @@ import { ElderlyCookingImplicationComponent } from './components/elderly/elderly
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
 
 // Resolvers
+import { DishResolver } from './resolver/dish.resolver';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
+import { StarterResolver } from './resolver/starter.resolver';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -66,6 +69,16 @@ const ROUTES: Routes = [{
       resolve: { shoppingList: ElderlyShoppingListResolver }
     }]
   }]
+}, {
+  path: 'dish/:dishId',
+  component: RecipeComponent,
+  canActivate: [AuthGuard],
+  resolve: { recipe: DishResolver }
+}, {
+  path: 'starter/:starterId',
+  component: RecipeComponent,
+  canActivate: [AuthGuard],
+  resolve: { recipe: StarterResolver }
 }, {
   path: '**',
   redirectTo: 'home'

@@ -9,14 +9,19 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "description": {
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "recipe": {
-      "type": "belongsTo",
-      "model": "recipe",
-      "foreignKey": "recipeId"
+    "ingredients": {
+      "type": "hasMany",
+      "model": "ingredient",
+      "foreignKey": "dishId",
+      "through": "dishIngredients",
+      "keyThrough": "ingredientId"
     }
   },
   "acls": [],

@@ -11,7 +11,6 @@ import { MealClass } from '../../../domain/meal.class';
 // Services
 import { ElderlyService } from '../../../services/elderly.service';
 import { HeaderService } from '../../../services/header.services';
-import { RecipeService } from '../../../services/recipe.service';
 import { ElderlyShoppingListService } from '../../../services/elderly-shoppingList.service';
 
 @Component({

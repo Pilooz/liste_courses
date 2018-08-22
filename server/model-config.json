@@ -100,11 +100,11 @@
     "dataSource": "db",
     "public": false
   },
-  "recipe": {
+  "starterIngredients": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
-  "recipeIngredients": {
+  "dishIngredients": {
     "dataSource": "db",
     "public": false
   },

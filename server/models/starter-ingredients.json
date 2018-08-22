@@ -1,5 +1,5 @@
 {
-  "name": "recipeIngredients",
+  "name": "starterIngredients",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -15,10 +15,10 @@
   },
   "validations": [],
   "relations": {
-    "recipe": {
+    "starter": {
       "type": "belongsTo",
-      "model": "recipe",
-      "foreignKey": "recipeId"
+      "model": "starter",
+      "foreignKey": "starterId"
     },
     "ingredient": {
       "type": "belongsTo",

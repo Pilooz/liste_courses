@@ -40,19 +40,22 @@ import { UnauthGuard } from './guards/unauth.guard';
 import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Resolver
+import { DishResolver } from './resolver/dish.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
+import { StarterResolver } from './resolver/starter.resolver';
 
 // Services
+import { DishService } from './services/dish.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ElderlyService } from './services/elderly.service';
 import { ElderlyMealService } from './services/elderly-meal.service';
 import { ElderlyShoppingListService } from './services/elderly-shoppingList.service';
 import { ElderlySkillService } from './services/elderly-skill.service';
 import { HeaderService } from './services/header.services';
-import { RecipeService } from './services/recipe.service';
 import { SkillService } from './services/skill.service';
+import { StarterService } from './services/starter.service';
 import { UserService } from './services/user.service';
 
 // Components
@@ -70,6 +73,7 @@ import { MealsCalendarComponent } from './components/elderly/meals-calendar/meal
 import { registerLocaleData } from '@angular/common';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -128,7 +132,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyProfileComponent,
     MealsCalendarComponent,
     MealsCalendarContentComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    RecipeComponent
   ],
   entryComponents: [
     DialogComponent
@@ -166,12 +171,13 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     { provide: LOCALE_ID, useValue: 'fr' },
     appRoutingProviders,
     AuthenticationService,
+    DishService,
     ElderlyService,
     ElderlyMealService,
     ElderlyShoppingListService,
     ElderlySkillService,
     HeaderService,
-    RecipeService,
+    StarterService,
     SkillService,
     UserService,
     AuthGuard,
@@ -179,7 +185,9 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     UnsavedChangesGuard,
     ElderlyResolver,
     ElderlyMealsResolver,
-    ElderlyShoppingListResolver
+    ElderlyShoppingListResolver,
+    DishResolver,
+    StarterResolver
   ],
   bootstrap: [AppComponent]
 })
