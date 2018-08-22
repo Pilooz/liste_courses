@@ -1,9 +1,13 @@
+.recipe-header {
+    margin-bottom: -15px;    
+}
+
 .recipe-type {
     height: 18px;
     color: white;
     padding: 10px;
-    border-top-left-radius: 40%;
-    border-top-right-radius: 40%;
+    border-top-left-radius: 35%;
+    border-top-right-radius: 35%;
     margin-right: -10px;
     transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -31,10 +35,14 @@
     width: 100%;
 }
 
-.recipe-body>div>span {
+.recipe-body button {
+    margin: 15px 10px 5px 10px;
+}
+
+.recipe-ingredients>span {
     padding: 20px 0px 10px 0px;
 }
 
-.recipe-body button {
-    margin: 15px 10px 5px 10px;
+.recipe-description {
+    padding: 30px 20px 10px 20px;
 }

@@ -8,7 +8,7 @@
     </div>
 
     <div class="recipe-body" fxLayoutAlign="center center">
-      <div *ngIf="showIngredients" fxLayout="column">
+      <div class="recipe-ingredients" *ngIf="showIngredients" fxLayout="column">
         <span class="color-blue" fxLayoutAlign="center center">Préparez les ingrédients</span>
         <ul fxLayout="column" fxLayoutAlign="start start">
           <li *ngFor="let ingredient of recipe.ingredients">
@@ -18,7 +18,7 @@
         <button class="background-blue" mat-button type="button" (click)="toggleDisplay()">Suivant</button>
       </div>
 
-      <div *ngIf="showRecipe" fxLayout="column">
+      <div class="recipe-description" *ngIf="showRecipe" fxLayout="column">
         <span>{{recipe.description}}</span>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
           <button mat-button type="button" (click)="toggleDisplay()">Précédent</button>
