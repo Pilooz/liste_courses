@@ -2,24 +2,29 @@
   <img fxFlexAlign="center" class="form-img" src="/assets/img/cooking.svg">
 
   <div fxLayout="column" fxLayoutAlign="center center">
-    <div class="recipe-header" fxLayout="row">
-      <span>Plat</span>
-      <span>Recette</span>
+    <div class="recipe-header" fxLayout="row" fxLayoutAlign="center center">
+      <span class="background-blue recipe-type">Plat</span>
+      <span class="recipe-name">{{recipe.name}}</span>
     </div>
 
     <div class="recipe-body" fxLayoutAlign="center center">
       <div *ngIf="showIngredients" fxLayout="column">
-        <span>Préparez les ingrédients</span>
-        <ul>
+        <span class="color-blue" fxLayoutAlign="center center">Préparez les ingrédients</span>
+        <ul fxLayout="column" fxLayoutAlign="start start">
           <li *ngFor="let ingredient of recipe.ingredients">
             {{ingredient.quantity}} {{ingredient.unit}} {{ingredient.name}}
           </li>
         </ul>
+        <button class="background-blue" mat-button type="button" (click)="toggleDisplay()">Suivant</button>
       </div>
 
-      <div *ngIf="showRecipe">{{recipe.description}}</div>
+      <div *ngIf="showRecipe" fxLayout="column">
+        <span>{{recipe.description}}</span>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <button mat-button type="button" (click)="toggleDisplay()">Précédent</button>
+          <button mat-button type="button" (click)="goHome()">Terminé</button>
+        </div>
+      </div>
     </div>
-    
-    <button mat-button type="button">Suivant</button>
   </div>
 </div>

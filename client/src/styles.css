@@ -109,6 +109,10 @@ button.background-blue:not([disabled]) {
     color: #ED6A7A;
 }
 
+.color-blue {
+    color: #5ab5e2;
+}
+
 /* ----- Colors & background ----- */
 
 /* ----- Forms ----- */

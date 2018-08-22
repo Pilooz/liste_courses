@@ -67,18 +67,18 @@ const ROUTES: Routes = [{
       path: 'shopping-list',
       component: ShoppingListComponent,
       resolve: { shoppingList: ElderlyShoppingListResolver }
+    }, {
+      path: 'dish/:dishId',
+      component: RecipeComponent,
+      canActivate: [AuthGuard],
+      resolve: { recipe: DishResolver }
+    }, {
+      path: 'starter/:starterId',
+      component: RecipeComponent,
+      canActivate: [AuthGuard],
+      resolve: { recipe: StarterResolver }
     }]
   }]
-}, {
-  path: 'dish/:dishId',
-  component: RecipeComponent,
-  canActivate: [AuthGuard],
-  resolve: { recipe: DishResolver }
-}, {
-  path: 'starter/:starterId',
-  component: RecipeComponent,
-  canActivate: [AuthGuard],
-  resolve: { recipe: StarterResolver }
 }, {
   path: '**',
   redirectTo: 'home'
