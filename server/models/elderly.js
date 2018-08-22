@@ -263,6 +263,7 @@ module.exports = function(Elderly) {
           filename: 'notepad.svg',
           path: './server/views/notepad.svg',
           cid: 'notepad_image',
+          contentType: 'image/svg+xml',
         }],
       };
 
