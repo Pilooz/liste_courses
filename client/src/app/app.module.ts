@@ -75,6 +75,7 @@ import { MealsCalendarComponent } from './components/elderly/meals-calendar/meal
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
+import { IngredientQuantityDialogComponent } from './components/dialog/ingredient-quantity-dialog/ingredient-quantity-dialog.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -135,10 +136,12 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     MealsCalendarContentComponent,
     ShoppingListComponent,
     RecipeComponent,
-    ElderlyMealComponent
+    ElderlyMealComponent,
+    IngredientQuantityDialogComponent
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    IngredientQuantityDialogComponent
   ],
   imports: [
     BrowserModule,

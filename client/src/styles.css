@@ -74,6 +74,11 @@ button.background-blue:not([disabled]) {
     background-color: #5ab5e2;
 }
 
+button.background-green:disabled, button.background-red:disabled, button.background-blue:disabled,
+button.background-orange:disabled, .main-content button:disabled, .header button:disabled {
+    background-color: lightgrey;
+}
+
 /* ----- END Buttons look & feel ----- */
 
 /* ----- Colors & background ----- */

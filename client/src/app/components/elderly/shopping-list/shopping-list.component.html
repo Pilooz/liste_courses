@@ -17,10 +17,10 @@
             <span>{{ingredient.quantity}} {{ingredient.unit}}</span>
           </div>
           <div fxFlex="40" fxLayoutAlign="center center" fxLayoutGap="10px">
-            <button mat-mini-fab type="button" class="background-green" (click)="remove(ingredient)">
+            <button mat-mini-fab type="button" class="background-green" (click)="editQuantity(ingredient)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-mini-fab type="button" class="background-red" (click)="remove(ingredient)">
+            <button mat-mini-fab type="button" class="background-red" (click)="removeIngredient(ingredient)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

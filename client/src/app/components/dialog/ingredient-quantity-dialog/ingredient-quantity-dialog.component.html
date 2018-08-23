@@ -1,0 +1,13 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <span fxFlex fxFlexOffset="10" fxLayoutAlign="center center"><strong>{{data.ingredient.name}}</strong></span>
+  <mat-icon fxFlex="10" class="clickable" (click)="onCancelClick()">close</mat-icon>
+</div>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="data.ingredient.quantity" placeholder="{{'Quantité (' + data.ingredient.unit + ')'}}">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions fxLayoutAlign="space-around center">
+  <button mat-button class="background-red" (click)="onCancelClick()">Annuler</button>
+  <button mat-button class="background-green" [disabled]="!data.ingredient.quantity" (click)="onOkClick()">Ok</button>
+</div>

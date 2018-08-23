@@ -230,7 +230,6 @@ module.exports = function(Elderly) {
    * @param {number} elderlyId
    */
   Elderly.getShoppinglistWithIngredients = async function(elderlyId, date) {
-    console.log('coucou');
     // Get shopping list with ingredients
     var shoppingList = await getShoppingListIncludeIngredients(elderlyId, date);
     shoppingList = jsonUtils.toJsonIfExists(shoppingList);
@@ -385,14 +384,14 @@ module.exports = function(Elderly) {
   Elderly.remoteMethod('patchIngredientQuantity', {
     description: '[Custom] Patch shopping list ingredient attributes',
     accepts: [
-      {arg: 'elderlyId', type: 'number', required: true},
-      {arg: 'shoppingListId', type: 'number', required: true},
+      {arg: 'id', type: 'number', required: true},
+      {arg: 'fk', type: 'number', required: true},
       {arg: 'ingredientId', type: 'number', required: true},
       {arg: 'quantity', type: 'number', required: true},
       {arg: 'res', type: 'object', http: {source: 'res'}},
     ],
     returns: {arg: 'shoppingListIngredients', type: 'shoppingListIngredients', root: true},
-    http: {path: '/:elderlyId/shoppingList/:shoppingListId/ingredients/:ingredientId', verb: 'patch'},
+    http: {path: '/:id/shoppingLists/:fk/ingredients/:ingredientId', verb: 'patch'},
   });
 
   /**
@@ -422,12 +421,12 @@ module.exports = function(Elderly) {
   Elderly.remoteMethod('deleteShoppingListIngredient', {
     description: '[Custom] Patch shopping list ingredient attributes',
     accepts: [
-      {arg: 'elderlyId', type: 'number', required: true},
-      {arg: 'shoppingListId', type: 'number', required: true},
+      {arg: 'id', type: 'number', required: true},
+      {arg: 'fk', type: 'number', required: true},
       {arg: 'ingredientId', type: 'number', required: true},
       {arg: 'res', type: 'object', http: {source: 'res'}},
     ],
     returns: {arg: 'shoppingListIngredients', type: 'shoppingListIngredients', root: true},
-    http: {path: '/:elderlyId/shoppingList/:shoppingListId/ingredients/:ingredientId', verb: 'delete'},
+    http: {path: '/:id/shoppingLists/:fk/ingredients/:ingredientId', verb: 'delete'},
   });
 };
