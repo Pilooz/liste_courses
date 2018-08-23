@@ -71,11 +71,12 @@ import { ElderlyProfileFormComponent } from './components/elderly/elderly-profil
 import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { IngredientQuantityDialogComponent } from './components/dialog/ingredient-quantity-dialog/ingredient-quantity-dialog.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
-import { IngredientQuantityDialogComponent } from './components/dialog/ingredient-quantity-dialog/ingredient-quantity-dialog.component';
+import { ShoppingListEditionComponent } from './components/elderly/shopping-list-edition/shopping-list-edition.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -137,7 +138,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ShoppingListComponent,
     RecipeComponent,
     ElderlyMealComponent,
-    IngredientQuantityDialogComponent
+    IngredientQuantityDialogComponent,
+    ShoppingListEditionComponent
   ],
   entryComponents: [
     DialogComponent,

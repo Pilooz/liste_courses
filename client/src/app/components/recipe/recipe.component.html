@@ -22,7 +22,7 @@
         <span>{{recipe.description}}</span>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
           <button class="background-blue" mat-button type="button" (click)="toggleDisplay()">Précédent</button>
-          <button class="background-blue" mat-button type="button" (click)="goHome()">Terminé</button>
+          <button class="background-blue" mat-button type="button" (click)="headerService.doReturn()">Terminé</button>
         </div>
       </div>
     </div>

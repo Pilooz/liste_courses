@@ -53,9 +53,18 @@ export class ElderlyShoppingListService {
    * @param ingredientId 
    * @param quantity 
    */
-  editShoppingListIngredient(elderlyId: number, shoppingListId: number, ingredientId: number, quantity): Observable<IngredientClass> {
+  editShoppingListIngredient(elderlyId: number, shoppingListId: number, ingredientId: number, quantity: number): Observable<IngredientClass> {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).one(UrlSettings.elderlyShoppingLists, shoppingListId)
     .one(UrlSettings.elderlyShoppingListIngredient, ingredientId).patch({quantity: quantity})
     .pipe(map(res => new IngredientClass(res)));
+  }
+
+  /**
+   * Edit shopping list
+   * @param shoppingList 
+   */
+  editShoppingList(shoppingList: ShoppingListClass): Observable<IngredientClass> {
+    return this.restangular.one(UrlSettings.elderlyModel, shoppingList.elderlyId).one(UrlSettings.elderlyShoppingLists, shoppingList.id)
+    .customPUT(shoppingList).pipe(map(res => new IngredientClass(res)));
   }
 }

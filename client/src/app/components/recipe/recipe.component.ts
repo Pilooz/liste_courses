@@ -38,8 +38,4 @@ export class RecipeComponent implements OnInit {
   toggleDisplay() {
     this.showRecipe = !(this.showIngredients = !this.showIngredients);
   }
-
-  goHome() {
-    this.headerService.doReturn();
-  }
 }

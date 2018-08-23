@@ -1,0 +1,11 @@
+.myclass {
+    width: calc(100% - 20px);
+}
+
+.form-info-content {
+    padding: 20px;
+}
+
+.form-info-content>* {
+    margin: 10px !important;
+}

@@ -2,23 +2,21 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from '@angular/material';
 import * as _ from 'lodash'
+import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
 
 // Classes
 import { ElderlyClass } from '../../../domain/elderly.class';
+import { IngredientClass } from '../../../domain/ingredient.class';
+import { ShoppingListClass } from '../../../domain/shoppingList.class';
 
 // Components
 import { DialogComponent } from '../../dialog/dialog.component';
+import { IngredientQuantityDialogComponent } from '../../dialog/ingredient-quantity-dialog/ingredient-quantity-dialog.component';
 
 // Services
 import { HeaderService } from '../../../services/header.services';
 import { ElderlyService } from '../../../services/elderly.service';
 import { ElderlyShoppingListService } from '../../../services/elderly-shoppingList.service';
-
-// Utils
-import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
-import { ShoppingListClass } from '../../../domain/shoppingList.class';
-import { IngredientClass } from '../../../domain/ingredient.class';
-import { IngredientQuantityDialogComponent } from '../../dialog/ingredient-quantity-dialog/ingredient-quantity-dialog.component';
 
 @Component({
   selector: 'app-shopping-list',
@@ -38,12 +36,9 @@ export class ShoppingListComponent extends AbstractElderlyModifier implements On
     private elderlyShoppingListService: ElderlyShoppingListService,
     private dialog: MatDialog) {
     super(elderlyService, route);
-    this.elderly = this.route.snapshot.data['elderly']
   }
 
   ngOnInit() {
-    this.headerService.doReturn = () => {
-    };
     this.headerService.doReturn = () => {
       if (this.standalone) {
         return this.router.navigate(['/elderly', this.elderly.id]);
@@ -95,5 +90,15 @@ export class ShoppingListComponent extends AbstractElderlyModifier implements On
         _.remove(this.shoppingList.ingredients, ingredient);
       });
     });
+  }
+
+  saveShoppingList() {
+    this.elderlyShoppingListService.editShoppingList(new ShoppingListClass({
+      id: this.shoppingList.id,
+      elderlyId: this.shoppingList.elderlyId,
+      note: this.shoppingList.note
+    })).subscribe(() => {
+      this.router.navigate(['elderly', this.elderly.id, 'shopping-list', 'edition']);
+    })
   }
 }

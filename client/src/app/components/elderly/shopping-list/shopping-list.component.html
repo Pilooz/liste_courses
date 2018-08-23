@@ -27,7 +27,8 @@
         </div>
       </div>
     </div>
+    <textarea placeholder="Vous pouvez ici ajouter des notes ou des éléments à la liste" [(ngModel)]="shoppingList.note"></textarea>
   </div>
 
-  <button mat-button type="button">Valider</button>
+  <button mat-button type="button" (click)="saveShoppingList()">Valider</button>
 </div>

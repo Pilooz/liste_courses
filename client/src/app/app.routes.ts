@@ -16,6 +16,7 @@ import { MealsCalendarComponent } from './components/elderly/meals-calendar/meal
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
+import { ShoppingListEditionComponent } from './components/elderly/shopping-list-edition/shopping-list-edition.component';
 
 // Resolvers
 import { DishResolver } from './resolver/dish.resolver';
@@ -77,6 +78,10 @@ const ROUTES: Routes = [{
       component: RecipeComponent,
       canActivate: [AuthGuard],
       resolve: { recipe: StarterResolver }
+    }, {
+      path: 'shopping-list/edition',
+      component: ShoppingListEditionComponent,
+      canActivate: [AuthGuard]
     }]
   }]
 }, {
