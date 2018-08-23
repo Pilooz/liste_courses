@@ -230,6 +230,7 @@ module.exports = function(Elderly) {
    * @param {number} elderlyId
    */
   Elderly.getShoppinglistWithIngredients = async function(elderlyId, date) {
+    console.log('coucou');
     // Get shopping list with ingredients
     var shoppingList = await getShoppingListIncludeIngredients(elderlyId, date);
     shoppingList = jsonUtils.toJsonIfExists(shoppingList);
@@ -274,7 +275,7 @@ module.exports = function(Elderly) {
       {arg: 'date', type: 'date', required: true},
     ],
     returns: {arg: 'ingredients', type: '[ingredient]', root: true},
-    http: {path: '/:id/shoppingLists/:date', verb: 'get'},
+    http: {path: '/:id/shoppingLists/date/:date', verb: 'get'},
   });
 
   /**
@@ -353,5 +354,80 @@ module.exports = function(Elderly) {
     ],
     returns: {arg: 'dish', type: 'dish', root: true},
     http: {path: '/:id/meals/:fk/replaceDish', verb: 'post'},
+  });
+
+  /**
+   * Patch an ingredient quantity of a shopping list
+   *
+   * @param {number} elderlyId
+   * @param {number} shoppingListId
+   * @param {number} ingredientId
+   * @param {number} quantity
+   */
+  Elderly.patchIngredientQuantity = async function(elderlyId, shoppingListId, ingredientId, quantity, res) {
+    let shoppingListIngredient = await Elderly.app.models.shoppingListIngredients.find({
+      where: {
+        shoppingListId: shoppingListId,
+        ingredientId: ingredientId,
+      },
+    });
+
+    if (shoppingListIngredient.length === 1) {
+      shoppingListIngredient[0].quantity = quantity;
+      shoppingListIngredient[0].save();
+
+      return shoppingListIngredient[0];
+    } else {
+      res.status(500).send('Aucun (ou plusieurs) ingrédient(s) trouvé(s)');
+    }
+  };
+
+  Elderly.remoteMethod('patchIngredientQuantity', {
+    description: '[Custom] Patch shopping list ingredient attributes',
+    accepts: [
+      {arg: 'elderlyId', type: 'number', required: true},
+      {arg: 'shoppingListId', type: 'number', required: true},
+      {arg: 'ingredientId', type: 'number', required: true},
+      {arg: 'quantity', type: 'number', required: true},
+      {arg: 'res', type: 'object', http: {source: 'res'}},
+    ],
+    returns: {arg: 'shoppingListIngredients', type: 'shoppingListIngredients', root: true},
+    http: {path: '/:elderlyId/shoppingList/:shoppingListId/ingredients/:ingredientId', verb: 'patch'},
+  });
+
+  /**
+   * Delete an ingredient from a shopping list
+   *
+   * @param {number} elderlyId
+   * @param {number} shoppingListId
+   * @param {number} ingredientId
+   */
+  Elderly.deleteShoppingListIngredient = async function(elderlyId, shoppingListId, ingredientId, res) {
+    let shoppingListIngredient = await Elderly.app.models.shoppingListIngredients.find({
+      where: {
+        shoppingListId: shoppingListId,
+        ingredientId: ingredientId,
+      },
+    });
+
+    if (shoppingListIngredient.length === 1) {
+      await Elderly.app.models.shoppingListIngredients.destroyById(shoppingListIngredient[0].id);
+
+      return shoppingListIngredient[0];
+    } else {
+      res.status(500).send('Aucun (ou plusieurs) ingrédient(s) trouvé(s)');
+    }
+  };
+
+  Elderly.remoteMethod('deleteShoppingListIngredient', {
+    description: '[Custom] Patch shopping list ingredient attributes',
+    accepts: [
+      {arg: 'elderlyId', type: 'number', required: true},
+      {arg: 'shoppingListId', type: 'number', required: true},
+      {arg: 'ingredientId', type: 'number', required: true},
+      {arg: 'res', type: 'object', http: {source: 'res'}},
+    ],
+    returns: {arg: 'shoppingListIngredients', type: 'shoppingListIngredients', root: true},
+    http: {path: '/:elderlyId/shoppingList/:shoppingListId/ingredients/:ingredientId', verb: 'delete'},
   });
 };

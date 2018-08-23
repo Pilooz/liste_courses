@@ -6,6 +6,7 @@ export class ShoppingListClass {
     public startDate: Date;
     public endDate: Date;
     public elderlyId: number;
+    public note: string;
     public ingredients: IngredientClass[];
 
     constructor(obj?: any) {

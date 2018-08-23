@@ -30,7 +30,7 @@ export class ElderlyShoppingListService {
    * @param date 
    */
   getElderlyShoppingList(elderlyId: number, date): Observable<ShoppingListClass> {
-    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).one(UrlSettings.elderlyShoppingLists, date)
-      .get().pipe(map(res => new ShoppingListClass(res)));
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyShoppingLists)
+    .one(UrlSettings.elderlyShoppingListsDate, date).get().pipe(map(res => new ShoppingListClass(res)));
   }
 }

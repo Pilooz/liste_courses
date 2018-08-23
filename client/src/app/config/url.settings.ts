@@ -22,6 +22,7 @@ export class UrlSettings {
   public static readonly elderlyMeals = 'meals';
   public static readonly elderlyMealsInit = 'init';
   public static readonly elderlyShoppingLists = 'shoppinglists';
+  public static readonly elderlyShoppingListsDate = 'date';
   public static readonly elderlyShoppingListInit = 'init';
   public static readonly elderlyReplaceStarter = 'replaceStarter';
   public static readonly elderlyReplaceDish = 'replaceDish';
