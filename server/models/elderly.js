@@ -260,10 +260,10 @@ module.exports = function(Elderly) {
         subject: 'Votre liste de courses',
         html: body,
         attachments: [{
-          filename: 'notepad.svg',
-          path: './server/views/notepad.svg',
+          filename: 'notepad.jpg',
+          path: './server/views/notepad.jpg',
           cid: 'notepad_image',
-          contentType: 'image/svg+xml',
+          contentType: 'image/jpg',
         }],
       };
 

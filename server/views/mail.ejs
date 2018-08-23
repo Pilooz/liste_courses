@@ -1,23 +1,28 @@
-<div style="max-width: 100%; text-align: center">
-	<img style="margin-bottom: 20px; width:200px;" src="cid:notepad_image">
-	<table style="margin-bottom: 20px;width: 100%;padding: 20px;">
-		<caption>Votre liste de courses</caption>
-		<tr style="max-height: 100%;color: white;">
-			<th style="max-width: 60%;background: #5ab5e2;border-bottom: 1px solid white;padding: 5px;border-top-left-radius: 10px;border-right: 1px solid white;border-top-right-radius: 10px;">Ingrédient</div>
-			<th style="max-width: 40%;background: #5ab5e2;border-bottom: 1px solid white;padding: 5px;border-top-left-radius: 10px;border-right: 1px solid white;border-top-right-radius: 10px;">Quantité</div>
-		</tr>
+<table style="width: 100%; border-collapse:collapse;">
+	<tr>
+		<td colspan="2" style="text-align: center;"><img width="200" src="cid:notepad_image"></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="height:20px;"></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center;">Votre liste de courses</td>
+	</tr>
+	<tr style="color: white;">
+		<th style="background: #5ab5e2; border-bottom: 1px solid white; border-top-left-radius: 10px; border-right: 1px solid white; border-top-right-radius: 10px;">Ingrédient</div>
+		<th style="background: #5ab5e2; border-bottom: 1px solid white; border-top-left-radius: 10px; border-right: 1px solid white; border-top-right-radius: 10px;">Quantité</div>
+	</tr>
 
-		<% for(let ingredient of ingredients) { %>
-		<tr>
-			<td style="max-width: 60%;background: white;border-bottom: 1px solid #83C8B6;border-right: 1px solid #83C8B6;border-left: 1px solid #83C8B6;">
-				<span><%= ingredient.name %></span>
-			</td>
-			<td style="max-width: 40%;background: white;border-bottom: 1px solid #83C8B6;border-right: 1px solid #83C8B6;border-left: 1px solid #83C8B6;">
-				<div style="max-width: 60%;">
-					<span><%= ingredient.quantity + (ingredient.unit ? " " + ingredient.unit : ""); %></span>
-				</div>
-			</td>
-		</tr>
-		<% } %>
-	</table>
-</div>
+	<% for(let ingredient of ingredients) { %>
+	<tr>
+		<td style="text-align: center; background: white; border-bottom: 1px solid #83C8B6; border-right: 1px solid #83C8B6; border-left: 1px solid #83C8B6;">
+			<span><%= ingredient.name %></span>
+		</td>
+		<td style="text-align: center; background: white; border-bottom: 1px solid #83C8B6; border-right: 1px solid #83C8B6; border-left: 1px solid #83C8B6;">
+			<div>
+				<span><%= ingredient.quantity + (ingredient.unit ? " " + ingredient.unit : ""); %></span>
+			</div>
+		</td>
+	</tr>
+	<% } %>
+</table>
