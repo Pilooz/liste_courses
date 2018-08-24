@@ -63,7 +63,11 @@
 }
 
 .week-section {
-    padding: 10px;
+    padding: 20px;
+}
+
+.week-section>span {
+    padding-left: 40px;
 }
 
 .menu-button, .list-button {
