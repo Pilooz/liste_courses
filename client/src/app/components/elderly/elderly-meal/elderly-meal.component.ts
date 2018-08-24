@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Classes
 import { MealClass } from '../../../domain/meal.class';
@@ -17,11 +18,13 @@ export class ElderlyMealComponent implements OnInit {
   @Input() public meal: MealClass;
   @Input() public startDate: Date;
   @Input() public endDate: Date;
+  @Input() public viewOnly: boolean = false;
   @Output() public closeMeal: EventEmitter<MealClass> = new EventEmitter<MealClass>();
 
   constructor(
     private headerService: HeaderService,
-    private elderlyMealService: ElderlyMealService) { }
+    private elderlyMealService: ElderlyMealService,
+    private router: Router) { }
 
   ngOnInit() {
     this.headerService.doReturn = () => {
@@ -31,15 +34,19 @@ export class ElderlyMealComponent implements OnInit {
 
   replaceStarter() {
     this.elderlyMealService.replaceMealStarter(this.meal.elderlyId, this.meal.id, this.startDate, this.endDate)
-    .subscribe(starter => {
-      this.meal.starter = starter;
-    });
+      .subscribe(starter => {
+        this.meal.starter = starter;
+      });
   }
 
   replaceDish() {
     this.elderlyMealService.replaceMealDish(this.meal.elderlyId, this.meal.id, this.startDate, this.endDate)
-    .subscribe(dish => {
-      this.meal.dish = dish;
-    });
+      .subscribe(dish => {
+        this.meal.dish = dish;
+      });
+  }
+
+  goToDetails(mealType, id) {
+    this.router.navigate(['elderly', this.meal.elderlyId, 'meal', this.meal.id, mealType, id]);
   }
 }

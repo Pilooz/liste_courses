@@ -35,6 +35,24 @@
       </mat-accordion>
     </div>
     <div fxLayout="column" class="section">
+      <span class="section-title">Aujourd'hui {{today | date:'dd/MM/yyyy'}}</span>
+      <div fxLayout="column" class="week-section" fxLayoutGap="10px">
+        <span *ngIf="todaysMeals && todaysMeals.length > 0; else noMeal">
+          Vous avez {{todaysMeals.length}} repas planifié(s) aujourd'hui
+        </span>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+          <div *ngFor="let meal of todaysMeals" class="menu-button background-blue clickable" fxLayout="column" fxLayoutAlign="center center"
+            (click)="displayMeal(meal)">
+            <img class="form-img" src="/assets/img/cutlery_white.svg">
+            <span>Voir le {{meal.getTypeName()}}</span>
+          </div>
+          <ng-template #noMeal>
+            <span>Vous n'avez pas de repas planifié aujourd'hui</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="section">
       <span class="section-title">Semaine du {{startDate | date:'dd/MM/yyyy'}} au {{endDate | date:'dd/MM/yyyy'}}</span>
       <div fxLayout="column" fxLayoutAlign="center center" class="week-section background-blue-light" fxLayoutGap="10px">
         <a [routerLink]="['/elderly', elderly.id, 'meals-calendar']">
@@ -44,7 +62,7 @@
           <a [routerLink]="['/elderly', elderly.id, 'mealsCalendarContent']" [queryParams]="{standalone: true, startDate: this.startDate.getTime(), endDate: this.endDate.getTime()}">
             <div class="menu-button background-blue clickable" fxLayout="column" fxLayoutAlign="center center">
               <img class="form-img" src="/assets/img/cutlery_white.svg">
-              <span>Voir le menu</span>
+              <span>Voir les menus</span>
             </div>
           </a>
           <a [routerLink]="['/elderly', elderly.id, 'shopping-list']" [queryParams]="{standalone: true}">
@@ -64,7 +82,8 @@
   <span>
     <strong>{{elderly.firstname}} {{elderly.lastname | uppercase}}</strong>
   </span>
-  <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}} ans)
+  <span>Né(e) le {{(elderly.birthdate | date:'dd MMMM yyyy') || '??'}} ({{(elderly.birthdate | dateDiff:'':'years') || '??'}}
+    ans)
   </span>
   <span>{{elderly.address}}</span>
   <span>{{elderly.postalCode}} {{elderly.city}}</span>
@@ -98,3 +117,5 @@
     <span *ngFor="let skill of elderly.skills" class="elderly-skill">{{skill.label}}</span>
   </div>
 </ng-template>
+
+<app-elderly-meal *ngIf="meal || showMeal" [viewOnly]="true" [meal]="meal" (closeMeal)="closeMeal($event)"></app-elderly-meal>

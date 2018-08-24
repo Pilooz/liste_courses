@@ -69,12 +69,12 @@ const ROUTES: Routes = [{
       component: ShoppingListComponent,
       resolve: { shoppingList: ElderlyShoppingListResolver }
     }, {
-      path: 'dish/:dishId',
+      path: 'meal/:mealId/dish/:dishId',
       component: RecipeComponent,
       canActivate: [AuthGuard],
       resolve: { recipe: DishResolver }
     }, {
-      path: 'starter/:starterId',
+      path: 'meal/:mealId/starter/:starterId',
       component: RecipeComponent,
       canActivate: [AuthGuard],
       resolve: { recipe: StarterResolver }

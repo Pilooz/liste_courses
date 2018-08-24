@@ -20,17 +20,19 @@ export class RecipeComponent implements OnInit {
   public elderly: ElderlyClass;
   public showIngredients: boolean = true;
   public showRecipe: boolean = false;
+  public mealId: number;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private headerService: HeaderService) {
     this.recipe = this.route.snapshot.data['recipe'];
     this.elderly = this.route.snapshot.data['elderly'];
+    this.mealId = +this.route.snapshot.paramMap.get('mealId');
   }
 
   ngOnInit() {
     this.headerService.doReturn = () => {
-      return this.router.navigate(['/elderly', this.elderly.id]);
+      return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showMeal: this.mealId } });
     };
     this.headerService.showHome = true;
   }

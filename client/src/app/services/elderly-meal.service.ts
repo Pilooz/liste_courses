@@ -36,6 +36,23 @@ export class ElderlyMealService {
   }
 
   /**
+   * Get elderly meals
+   * @param elderlyId 
+   * @param date 
+   */
+  getElderlyMeal(elderlyId: number, date): Observable<MealClass[]> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals).getList({
+      filter: {
+        where: {
+          date: date
+        },
+        include: ['starter', 'dish'],
+        order: 'type',
+      }
+    }).pipe(map((res: Array<any>) => res.map(item => new MealClass(item))));
+  }
+
+  /**
    * Add elderly meal
    * @param meal 
    */

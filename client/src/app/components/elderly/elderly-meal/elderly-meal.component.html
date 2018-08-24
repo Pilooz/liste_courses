@@ -1,10 +1,12 @@
-<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+<div *ngIf="meal" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
   <img class="form-img" src="/assets/img/cutlery.svg">
   <span class="form-title">{{meal.getTypeName()}} du {{meal.date | date:'dd/MM/yyyy'}}</span>
 
   <span>{{meal.starter.name}}</span>
-  <button mat-button type="button" (click)="replaceStarter()">Une autre entrée</button>
+  <button *ngIf="!viewOnly" mat-button type="button" (click)="replaceStarter()">Une autre entrée</button>
+  <button *ngIf="viewOnly" mat-button type="button" (click)="goToDetails('starter', meal.starter.id)">Voir la recette</button>
 
   <span>{{meal.dish.name}}</span>
-  <button mat-button type="button" (click)="replaceDish()">Un autre plat</button>
+  <button *ngIf="!viewOnly" mat-button type="button" (click)="replaceDish()">Un autre plat</button>
+  <button *ngIf="viewOnly" mat-button type="button" (click)="goToDetails('dish', meal.dish.id)">Voir la recette</button>
 </div>
