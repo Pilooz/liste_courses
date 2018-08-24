@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.headerService.hideReturn();
     this.headerService.showHome = false;
+    this.headerService.showProfile = false;
     this.initForm();
     if (this.authenticationService.isConnected) {
       this.loadElderlies();

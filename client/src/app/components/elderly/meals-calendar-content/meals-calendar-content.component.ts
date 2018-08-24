@@ -49,6 +49,8 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
   ngOnInit() {
     this.initDoReturn();
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
     this.initDates();
   }
 

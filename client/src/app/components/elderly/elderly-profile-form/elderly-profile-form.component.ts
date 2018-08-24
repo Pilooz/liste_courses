@@ -29,7 +29,9 @@ export class ElderlyProfileFormComponent extends AbstractElderlyModifier impleme
       }
       return this.router.navigate(['/home']);
     };
-    this.headerService.showHome = false;
+    this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
     this.initForm();
   }
 

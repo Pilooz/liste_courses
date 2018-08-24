@@ -43,7 +43,8 @@ export class ElderlyProfileComponent implements OnInit {
 
   ngOnInit() {
     this.initDoReturn();
-    this.headerService.showHome = false;
+    this.headerService.showHome = true
+    this.headerService.showProfile = false;
     this.getTodaysMeal();
   }
 

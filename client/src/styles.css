@@ -257,3 +257,7 @@ app-meals-calendar .mat-form-field-infix {
     border-radius: 15px;
     min-height: 60px;
 }
+
+.no-shadow {
+    box-shadow: none !important;
+}

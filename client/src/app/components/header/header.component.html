@@ -6,9 +6,14 @@
     </button>
   </div>
 
-  <div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <a *ngIf="showProfile" [routerLink]="['/elderly', elderlyId]">
+      <button mat-mini-fab class="no-shadow">
+        <mat-icon>person</mat-icon>
+      </button>
+    </a>
     <a *ngIf="showHome" routerLink="/home">
-      <button mat-mini-fab>
+      <button mat-mini-fab class="no-shadow">
         <mat-icon>home</mat-icon>
       </button>
     </a>

@@ -42,6 +42,8 @@ export class MealsCalendarComponent implements OnInit {
       return this.router.navigate(['/elderly', this.elderly.id]);
     };
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
     this.loadMeals();
   }
 
