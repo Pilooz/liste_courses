@@ -35,6 +35,8 @@ export class RecipeComponent implements OnInit {
       return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showMeal: this.mealId } });
     };
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
   }
 
   toggleDisplay() {

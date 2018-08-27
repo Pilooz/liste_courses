@@ -384,7 +384,7 @@ module.exports = {
     }, {
       starterId: 13,
       ingredientId: getId(ingredients, {name: 'Pommes de terre'}),
-      quantity: 125,
+      quantity: 1,
     }, {
       starterId: 13,
       ingredientId: getId(ingredients, {name: 'Oignons rouges'}),

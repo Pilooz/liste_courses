@@ -9,7 +9,8 @@ import { HeaderService } from '../../services/header.services';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(
+    private authenticationService: AuthenticationService,
     private headerService: HeaderService) { }
 
   ngOnInit() {
@@ -25,5 +26,13 @@ export class HeaderComponent implements OnInit {
 
   public get showHome(): boolean {
     return this.headerService.showHome;
+  }
+
+  public get showProfile(): boolean {
+    return this.headerService.showProfile;
+  }
+
+  public get elderlyId(): number {
+    return this.headerService.elderlyId;
   }
 }

@@ -46,6 +46,8 @@ export class ShoppingListComponent extends AbstractElderlyModifier implements On
       return this.router.navigate(['/elderly', this.elderly.id, 'mealsCalendarContent']);
     };
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
   }
 
   editQuantity(ingredient: IngredientClass) {

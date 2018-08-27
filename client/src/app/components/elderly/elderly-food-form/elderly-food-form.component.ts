@@ -43,6 +43,8 @@ export class ElderlyFoodFormComponent extends AbstractElderlyModifier implements
       }
     };
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
     this.initForm();
   }
 

@@ -224,7 +224,7 @@ module.exports = {
       unit: 'g',
     }, {
       name: 'Persil',
-      unit: 'branche',
+      unit: 'branches',
     }, {
       name: 'Petits Suisses',
       unit: null,

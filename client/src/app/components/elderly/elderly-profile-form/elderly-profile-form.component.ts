@@ -29,7 +29,9 @@ export class ElderlyProfileFormComponent extends AbstractElderlyModifier impleme
       }
       return this.router.navigate(['/home']);
     };
-    this.headerService.showHome = false;
+    this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
     this.initForm();
   }
 
@@ -41,7 +43,7 @@ export class ElderlyProfileFormComponent extends AbstractElderlyModifier impleme
       'address': new FormControl(this.elderly.address),
       'postalCode': new FormControl(this.elderly.postalCode, Validators.pattern(CustomRegExp.ZIPCODE)),
       'city': new FormControl(this.elderly.city),
-      'phone': new FormControl(this.elderly.phone, Validators.pattern(CustomRegExp.PHONE))
+      'phone': new FormControl(this.elderly.phone)
     });
   }
 

@@ -27,6 +27,8 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
       return this.router.navigate(['elderly', this.elderly.id, 'shopping-list']);
     };
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
   }
 
   goHome() {

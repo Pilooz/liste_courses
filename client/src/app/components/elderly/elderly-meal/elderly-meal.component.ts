@@ -30,6 +30,9 @@ export class ElderlyMealComponent implements OnInit {
     this.headerService.doReturn = () => {
       this.closeMeal.emit(this.meal);
     };
+    this.headerService.showHome = true;
+    /* this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.meal.elderlyId; */
   }
 
   replaceStarter() {

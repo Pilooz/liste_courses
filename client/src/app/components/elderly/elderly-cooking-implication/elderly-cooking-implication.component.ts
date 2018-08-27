@@ -22,6 +22,8 @@ export class ElderlyCookingImplicationComponent extends AbstractElderlyModifier 
   ngOnInit() {
     this.headerService.doReturn = () => this.router.navigate(['/elderly', this.elderly.id, 'food']);
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
   }
 
   public sayYes() {

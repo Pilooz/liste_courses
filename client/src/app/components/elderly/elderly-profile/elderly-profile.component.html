@@ -36,7 +36,7 @@
     </div>
     <div fxLayout="column" class="section">
       <span class="section-title">Aujourd'hui {{today | date:'dd/MM/yyyy'}}</span>
-      <div fxLayout="column" class="week-section" fxLayoutGap="10px">
+      <div fxLayout="column" class="week-section">
         <span *ngIf="todaysMeals && todaysMeals.length > 0; else noMeal">
           Vous avez {{todaysMeals.length}} repas planifié(s) aujourd'hui
         </span>

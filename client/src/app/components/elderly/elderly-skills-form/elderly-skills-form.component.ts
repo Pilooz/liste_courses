@@ -39,6 +39,8 @@ export class ElderlySkillsFormComponent extends AbstractElderlyModifier implemen
       }
     };
     this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
     this.loadSkills();
   }
 
