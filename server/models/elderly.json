@@ -143,6 +143,11 @@
       "type": "hasMany",
       "model": "shoppingList",
       "foreignKey": "elderlyId"
+    },
+    "caregivers": {
+      "type": "hasOne",
+      "model": "caregiver",
+      "foreignKey": "elderlyId"
     }
   },
   "acls": [],

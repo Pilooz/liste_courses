@@ -20,7 +20,8 @@ app-elderly-profile-form, app-elderly-profile-form>*, app-elderly-food-form, app
 app-elderly-cooking-implication, app-elderly-cooking-implication>*, app-elderly-skills-form,
 app-elderly-skills-form>*, app-elderly-skills-form, app-elderly-skills-form>*, app-meals-calendar,
 app-meals-calendar>*, app-meals-calendar-content, app-meals-calendar-content>*, app-recipe, app-recipe>*,
-app-elderly-meal, app-elderly-meal>*, app-shopping-list-edition, app-shopping-list-edition>* {
+app-elderly-meal, app-elderly-meal>*, app-shopping-list-edition, app-shopping-list-edition>*,
+app-caregiver-form, app-caregiver-form>* {
     width: 100%;
     display: flex;
 }

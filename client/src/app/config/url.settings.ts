@@ -12,6 +12,9 @@ export class UrlSettings {
   public static readonly latest = 'latest';
 
   /* Models endpoint */
+
+  // Caregiver
+  public static readonly caregiverModel = 'caregivers';
   
   // Dish
   public static readonly dishModel = 'dishes';
@@ -27,6 +30,7 @@ export class UrlSettings {
   public static readonly elderlyShoppingListIngredient = 'ingredients';
   public static readonly elderlyReplaceStarter = 'replaceStarter';
   public static readonly elderlyReplaceDish = 'replaceDish';
+  public static readonly elderlyCaregivers = 'caregivers';
   
   // Starter
   public static readonly starterModel = 'starters';
