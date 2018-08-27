@@ -41,6 +41,7 @@ import { UnauthGuard } from './guards/unauth.guard';
 import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Resolver
+import { CaregiverResolver } from './resolver/caregiver.resolver';
 import { DishResolver } from './resolver/dish.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
@@ -77,6 +78,7 @@ import { MealsCalendarContentComponent } from './components/elderly/meals-calend
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { ShoppingListComponent } from './components/elderly/shopping-list/shopping-list.component';
 import { ShoppingListEditionComponent } from './components/elderly/shopping-list-edition/shopping-list-edition.component';
+import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -139,7 +141,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     RecipeComponent,
     ElderlyMealComponent,
     IngredientQuantityDialogComponent,
-    ShoppingListEditionComponent
+    ShoppingListEditionComponent,
+    CaregiverFormComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -194,7 +197,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyMealsResolver,
     ElderlyShoppingListResolver,
     DishResolver,
-    StarterResolver
+    StarterResolver,
+    CaregiverResolver
   ],
   bootstrap: [AppComponent]
 })

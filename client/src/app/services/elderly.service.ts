@@ -47,12 +47,14 @@ export class ElderlyService {
     getById(elderlyId: number): Observable<ElderlyClass> {
         return this.restangular.one(UrlSettings.elderlyModel, elderlyId).get({
             filter: {
-                include: {
+                include: [{
                     relation: 'skills',
                     scope: {
                         order: 'label'
                     }
-                }
+                }, {
+                    relation: 'caregivers'
+                }]
             }
         }).pipe(map(res => new ElderlyClass(res)));
     }
@@ -83,5 +85,11 @@ export class ElderlyService {
                 order: 'lastname, firstname'
             }
         }).pipe(map((res: Array<any>) => res.map(item => new ElderlyClass(item))));
+    }
+
+    sendShoppingListMail(elderlyId: number, date: Date): Observable<any> {
+        return this.restangular.one(UrlSettings.elderlyModel, elderlyId)
+            .all(UrlSettings.elderlyShoppingLists)
+            .customPOST({ date }, UrlSettings.elderlyShoppingListsSendMail)
     }
 }

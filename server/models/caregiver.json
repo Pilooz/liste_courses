@@ -1,0 +1,83 @@
+{
+    "name": "caregiver",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "mixins": {
+      "SoftDelete": true
+    },
+    "properties": {
+      "firstname": {
+        "type": "string",
+        "required": true,
+        "length": 50,
+        "postgresql": {
+          "dataType": "character varying"
+        }
+      },
+      "lastname": {
+        "type": "string",
+        "required": true,
+        "length": 50,
+        "postgresql": {
+          "dataType": "character varying"
+        }
+      },
+      "address": {
+        "type": "string",
+        "length": 100,
+        "postgresql": {
+          "dataType": "character varying"
+        }
+      },
+      "postalCode": {
+        "type": "string",
+        "length": 5,
+        "postgresql": {
+          "dataType": "character varying"
+        }
+      },
+      "phone": {
+        "type": "string",
+        "length": 10,
+        "postgresql": {
+          "dataType": "character varying"
+        }
+      },
+      "email": {
+          "type": "string",
+          "length": 100,
+          "postgresql": {
+            "dataType": "character varying"
+          }
+      },
+      "shopping_frequency_once": {
+        "type": "number"
+      },
+      "shopping_frequency_per": {
+        "type": "number"
+      },
+      "shopping_frequency_week_day": {
+        "type": "number"
+      },
+      "remarks": {
+        "type": "string",
+        "postgresql": {
+            "dataType": "text"
+          }
+      }
+    },
+    "validations": [],
+    "relations": {
+        "elderly": {
+        "type": "belongsTo",
+        "model": "elderly",
+        "foreignKey": "elderlyId"
+      }
+    },
+    "acls": [],
+    "methods": {}
+  }
+  

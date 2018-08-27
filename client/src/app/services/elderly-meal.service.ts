@@ -78,7 +78,7 @@ export class ElderlyMealService {
    */
   initMeals(elderlyId: number, startDate: Date, endDate: Date): Observable<void> {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals)
-      .customPOST({ startDate: startDate, endDate: endDate }, UrlSettings.elderlyMealsInit);
+      .customPOST({ startDate, endDate }, UrlSettings.elderlyMealsInit);
   }
 
   /**

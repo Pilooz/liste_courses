@@ -9,8 +9,8 @@
   <div fxLayout="column" fxLayoutAlign="center center" class="form-info-content">
     <button mat-button type="button" class="myclass background-blue">Imprimer le menu</button>
     <button mat-button type="button" class="myclass background-blue">Imprimer la liste de courses</button>
-    <button mat-button type="button" class="myclass background-orange">Envoyer la liste et le menu à {{'TODO'}}</button>
+    <button mat-button type="button" (click)="sendMail()" class="myclass background-orange">Envoyer la liste et le menu à {{elderly.caregivers.firstname}}</button>
   </div>
 
-  <button mat-button type="button" (click)="goHome()">Revenir au profile</button>
+  <button mat-button type="button" (click)="goHome()">Revenir au profil</button>
 </div>

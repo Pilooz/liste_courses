@@ -115,5 +115,9 @@
   "shoppingListIngredients": {
     "dataSource": "db",
     "public": false
+  },
+  "caregiver": {
+    "dataSource": "db",
+    "public": true
   }
 }

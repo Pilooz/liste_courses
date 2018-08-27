@@ -17,7 +17,7 @@ module.exports = {
       'tranches de pain grillé puis napper d’un filet d’huile d’olive. Répartir les dés de tomate et le basilic' +
       'ciselé. Arroser les bruschettas avec un filet de jus de citron vert. Poivrer et parsemer de fleur de sel',
     }, {
-      name: 'Bettraves mimosa',
+      name: 'Betteraves mimosa',
       description: 'Déposer l\'œuf dans une casserole d\'eau. Porter à ébullition et laisser cuire 10 min ' +
       'pour qu\'il devienne dur. Pendant ce temps, couper les betteraves en petits cubes. Sortir l\'œuf de ' +
       'la casserole avec une écumoire et le passer sous l\'eau froide. Napper les betteraves de la ' +
@@ -32,7 +32,7 @@ module.exports = {
       'les pignons de pin dans une petite poêle sans matière grasse. Les parsemer sur les courgettes, ajouter ' +
       'le basilic ciselé et servir.',
     }, {
-      name: 'Carottes rappées',
+      name: 'Carottes rapées',
       description: 'Laver, peler et râper les carottes. Faire une vinaigrette en mélangeant l\'huile, le ' +
       'jus du citron, le sel et le poivre. Verser la vinaigrette sur les carottes. Parsemer de persil haché.',
     }, {
@@ -131,7 +131,7 @@ module.exports = {
       'et farinez le moule à soufflé (ou plusieurs petits) et remplissez-le jusqu\'à moitié. Enfournez pendant ' +
       '25 min environ. Quand le soufflé gonfle et déborde légèrement du moule, servez aussitôt.',
     }, {
-      name: 'saumon à la mousse de courgettes',
+      name: 'Saumon à la mousse de courgettes',
       description: 'Rincer, essorer et ciseler l\'aneth et la menthe. Peler et émincer la gousse d\'ail. ' +
       'Râper les courgettes. Les faire revenir dans 1 cuillère à soupe d\'huile d\'olive avec l\'ail émincé et ' +
       'les herbes ciselées. Assaisonner (mais pas trop, attention au saumon fumé). Réserver et laisser un peu ' +

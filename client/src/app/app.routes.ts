@@ -24,6 +24,8 @@ import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
 import { StarterResolver } from './resolver/starter.resolver';
+import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
+import { CaregiverResolver } from './resolver/caregiver.resolver';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -58,6 +60,11 @@ const ROUTES: Routes = [{
       component: ElderlySkillsFormComponent,
       canDeactivate: [UnsavedChangesGuard]
     }, {
+      path: 'caregiver',
+      component: CaregiverFormComponent,
+      resolve: { caregiver: CaregiverResolver },
+      canDeactivate: [UnsavedChangesGuard]
+    }, {
       path: 'meals-calendar',
       component: MealsCalendarComponent
     }, {
@@ -90,4 +97,4 @@ const ROUTES: Routes = [{
 }];
 
 export const appRoutingProviders: any[] = [];
-export const routing: ModuleWithProviders = RouterModule.forRoot(ROUTES, { onSameUrlNavigation: 'reload' });
+export const routing: ModuleWithProviders = RouterModule.forRoot(ROUTES, { onSameUrlNavigation: 'reload', enableTracing: true });

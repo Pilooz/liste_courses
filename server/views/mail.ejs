@@ -1,0 +1,28 @@
+<table style="width: 100%; border-collapse:collapse;">
+	<tr>
+		<td colspan="2" style="text-align: center;"><img width="200" src="cid:notepad_image"></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="height:20px;"></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center;">Votre liste de courses</td>
+	</tr>
+	<tr style="color: white;">
+		<th style="background: #5ab5e2; border-bottom: 1px solid white; border-top-left-radius: 10px; border-right: 1px solid white; border-top-right-radius: 10px;">Ingrédient</div>
+		<th style="background: #5ab5e2; border-bottom: 1px solid white; border-top-left-radius: 10px; border-right: 1px solid white; border-top-right-radius: 10px;">Quantité</div>
+	</tr>
+
+	<% for(let ingredient of ingredients) { %>
+	<tr>
+		<td style="text-align: center; background: white; border-bottom: 1px solid #83C8B6; border-right: 1px solid #83C8B6; border-left: 1px solid #83C8B6;">
+			<span><%= ingredient.name %></span>
+		</td>
+		<td style="text-align: center; background: white; border-bottom: 1px solid #83C8B6; border-right: 1px solid #83C8B6; border-left: 1px solid #83C8B6;">
+			<div>
+				<span><%= ingredient.quantity + (ingredient.unit ? " " + ingredient.unit : ""); %></span>
+			</div>
+		</td>
+	</tr>
+	<% } %>
+</table>
