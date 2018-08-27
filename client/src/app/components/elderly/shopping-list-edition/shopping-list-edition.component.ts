@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AbstractElderlyModifier } from '../../abstract/abstract-elderly-modifier';
+import * as moment from 'moment';
 
 // Services
 import { HeaderService } from '../../../services/header.services';
@@ -30,5 +31,10 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
 
   goHome() {
     return this.router.navigate(['elderly', this.elderly.id]);
+  }
+
+  sendMail() {
+    const today: Date = new Date(moment().format("MM/DD/YYYY"));
+    return this.elderlyService.sendShoppingListMail(this.elderly.id, today);
   }
 }

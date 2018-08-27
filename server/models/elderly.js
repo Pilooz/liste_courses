@@ -433,10 +433,10 @@ module.exports = function(Elderly) {
   });
 
   Elderly.sendShoppingListMail = async function(id, date) {
+    let elderly = await Elderly.findById(id, {include: 'caregivers'});
     let data = await Elderly.getShoppinglistWithIngredients(id, date);
     try {
       let body = await ejs.renderFile('./server/views/mail.ejs', data);
-      console.log(body);
       let transporter = nodemailer.createTransport({
         host: 'smtp.erasme.org',
         port: 465,
@@ -449,7 +449,7 @@ module.exports = function(Elderly) {
 
       let mailOptions = {
         from: '"Liste de courses" <listedecourses@example.com>',
-        to: 'guerric.phalippou@soprasteria.com, baz@yopmail.com, guerricphalippou34@hotmail.com',
+        to: elderly.caregivers().email,
         subject: 'Votre liste de courses',
         html: body,
         attachments: [{
