@@ -4,6 +4,7 @@ export class IngredientClass {
     public name: string;
     public unit: string;
     public quantity: number;
+    public masculine: boolean;
 
     constructor(obj?: any) {
         Object.assign(this, obj);
