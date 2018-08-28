@@ -6,7 +6,7 @@ module.exports = {
   generate: function(app) {
     const starters = [{
       name: 'Concombre mimosa',
-      description: 'Peler et découper un concombre en rondelles.\r\nPréparez la vinaigrette avec l\'huile, ' +
+      description: 'Peler et découper un concombre en rondelles.<br>Préparez la vinaigrette avec l\'huile, ' +
       'le vinaigre, le sel et le poivre.<br>Faire cuire un œuf dur, le hacher dans le presse-ail ou l\'écraser ' +
       'avec une fourchette et l\'ajouter aux rondelles de concombre.',
     }, {

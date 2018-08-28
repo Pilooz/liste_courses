@@ -19,7 +19,7 @@
       </div>
 
       <div class="recipe-description" *ngIf="showRecipe" fxLayout="column">
-        <span>{{recipe.description}}</span>
+        <span [innerHTML]="recipe.description"></span>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
           <button class="background-blue" mat-button type="button" (click)="toggleDisplay()">Précédent</button>
           <button class="background-blue" mat-button type="button" (click)="headerService.doReturn()">Terminé</button>
