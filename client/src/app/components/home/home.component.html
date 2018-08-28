@@ -1,8 +1,8 @@
-<div *ngIf="!isConnected()" class="home-off" fxLayoutAlign="center center">
+<div *ngIf="!isConnected()" class="home-off" fxLayoutAlign="center center" fxLayout="column">
   <form [formGroup]="authenticationForm" (ngSubmit)="submitForm(authenticationForm.value)" fxLayout="column">
 
     <mat-form-field>
-      <input matInput type="text" autocomplete="email" formControlName="email" max="50" placeholder="email">
+      <input matInput type="text" autocomplete="username" formControlName="username" max="20" placeholder="identifiant">
     </mat-form-field>
 
     <mat-form-field>
@@ -13,6 +13,8 @@
 
     <button mat-button type="submit" [disabled]="authenticationForm.invalid">Connexion</button>
   </form>
+  <br>
+  <div class="info">Si vous avez perdu vos identifiants, envoyez un mail à <a href="mailto:conferencesdesfinanceurs@grandlyon.com">conferencesdesfinanceurs@grandlyon.com</a> en renseignant le nom de votre structure.</div>
 </div>
 
 <div *ngIf="isConnected()" class="home-off" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="40px">

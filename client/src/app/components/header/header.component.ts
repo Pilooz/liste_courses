@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+// Services
 import { AuthenticationService } from '../../services/authentication.service';
 import { HeaderService } from '../../services/header.services';
 
@@ -10,6 +13,7 @@ import { HeaderService } from '../../services/header.services';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private authenticationService: AuthenticationService,
     private headerService: HeaderService) { }
 
@@ -34,5 +38,11 @@ export class HeaderComponent implements OnInit {
 
   public get elderlyId(): number {
     return this.headerService.elderlyId;
+  }
+
+  public signout() {
+    this.authenticationService.signout().subscribe(res => {
+      this.router.navigate(['/home']);
+    });
   }
 }

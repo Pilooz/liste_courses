@@ -14,7 +14,7 @@ import { HeaderService } from '../../services/header.services';
 export class HomeComponent implements OnInit {
 
   public authenticationForm: FormGroup;
-  public email: string;
+  public username: string;
   public password: string;
   public badCredentials: boolean = false;
   public elderlies: ElderlyClass[] = [];
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
   private initForm() {
     this.authenticationForm = new FormGroup({
-      'email': new FormControl(this.email, [Validators.required, Validators.email]),
+      'username': new FormControl(this.username, Validators.required),
       'password': new FormControl(this.password, Validators.required),
     });
   }
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   }
 
   public submitForm(formValues) {
-    this.authenticationService.signin(formValues.email, formValues.password).subscribe(
+    this.authenticationService.signin(formValues.username, formValues.password).subscribe(
       () => { this.badCredentials = false; this.loadElderlies() },
       () => this.badCredentials = true
     );

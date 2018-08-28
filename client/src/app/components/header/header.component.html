@@ -17,5 +17,10 @@
         <mat-icon>home</mat-icon>
       </button>
     </a>
+    <a *ngIf="isConnected()" (click)="signout()">
+      <button mat-mini-fab class="no-shadow">
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
+    </a>
   </div>
 </div>

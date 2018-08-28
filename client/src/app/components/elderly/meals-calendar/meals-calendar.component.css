@@ -1,0 +1,22 @@
+.meals-week {
+    overflow-y: auto;
+}
+
+.row, .meals-type {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+}
+
+.first-column {
+    grid-column: 1;
+}
+
+.second-column {
+    grid-column: 2;
+    text-align: center;
+}
+
+.third-column {
+    grid-column: 3;
+    text-align: center;
+}

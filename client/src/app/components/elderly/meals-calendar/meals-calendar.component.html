@@ -1,32 +1,32 @@
 <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
   <img class="form-img" src="/assets/img/calendar.svg">
-  <span class="form-title">Séléctionnez les repas à prévoir cette semaine</span>
+  <span class="form-title">Séléctionnez les repas à prévoir sur la période choisie</span>
 
-  <div class="meals-calendar">
-    <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
-      <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
-      <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
+  <div class="meals-calendar" fxLayout="column">
+    <div class="meals-type">
+      <div class="second-column">Déjeuner</div>
+      <div class="third-column">Dîner</div>
     </div>
-    <div class="meals-week" fxLayout="column">
-      <div *ngFor="let date of dates" class="row" fxLayout="row">
-        <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
-        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleLunch(date)">
+    <div class="meals-week">
+      <div *ngFor="let date of dates" class="row">
+        <div class="first-column">{{date | date:'EEE dd/LL'}}</div>
+        <div class="clickable second-column" (click)="toggleLunch(date)">
           <i *ngIf="getLunch(date)" class="material-icons">check</i>
         </div>
-        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleDinner(date)">
+        <div class="clickable third-column" (click)="toggleDinner(date)">
           <i *ngIf="getDinner(date)" class="material-icons">check</i>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="center center">
     <span>Jusqu'à quelle date souhaitez-vous préparer vos repas ?</span>
     <mat-form-field>
       <input matInput [matDatepicker]="endDate" [min]="minDate" [value]="endDate" (dateChange)="setEndDate($event)" disabled>
       <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
       <mat-datepicker #endDate disabled="false"></mat-datepicker>
     </mat-form-field>
-  </div> -->
+  </div>
 
   <button mat-button type="button" (click)="initMeals()">Valider</button>
 </div>
