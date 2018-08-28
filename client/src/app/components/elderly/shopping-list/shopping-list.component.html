@@ -14,7 +14,7 @@
         </div>
         <div fxFlex="40" fxLayoutAlign="center center" fxLayout="row">
           <div fxFlex="60" fxLayoutAlign="center center">
-            <span>{{ingredient.quantity}} {{ingredient.unit}}</span>
+            <span>{{ingredient.quantity | fraction: {masculine: ingredient.masculine, of: !!ingredient.unit} }} {{ingredient.unit}}</span>
           </div>
           <div fxFlex="40" fxLayoutAlign="center center" fxLayoutGap="10px">
             <button mat-mini-fab type="button" class="background-green" (click)="editQuantity(ingredient)">

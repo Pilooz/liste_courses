@@ -13,6 +13,10 @@
     },
     "unit": {
       "type": "string"
+    },
+    "masculine": {
+      "type": "boolean",
+      "required": true
     }
   },
   "validations": [],
