@@ -1,6 +1,7 @@
 <div *ngIf="!meal" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
   <img class="form-img" src="/assets/img/cutlery.svg">
   <span class="form-title">Repas prévus pour la semaine du {{dates[0] | date:'dd/MM/yyyy'}} au {{dates[6] | date:'dd/MM/yyyy'}}</span>
+  <span>En cliquant sur un repas pour aurez la possibilité d'en modifier l'entrée ou le plat</span>
 
   <div class="meals-calendar" fxLayout="column">
     <div class="meals-type">
