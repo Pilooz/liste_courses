@@ -12,6 +12,8 @@
         <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showFood, title: 'Préférences alimentaires', content: food, editPage: 'food'}"></ng-container>
         <!-- Skills section -->
         <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showSkills, title: 'Compétences culinaires', content: skills, editPage: 'skills'}"></ng-container>
+        <!-- Care giver section -->
+        <ng-container [ngTemplateOutlet]="panel" [ngTemplateOutletContext]="{expanded: showCaregivers, title: 'Proche aidant', content: caregivers, editPage: 'caregiver'}"></ng-container>
 
         <!-- Panel template -->
         <ng-template #panel let-expanded="expanded" let-title="title" let-content="content" let-editPage="editPage">
@@ -109,6 +111,7 @@
   </span>
 </ng-template>
 
+<!-- Food template, to be injected in panel -->
 <ng-template #skills let-elderly="elderly">
   <span>
     <strong>{{elderly.firstname}} peut :</strong>
@@ -116,6 +119,20 @@
   <div fxLayout="row wrap" fxLayoutGap="10px">
     <span *ngFor="let skill of elderly.skills" class="elderly-skill">{{skill.label}}</span>
   </div>
+</ng-template>
+
+<!-- Care giver identity template, to be injected in panel  -->
+<ng-template #caregivers let-elderly="elderly">
+  <ng-container *ngIf="elderly?.caregivers">
+      <span>
+        <strong>{{elderly.caregivers.firstname}} {{elderly.caregivers.lastname | uppercase}}</strong>
+      </span>
+      <span>{{elderly.caregivers.address}}</span>
+      <span>{{elderly.caregivers.postalCode}} {{elderly.caregivers.city}}</span>
+      <span>{{elderly.caregivers.phone}}</span>
+      <span>{{elderly.caregivers.email}}</span>
+  </ng-container>
+  <ng-container *ngIf="!elderly?.caregivers">Vous n'avez pas encore déclaré de proche aidant</ng-container>
 </ng-template>
 
 <app-elderly-meal *ngIf="meal || showMeal" [viewOnly]="true" [meal]="meal" (closeMeal)="closeMeal($event)"></app-elderly-meal>

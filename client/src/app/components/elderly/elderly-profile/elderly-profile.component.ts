@@ -22,6 +22,7 @@ export class ElderlyProfileComponent implements OnInit {
   public showIdentity: boolean;
   public showFood: boolean;
   public showSkills: boolean;
+  public showCaregivers: boolean;
   public showMeal: number;
   // Get today's date without time
   public today: Date = new Date(moment().format("MM/DD/YYYY"));
@@ -38,6 +39,7 @@ export class ElderlyProfileComponent implements OnInit {
     this.showIdentity = this.route.snapshot.queryParamMap.get('showIdentity') === 'true';
     this.showFood = this.route.snapshot.queryParamMap.get('showFood') === 'true';
     this.showSkills = this.route.snapshot.queryParamMap.get('showSkills') === 'true';
+    this.showCaregivers = this.route.snapshot.queryParamMap.get('showCaregivers') === 'true';
     this.showMeal = +this.route.snapshot.queryParamMap.get('showMeal');
 
     this.elderlyMealService.getElderlyFarestMeal(this.elderly.id, this.startDate).subscribe(meal => {
