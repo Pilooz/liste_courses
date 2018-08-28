@@ -53,7 +53,7 @@
       </div>
     </div>
     <div fxLayout="column" class="section">
-      <span class="section-title">Semaine du {{startDate | date:'dd/MM/yyyy'}} au {{endDate | date:'dd/MM/yyyy'}}</span>
+      <span class="section-title">Période du {{startDate | date:'dd/MM/yyyy'}} au {{endDate | date:'dd/MM/yyyy'}}</span>
       <div fxLayout="column" fxLayoutAlign="center center" class="week-section background-blue-light" fxLayoutGap="10px">
         <a [routerLink]="['/elderly', elderly.id, 'meals-calendar']">
           <button class="background-blue" mat-button type="button">Planifier la semaine</button>

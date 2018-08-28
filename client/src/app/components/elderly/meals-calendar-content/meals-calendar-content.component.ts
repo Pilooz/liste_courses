@@ -12,6 +12,7 @@ import { MealClass } from '../../../domain/meal.class';
 import { ElderlyService } from '../../../services/elderly.service';
 import { HeaderService } from '../../../services/header.services';
 import { ElderlyShoppingListService } from '../../../services/elderly-shoppingList.service';
+import { ElderlyMealService } from '../../../services/elderly-meal.service';
 
 @Component({
   selector: 'app-meals-calendar-content',
@@ -32,7 +33,8 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
     @Inject(ActivatedRoute) route: ActivatedRoute,
     private router: Router,
     private headerService: HeaderService,
-    private elderlyShoppingListService: ElderlyShoppingListService) {
+    private elderlyShoppingListService: ElderlyShoppingListService,
+    private elderlyMealService: ElderlyMealService) {
     super(elderlyService, route);
     this.meals = this.route.snapshot.data['meals'];
 
@@ -44,6 +46,13 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
       this.startDate = new Date(parseInt(this.route.snapshot.queryParamMap.get('startDate')));
       this.endDate = new Date(parseInt(this.route.snapshot.queryParamMap.get('endDate')));
     }
+
+    this.elderlyMealService.getElderlyFarestMeal(this.elderly.id, this.startDate).subscribe(meal => {
+      if (meal) {
+        this.endDate = meal.date.getTime() > this.endDate.getTime() ? meal.date : this.endDate;
+      }
+      this.initDates();
+    });
   }
 
   ngOnInit() {
@@ -51,7 +60,6 @@ export class MealsCalendarContentComponent extends AbstractElderlyModifier imple
     this.headerService.showHome = true;
     this.headerService.showProfile = true;
     this.headerService.elderlyId = this.elderly.id;
-    this.initDates();
   }
 
   initDates() {

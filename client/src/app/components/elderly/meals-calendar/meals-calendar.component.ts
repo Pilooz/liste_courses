@@ -49,7 +49,7 @@ export class MealsCalendarComponent implements OnInit {
 
   // Load meals of the elderly
   loadMeals() {
-    this.elderlyMealService.getElderlyMeals(this.elderly.id, this.startDate, this.endDate).subscribe(meals => {
+    this.elderlyMealService.getElderlyMeals(this.elderly.id, this.startDate).subscribe(meals => {
       this.meals = meals;
       if (meals && meals.length) {
         const farestMeal = _.maxBy(this.meals, 'date');

@@ -2,7 +2,7 @@
   <img class="form-img" src="/assets/img/cutlery.svg">
   <span class="form-title">Repas prévus pour la semaine du {{dates[0] | date:'dd/MM/yyyy'}} au {{dates[6] | date:'dd/MM/yyyy'}}</span>
 
-  <div class="meals-calendar">
+  <div class="meals-calendar" fxLayout="column">
     <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
       <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
       <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
@@ -13,7 +13,7 @@
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getLunch(date)}"></ng-container>
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getDinner(date)}"></ng-container>
         <ng-template #meal let-meal="meal">
-          <div fxFlex="40" fxLayout="column" class="meals-cell" (click)="viewMeal(meal)">
+          <div fxFlex="40%" fxLayout="column" class="meals-cell" (click)="viewMeal(meal)">
             <ng-container *ngIf="meal">
               <span>
                 <strong>Entrée :</strong> {{meal.starter.name}}</span>

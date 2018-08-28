@@ -1,8 +1,8 @@
 <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
   <img class="form-img" src="/assets/img/calendar.svg">
-  <span class="form-title">Séléctionnez les repas à prévoir cette semaine</span>
+  <span class="form-title">Séléctionnez les repas à prévoir sur la période choisie</span>
 
-  <div class="meals-calendar">
+  <div class="meals-calendar" fxLayout="column">
     <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
       <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
       <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
@@ -19,14 +19,14 @@
       </div>
     </div>
   </div>
-  <!-- <div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="center center">
     <span>Jusqu'à quelle date souhaitez-vous préparer vos repas ?</span>
     <mat-form-field>
       <input matInput [matDatepicker]="endDate" [min]="minDate" [value]="endDate" (dateChange)="setEndDate($event)" disabled>
       <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
       <mat-datepicker #endDate disabled="false"></mat-datepicker>
     </mat-form-field>
-  </div> -->
+  </div>
 
   <button mat-button type="button" (click)="initMeals()">Valider</button>
 </div>

@@ -39,6 +39,12 @@ export class ElderlyProfileComponent implements OnInit {
     this.showFood = this.route.snapshot.queryParamMap.get('showFood') === 'true';
     this.showSkills = this.route.snapshot.queryParamMap.get('showSkills') === 'true';
     this.showMeal = +this.route.snapshot.queryParamMap.get('showMeal');
+
+    this.elderlyMealService.getElderlyFarestMeal(this.elderly.id, this.startDate).subscribe(meal => {
+      if (meal) {
+        this.endDate = meal.date.getTime() > this.endDate.getTime() ? meal.date : this.endDate;
+      }
+    });
   }
 
   ngOnInit() {

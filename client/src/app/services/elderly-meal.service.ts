@@ -19,20 +19,34 @@ export class ElderlyMealService {
    * Get elderly meals
    * @param elderlyId 
    * @param startDate 
-   * @param endDate 
    */
-  getElderlyMeals(elderlyId: number, startDate, endDate): Observable<MealClass[]> {
+  getElderlyMeals(elderlyId: number, startDate): Observable<MealClass[]> {
     return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals).getList({
       filter: {
         where: {
-          and: [{
-            date: { gte: startDate }
-          }, {
-            date: { lte: endDate }
-          }]
+          date: { gte: startDate }
         }
       }
     }).pipe(map((res: Array<any>) => res.map(item => new MealClass(item))));
+  }
+
+  /**
+   * Get elderly meals
+   * @param elderlyId 
+   * @param startDate 
+   */
+  getElderlyFarestMeal(elderlyId: number, startDate): Observable<MealClass> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals).getList({
+      filter: {
+        where: {
+          date: { gte: startDate }
+        },
+        order: 'date DESC',
+        limit: 1
+      }
+    }).pipe(map((res: Array<any>) => {
+      return res.length ? new MealClass(res[0]) : null;
+    }));
   }
 
   /**

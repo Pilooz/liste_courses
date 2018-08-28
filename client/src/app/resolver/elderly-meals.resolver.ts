@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { map, mergeMap } from 'rxjs/operators';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { MealClass } from '../domain/meal.class';
 import { ElderlyMealService } from '../services/elderly-meal.service';
@@ -16,6 +17,7 @@ export class ElderlyMealsResolver implements Resolve<MealClass[]> {
         const elderlyId = +route.paramMap.get('elderlyId');
         var startDate;
         var endDate;
+
         if (!route.queryParamMap.get('startDate') || !route.queryParamMap.get('endDate')) {
             const today: Date = new Date(moment().format("MM/DD/YYYY"));
             startDate = this.getMondayOfWeek(today);
@@ -24,12 +26,18 @@ export class ElderlyMealsResolver implements Resolve<MealClass[]> {
             startDate = new Date(+route.queryParamMap.get('startDate'));
             endDate = new Date(+route.queryParamMap.get('endDate'));
         }
-        return this.elderlyMealService.getAll(elderlyId, {
-            where: {
-                and: [{ date: { gte: startDate } }, { date: { lte: endDate } }],
-            },
-            include: ['starter', 'dish']
-        });
+
+        return this.elderlyMealService.getElderlyFarestMeal(elderlyId, startDate).pipe(mergeMap(meal => {
+            if (meal) {
+                endDate = meal.date.getTime() > endDate.getTime() ? meal.date : endDate;
+            }
+            return this.elderlyMealService.getAll(elderlyId, {
+                where: {
+                    and: [{ date: { gte: startDate } }, { date: { lte: endDate } }],
+                },
+                include: ['starter', 'dish']
+            });
+        }));
     }
 
     getMondayOfWeek(d) {
