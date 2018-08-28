@@ -80,6 +80,7 @@ import { ShoppingListComponent } from './components/elderly/shopping-list/shoppi
 import { ShoppingListEditionComponent } from './components/elderly/shopping-list-edition/shopping-list-edition.component';
 import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
 import { FractionPipe } from './pipes/fraction.pipe';
+import { CaregiverAvailabilityFormComponent } from './components/caregiver-availability-form/caregiver-availability-form.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -144,7 +145,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     IngredientQuantityDialogComponent,
     ShoppingListEditionComponent,
     CaregiverFormComponent,
-    FractionPipe
+    FractionPipe,
+    CaregiverAvailabilityFormComponent
   ],
   entryComponents: [
     DialogComponent,

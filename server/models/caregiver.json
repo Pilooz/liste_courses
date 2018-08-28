@@ -53,14 +53,11 @@
             "dataType": "character varying"
           }
       },
-      "shopping_frequency_once": {
-        "type": "number"
-      },
-      "shopping_frequency_per": {
-        "type": "number"
-      },
-      "shopping_frequency_week_day": {
-        "type": "number"
+      "shoppingFrequency": {
+        "type": "string",
+        "postgresql": {
+          "dataType": "text"
+        }
       },
       "remarks": {
         "type": "string",

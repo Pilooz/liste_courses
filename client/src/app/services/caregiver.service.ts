@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CaregiverClass } from '../domain/caregiver';
+import { CaregiverClass } from '../domain/caregiver.class';
 import { Restangular } from '../../../node_modules/ngx-restangular';
 import { UrlSettings } from '../config/url.settings';
 import { Observable } from '../../../node_modules/rxjs';

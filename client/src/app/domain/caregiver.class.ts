@@ -6,9 +6,7 @@ export class CaregiverClass {
     postalCode: string;
     phone: string;
     email: string;
-    shopping_frequency_once: number;
-    shopping_frequency_per: number;
-    shopping_frequency_week_day: number;
+    shoppingFrequency: string;
     remarks: string;
 
     constructor(obj?: any) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { CaregiverService } from '../services/caregiver.service';
-import { CaregiverClass } from '../domain/caregiver';
+import { CaregiverClass } from '../domain/caregiver.class';
 import { Observable, EMPTY, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 

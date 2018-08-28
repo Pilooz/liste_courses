@@ -13,7 +13,7 @@ export class FractionPipe implements PipeTransform {
     }
 
     if (isNaN(value)) {
-      console.error('Error in ' + this.constructor.name + ': ' + value + ' is not a number.');
+      console.error('Error in ' + this.constructor.name + ': "' + value + '" is not a number.');
       return null;
     } else {
       return values[value] || value;

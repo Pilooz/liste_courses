@@ -26,6 +26,7 @@ import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.res
 import { StarterResolver } from './resolver/starter.resolver';
 import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
 import { CaregiverResolver } from './resolver/caregiver.resolver';
+import { CaregiverAvailabilityFormComponent } from './components/caregiver-availability-form/caregiver-availability-form.component';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -63,6 +64,10 @@ const ROUTES: Routes = [{
       path: 'caregiver',
       component: CaregiverFormComponent,
       resolve: { caregiver: CaregiverResolver },
+      canDeactivate: [UnsavedChangesGuard]
+    }, {
+      path: 'caregiver-availability',
+      component: CaregiverAvailabilityFormComponent,
       canDeactivate: [UnsavedChangesGuard]
     }, {
       path: 'meals-calendar',
