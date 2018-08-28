@@ -29,3 +29,14 @@
 .search-bar input:focus {
     outline: none;
 }
+
+.info {
+    max-width: 35vw;
+    margin-top: 10px;
+}
+
+.info a {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: pointer;
+}

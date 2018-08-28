@@ -68,12 +68,12 @@ export class AuthenticationService {
   /**
    * Signin with credentials, and store token & connected user in local storage
    *
-   * @param email
+   * @param username
    * @param password
    */
-  public signin(email: string, password: string): Observable<LoopbackToken> {
+  public signin(username: string, password: string): Observable<LoopbackToken> {
     // First, log in
-    return this.restangular.all(UrlSettings.userModel).customPOST({ email, password }, UrlSettings.userLogin).pipe(
+    return this.restangular.all(UrlSettings.userModel).customPOST({ username, password }, UrlSettings.userLogin).pipe(
       tap((token: LoopbackToken) => {
         // Store token in local storage
         localStorage.setItem(AuthenticationService.ACCESS_TOKEN, JSON.stringify(token));
