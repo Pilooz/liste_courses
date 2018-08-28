@@ -3,17 +3,17 @@
   <span class="form-title">Séléctionnez les repas à prévoir sur la période choisie</span>
 
   <div class="meals-calendar" fxLayout="column">
-    <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
-      <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
-      <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
+    <div class="meals-type">
+      <div class="second-column">Déjeuner</div>
+      <div class="third-column">Dîner</div>
     </div>
-    <div class="meals-week" fxLayout="column">
-      <div *ngFor="let date of dates" class="row" fxLayout="row">
-        <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
-        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleLunch(date)">
+    <div class="meals-week">
+      <div *ngFor="let date of dates" class="row">
+        <div class="first-column">{{date | date:'EEE dd/LL'}}</div>
+        <div class="clickable second-column" (click)="toggleLunch(date)">
           <i *ngIf="getLunch(date)" class="material-icons">check</i>
         </div>
-        <div fxFlex="40%" class="clickable" fxLayoutAlign="center center" (click)="toggleDinner(date)">
+        <div class="clickable third-column" (click)="toggleDinner(date)">
           <i *ngIf="getDinner(date)" class="material-icons">check</i>
         </div>
       </div>

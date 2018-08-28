@@ -3,22 +3,21 @@
   <span class="form-title">Repas prévus pour la semaine du {{dates[0] | date:'dd/MM/yyyy'}} au {{dates[6] | date:'dd/MM/yyyy'}}</span>
 
   <div class="meals-calendar" fxLayout="column">
-    <div class="meals-type" fxLayout="row" fxLayoutAlign="end center">
-      <div fxFlex="40%" fxLayoutAlign="center">Déjeuner</div>
-      <div fxFlex="40%" fxLayoutAlign="center">Dîner</div>
+    <div class="meals-type">
+      <div class="second-column">Déjeuner</div>
+      <div class="third-column">Dîner</div>
     </div>
-    <div class="meals-week" fxLayout="column">
-      <div *ngFor="let date of dates" class="row" fxLayout="row">
-        <div fxFlex="20%">{{date | date:'EEE dd/LL'}}</div>
+    <div class="meals-week">
+      <div *ngFor="let date of dates" class="row">
+        <div class="first-column">{{date | date:'EEE dd/LL'}}</div>
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getLunch(date)}"></ng-container>
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getDinner(date)}"></ng-container>
         <ng-template #meal let-meal="meal">
-          <div fxFlex="40%" fxLayout="column" class="meals-cell" (click)="viewMeal(meal)">
+          <div [ngClass]="{'second-column': meal?.isLunch(), 'third-column': meal?.isDinner()}" class="meals-cell second-column" (click)="viewMeal(meal)">
             <ng-container *ngIf="meal">
-              <span>
-                <strong>Entrée :</strong> {{meal.starter.name}}</span>
-              <span>
-                <strong>Plat:</strong> {{meal.dish.name}}</span>
+              <span><strong>Entrée :</strong> {{meal.starter.name}}</span>
+              <br>
+              <span><strong>Plat:</strong> {{meal.dish.name}}</span>
             </ng-container>
           </div>
         </ng-template>
