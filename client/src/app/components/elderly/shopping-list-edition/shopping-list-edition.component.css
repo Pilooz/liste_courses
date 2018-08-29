@@ -9,3 +9,7 @@
 .form-info-content>* {
     margin: 10px !important;
 }
+
+.printed-meal div {
+    margin-left: 20px;
+}

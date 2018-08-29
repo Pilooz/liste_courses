@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class HeaderService {
@@ -9,7 +8,7 @@ export class HeaderService {
     private _showProfile: boolean = true;
     private _elderlyId: number;
 
-    constructor(private route: ActivatedRoute) { }
+    constructor() { }
 
     public get doReturn(): Function {
         return this._doReturn;

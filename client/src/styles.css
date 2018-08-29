@@ -262,3 +262,11 @@ app-meals-calendar .mat-form-field-infix {
 .no-shadow {
     box-shadow: none !important;
 }
+
+@media print
+{    
+    .no-print, .no-print *, app-header
+    {
+        display: none !important;
+    }
+}

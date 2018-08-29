@@ -79,7 +79,7 @@ module.exports = function(Elderly) {
    */
   Elderly.initShoppingList = async function(elderlyId, startDate, endDate) {
     var ingredientsList = [];
-    var shoppingList = await getShoppingList(elderlyId, startDate, endDate);
+    var shoppingList = await getShoppingList(elderlyId, startDate);
 
     if (!shoppingList) {
       shoppingList = {
@@ -87,6 +87,10 @@ module.exports = function(Elderly) {
         startDate: startDate,
         endDate: endDate,
       };
+    } else {
+      shoppingList.startDate = startDate;
+      shoppingList.endDate = endDate;
+      shoppingList.save();
     }
 
     // Retrieve elderly's meals for the given period
@@ -115,15 +119,15 @@ module.exports = function(Elderly) {
     }));
   };
 
-  function getShoppingList(elderlyId, startDate, endDate) {
+  function getShoppingList(elderlyId, startDate) {
     return Elderly.app.models.shoppingList.findOne({
       where: {
         and: [{
           elderlyId: elderlyId,
         }, {
-          startDate: startDate,
+          startDate: {gte: startDate},
         }, {
-          endDate: endDate,
+          endDate: {gt: startDate},
         }],
       },
     });
@@ -234,6 +238,9 @@ module.exports = function(Elderly) {
   Elderly.getShoppinglistWithIngredients = async function(elderlyId, date) {
     // Get shopping list with ingredients
     var shoppingList = await getShoppingListIncludeIngredients(elderlyId, date);
+
+    if (!shoppingList) return;
+
     shoppingList = jsonUtils.toJsonIfExists(shoppingList);
 
     // Attribute its quantity to each ingredient
