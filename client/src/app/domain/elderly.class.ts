@@ -1,5 +1,6 @@
 import { CookingImplicationType } from "../enum/cooking-implication-type.enum";
 import { SkillClass } from "./skill.class";
+import { CaregiverClass } from "./caregiver.class";
 
 export class ElderlyClass {
 
@@ -23,6 +24,7 @@ export class ElderlyClass {
     public size: number;
     public skills: SkillClass[] = [];
     public weight: number;
+    public caregivers: CaregiverClass;
 
     constructor(obj?: any) {
         Object.assign(this, obj, {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaregiverClass } from '../../domain/caregiver.class';
@@ -7,7 +7,6 @@ import { CustomRegExp } from '../../util/CustomRegExp';
 import { CaregiverService } from '../../services/caregiver.service';
 import { ElderlyClass } from '../../domain/elderly.class';
 import { HeaderService } from '../../services/header.services';
-import { CaregiverShareService } from '../../services/caregiver-share.service';
 
 @Component({
   selector: 'app-caregiver-form',
@@ -24,29 +23,28 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
     private route: ActivatedRoute,
     private router: Router,
     private headerService: HeaderService,
-    private location: Location,
-    private caregiverShareService: CaregiverShareService
+    private location: Location
   ) {
+    this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
   }
 
   ngOnInit() {
-    this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
-    this.caregiverShareService.caregiver = this.caregiverShareService.caregiver
-      || this.route.snapshot.data['caregiver']
-      || new CaregiverClass();
-
+    console.log(this.elderly)
     this.caregiverForm = new FormGroup({
-      'firstname': new FormControl(this.caregiverShareService.caregiver.firstname, Validators.required),
-      'lastname': new FormControl(this.caregiverShareService.caregiver.lastname, Validators.required),
-      'address': new FormControl(this.caregiverShareService.caregiver.address),
-      'postalCode': new FormControl(this.caregiverShareService.caregiver.postalCode, Validators.pattern(CustomRegExp.ZIPCODE)),
-      'email': new FormControl(this.caregiverShareService.caregiver.email),
-      'phone': new FormControl(this.caregiverShareService.caregiver.phone)
+      'firstname': new FormControl(this.elderly.caregivers.firstname, Validators.required),
+      'lastname': new FormControl(this.elderly.caregivers.lastname, Validators.required),
+      'address': new FormControl(this.elderly.caregivers.address),
+      'postalCode': new FormControl(this.elderly.caregivers.postalCode, Validators.pattern(CustomRegExp.ZIPCODE)),
+      'email': new FormControl(this.elderly.caregivers.email),
+      'phone': new FormControl(this.elderly.caregivers.phone)
     });
 
     this.headerService.doReturn = () => {
       this.location.back();
     };
+    this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
   }
 
   canDeactivate(): boolean {
@@ -54,26 +52,21 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
   }
 
   public submitForm(value) {
-    Object.assign(this.caregiverShareService.caregiver, new CaregiverClass(value));
+    Object.assign(this.elderly.caregivers, new CaregiverClass(value));
 
-    if (this.caregiverShareService.caregiver.id) {
-      this.caregiverService.update(this.caregiverShareService.caregiver).subscribe(res => {
-        this.caregiverShareService.caregiver = res;
+    if (this.elderly.caregivers.id) {
+      this.caregiverService.update(this.elderly.caregivers).subscribe(res => {
+        this.elderly.caregivers = res;
         this.caregiverForm.markAsPristine();
         this.router.navigate(['../caregiver-availability'], { relativeTo: this.route });
-      }, err => {
-
       });
     }
     else {
-      this.caregiverService.create(this.elderly.id, this.caregiverShareService.caregiver).subscribe(res => {
-        this.caregiverShareService.caregiver = res;
+      this.caregiverService.create(this.elderly.id, this.elderly.caregivers).subscribe(res => {
+        this.elderly.caregivers = res;
         this.caregiverForm.markAsPristine();
         this.router.navigate(['../caregiver-availability'], { relativeTo: this.route });
-      }, err => {
-
       });
     }
-
   }
 }

@@ -7,7 +7,7 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-    <a *ngIf="showProfile" [routerLink]="['/elderly', elderlyId]">
+    <a *ngIf="showProfile && elderlyId" [routerLink]="['/elderly', elderlyId]">
       <button mat-mini-fab class="no-shadow">
         <mat-icon>person</mat-icon>
       </button>

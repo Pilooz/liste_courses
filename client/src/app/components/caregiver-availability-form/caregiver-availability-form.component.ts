@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ElderlyClass } from '../../domain/elderly.class';
-import { CaregiverClass } from '../../domain/caregiver.class';
-import { FormGroup, FormControl } from '@angular/forms';
-import { CaregiverService } from '../../services/caregiver.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
+
+// Classes
+import { CaregiverClass } from '../../domain/caregiver.class';
+import { ElderlyClass } from '../../domain/elderly.class';
+
+// Services
+import { CaregiverService } from '../../services/caregiver.service';
 import { HeaderService } from '../../services/header.services';
-import { CaregiverShareService } from '../../services/caregiver-share.service';
 
 @Component({
   selector: 'app-caregiver-availability-form',
@@ -24,24 +27,22 @@ export class CaregiverAvailabilityFormComponent implements OnInit, Deactivable {
     private router: Router,
     private headerService: HeaderService,
     private location: Location,
-    private caregiverShareService: CaregiverShareService
   ) {
+    this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
   }
 
   ngOnInit() {
-    this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
-    this.caregiverShareService.caregiver = this.caregiverShareService.caregiver
-      || this.route.snapshot.data['caregiver']
-      || new CaregiverClass();
-
     this.shoppingForm = new FormGroup({
-      'shoppingFrequency': new FormControl(this.caregiverShareService.caregiver.shoppingFrequency),
-      'remarks': new FormControl(this.caregiverShareService.caregiver.remarks)
+      'shoppingFrequency': new FormControl(this.elderly.caregivers.shoppingFrequency),
+      'remarks': new FormControl(this.elderly.caregivers.remarks)
     });
 
     this.headerService.doReturn = () => {
       this.location.back();
     };
+    this.headerService.showHome = true;
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.elderly.id;
   }
 
   canDeactivate(): boolean {
@@ -49,26 +50,21 @@ export class CaregiverAvailabilityFormComponent implements OnInit, Deactivable {
   }
 
   public submitForm(value) {
-    Object.assign(this.caregiverShareService.caregiver, new CaregiverClass(value));
+    Object.assign(this.elderly.caregivers, new CaregiverClass(value));
 
-    if (this.caregiverShareService.caregiver.id) {
-      this.caregiverService.update(this.caregiverShareService.caregiver).subscribe(res => {
-        this.caregiverShareService.caregiver = res;
+    if (this.elderly.caregivers.id) {
+      this.caregiverService.update(this.elderly.caregivers).subscribe(res => {
+        this.elderly.caregivers = res;
         this.shoppingForm.markAsPristine();
-        this.router.navigate(['home']);
-      }, err => {
-
+        this.router.navigate(['/elderly', this.elderly.id]);
       });
     }
     else {
-      this.caregiverService.create(this.elderly.id, this.caregiverShareService.caregiver).subscribe(res => {
-        this.caregiverShareService.caregiver = res;
+      this.caregiverService.create(this.elderly.id, this.elderly.caregivers).subscribe(res => {
+        this.elderly.caregivers = res;
         this.shoppingForm.markAsPristine();
-        this.router.navigate(['home']);
-      }, err => {
-
+        this.router.navigate(['/elderly', this.elderly.id]);
       });
     }
-
   }
 }

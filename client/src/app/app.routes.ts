@@ -25,7 +25,6 @@ import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
 import { StarterResolver } from './resolver/starter.resolver';
 import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
-import { CaregiverResolver } from './resolver/caregiver.resolver';
 import { CaregiverAvailabilityFormComponent } from './components/caregiver-availability-form/caregiver-availability-form.component';
 
 const ROUTES: Routes = [{
@@ -40,6 +39,7 @@ const ROUTES: Routes = [{
     component: ElderlyProfileFormComponent
   }, {
     path: ':elderlyId',
+    runGuardsAndResolvers: "always",
     resolve: { elderly: ElderlyResolver },
     children: [{
       path: '',
@@ -62,7 +62,6 @@ const ROUTES: Routes = [{
       canDeactivate: [UnsavedChangesGuard]
     }, {
       path: '',
-      resolve: { caregiver: CaregiverResolver },
       children: [{
         path: 'caregiver',
         component: CaregiverFormComponent,
