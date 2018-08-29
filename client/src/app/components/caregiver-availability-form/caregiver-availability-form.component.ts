@@ -30,10 +30,13 @@ export class CaregiverAvailabilityFormComponent implements OnInit, Deactivable {
 
   ngOnInit() {
     this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
+    this.caregiverShareService.caregiver = this.caregiverShareService.caregiver
+      || this.route.snapshot.data['caregiver']
+      || new CaregiverClass();
 
     this.shoppingForm = new FormGroup({
-      'shoppingFrequency': new FormControl(this.caregiverShareService.caregiver.firstname),
-      'remarks': new FormControl(this.caregiverShareService.caregiver.lastname)
+      'shoppingFrequency': new FormControl(this.caregiverShareService.caregiver.shoppingFrequency),
+      'remarks': new FormControl(this.caregiverShareService.caregiver.remarks)
     });
 
     this.headerService.doReturn = () => {

@@ -61,14 +61,17 @@ const ROUTES: Routes = [{
       component: ElderlySkillsFormComponent,
       canDeactivate: [UnsavedChangesGuard]
     }, {
-      path: 'caregiver',
-      component: CaregiverFormComponent,
+      path: '',
       resolve: { caregiver: CaregiverResolver },
-      canDeactivate: [UnsavedChangesGuard]
-    }, {
-      path: 'caregiver-availability',
-      component: CaregiverAvailabilityFormComponent,
-      canDeactivate: [UnsavedChangesGuard]
+      children: [{
+        path: 'caregiver',
+        component: CaregiverFormComponent,
+        canDeactivate: [UnsavedChangesGuard]
+      }, {
+        path: 'caregiver-availability',
+        component: CaregiverAvailabilityFormComponent,
+        canDeactivate: [UnsavedChangesGuard]
+      }]
     }, {
       path: 'meals-calendar',
       component: MealsCalendarComponent
