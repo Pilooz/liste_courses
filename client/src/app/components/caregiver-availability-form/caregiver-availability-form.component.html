@@ -6,13 +6,9 @@
     <span class="form-title">Proche</span>
   </div>
 
-  <mat-form-field>
-    <textarea placeholder="Vous pouvez ici ajouter des notes ou des éléments à la liste" formControlName="shoppingFrequency"></textarea>
-  </mat-form-field>
+  <textarea placeholder="Quand fais-je les courses ?" formControlName="shoppingFrequency"></textarea>
 
-  <mat-form-field>
-    <textarea placeholder="Vous pouvez ici ajouter des notes ou des éléments à la liste" formControlName="remarks"></textarea>
-  </mat-form-field>
+  <textarea placeholder="Remarques" formControlName="remarks"></textarea>
 
   <button mat-button type="submit" [disabled]="shoppingForm.invalid">Valider</button>
 </form>

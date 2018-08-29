@@ -13,7 +13,6 @@ import { UserService } from './user.service';
 export class AuthenticationService {
 
   public static readonly HOME: string[] = ['/home'];
-  public static readonly ADMIN_HOME: string[] = ['/admin'];
 
   private static readonly ACCESS_TOKEN = 'access_token';
   private static readonly REGISTERED_USER = 'registered_user';
@@ -39,7 +38,7 @@ export class AuthenticationService {
    * Returns user's home that's differ from the authenticated state (logged in or not) and from the role (ie admin or not)
    */
   public get homePage(): string[] {
-    return !this.isConnected ? AuthenticationService.HOME : AuthenticationService.ADMIN_HOME;
+    return AuthenticationService.HOME;
   }
 
   /**

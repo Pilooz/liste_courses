@@ -21,7 +21,7 @@ app-elderly-cooking-implication, app-elderly-cooking-implication>*, app-elderly-
 app-elderly-skills-form>*, app-elderly-skills-form, app-elderly-skills-form>*, app-meals-calendar,
 app-meals-calendar>*, app-meals-calendar-content, app-meals-calendar-content>*, app-recipe, app-recipe>*,
 app-elderly-meal, app-elderly-meal>*, app-shopping-list-edition, app-shopping-list-edition>*,
-app-caregiver-form, app-caregiver-form>* {
+app-caregiver-form, app-caregiver-form>*, app-caregiver-availability-form, app-caregiver-availability-form>* {
     width: 100%;
     display: flex;
 }

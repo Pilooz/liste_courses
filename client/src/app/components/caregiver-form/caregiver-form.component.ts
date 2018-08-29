@@ -31,7 +31,9 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
 
   ngOnInit() {
     this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
-    this.caregiverShareService.caregiver = this.route.snapshot.data['caregiver'] || new CaregiverClass();
+    this.caregiverShareService.caregiver = this.caregiverShareService.caregiver
+      || this.route.snapshot.data['caregiver']
+      || new CaregiverClass();
 
     this.caregiverForm = new FormGroup({
       'firstname': new FormControl(this.caregiverShareService.caregiver.firstname, Validators.required),

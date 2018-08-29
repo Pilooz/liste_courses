@@ -1,0 +1,7 @@
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    resize: none;
+    height: 300px;
+    margin-bottom: 1.25em;
+}
