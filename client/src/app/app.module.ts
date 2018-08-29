@@ -41,7 +41,6 @@ import { UnauthGuard } from './guards/unauth.guard';
 import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Resolver
-import { CaregiverResolver } from './resolver/caregiver.resolver';
 import { DishResolver } from './resolver/dish.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
@@ -201,8 +200,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyMealsResolver,
     ElderlyShoppingListResolver,
     DishResolver,
-    StarterResolver,
-    CaregiverResolver
+    StarterResolver
   ],
   bootstrap: [AppComponent]
 })
