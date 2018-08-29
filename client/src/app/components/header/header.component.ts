@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 // Services
 import { AuthenticationService } from '../../services/authentication.service';
 import { HeaderService } from '../../services/header.services';
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +14,13 @@ import { HeaderService } from '../../services/header.services';
 })
 export class HeaderComponent implements OnInit {
 
+  signoutDialog: MatDialogRef<DialogComponent, any>;
+
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private headerService: HeaderService) { }
+    private headerService: HeaderService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -40,9 +45,29 @@ export class HeaderComponent implements OnInit {
     return this.headerService.elderlyId;
   }
 
-  public signout() {
-    this.authenticationService.signout().subscribe(res => {
-      this.router.navigate(['/home']);
+  /**
+   * Open the signout popup dialog
+   */
+  openSignoutDialog(): void {
+    this.signoutDialog = this.dialog.open(DialogComponent, {
+      width: '300px',
+      panelClass: "dialog",
+      data: {
+        title: 'Déconnexion',
+        body: 'Merci de confirmer la déconnexion.'
+      }
+    })
+
+    this.signoutDialog.afterClosed().subscribe((res) => {
+      if (res) {
+        this.authenticationService.signout().subscribe(
+          res => {
+            this.router.navigate(this.authenticationService.homePage);
+          }, err => {
+            console.error(err);
+          }
+        )
+      }
     });
   }
 }
