@@ -12,7 +12,7 @@
         <span class="color-blue" fxLayoutAlign="center center">Préparez les ingrédients</span>
         <ul fxLayout="column" fxLayoutAlign="start start">
           <li *ngFor="let ingredient of recipe.ingredients">
-            {{ingredient.quantity}} {{ingredient.unit}} {{ingredient.name}}
+              <span>{{ingredient.quantity | fraction: {of: !!ingredient.unit} }} {{ingredient.unit}} {{ingredient.getPronoun()}}{{ingredient.name}}</span>
           </li>
         </ul>
         <button class="background-blue" mat-button type="button" (click)="toggleDisplay()">Suivant</button>

@@ -1,3 +1,5 @@
+import { CustomRegExp } from "../util/CustomRegExp";
+
 export class IngredientClass {
 
     public id: number;
@@ -8,5 +10,9 @@ export class IngredientClass {
 
     constructor(obj?: any) {
         Object.assign(this, obj);
+    }
+
+    getPronoun() {
+        return this.name.match(CustomRegExp.VOWEL) ? 'd\'' : 'de ';
     }
 }

@@ -7,9 +7,9 @@ export class FractionPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     const values = {
-      0.25: 'un quart' + (args.of ? ' de' :  ''),
-      0.5: 'un' + (args.masculine ? '' : 'e') + ' demi',
-      0.75: 'trois quarts' + (args.of ? ' de' :  ''),
+      0.25: '1/4' + (args.of ? ' de' :  ''),
+      0.5: '1/2',
+      0.75: '3/4' + (args.of ? ' de' :  ''),
     }
 
     if (isNaN(value)) {

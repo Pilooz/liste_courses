@@ -29,7 +29,7 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
   }
 
   ngOnInit() {
-    console.log(this.elderly)
+    if (!this.elderly.caregivers) this.elderly.caregivers = new CaregiverClass();
     this.caregiverForm = new FormGroup({
       'firstname': new FormControl(this.elderly.caregivers.firstname, Validators.required),
       'lastname': new FormControl(this.elderly.caregivers.lastname, Validators.required),
