@@ -4,6 +4,7 @@ export class CaregiverClass {
     lastname: string;
     address: string;
     postalCode: string;
+    city: string;
     phone: string;
     email: string;
     shoppingFrequency: string;
