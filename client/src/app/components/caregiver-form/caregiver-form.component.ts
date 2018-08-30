@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaregiverClass } from '../../domain/caregiver.class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -17,15 +16,16 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
 
   public elderly: ElderlyClass;
   public caregiverForm: FormGroup;
+  public standalone: boolean;
 
   constructor(
     private caregiverService: CaregiverService,
     private route: ActivatedRoute,
     private router: Router,
-    private headerService: HeaderService,
-    private location: Location
+    private headerService: HeaderService
   ) {
     this.elderly = this.route.snapshot.data['elderly'] || new ElderlyClass();
+    this.standalone = this.route.snapshot.queryParamMap.get('standalone') === 'true';
   }
 
   ngOnInit() {
@@ -40,7 +40,10 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
     });
 
     this.headerService.doReturn = () => {
-      this.location.back();
+      if (this.standalone) {
+        return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showCaregivers: true } });
+      }
+      return this.router.navigate(['/elderly', this.elderly.id, 'skills']);
     };
     this.headerService.showHome = true;
     this.headerService.showProfile = true;
