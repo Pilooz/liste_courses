@@ -4,21 +4,23 @@
   <span>En cliquant sur un repas pour aurez la possibilité d'en modifier l'entrée ou le plat</span>
 
   <div class="meals-calendar" fxLayout="column">
-    <div class="meals-type">
-      <div class="second-column">Déjeuner</div>
-      <div class="third-column">Dîner</div>
+    <div class="meals-type" fxLayout="row">
+      <div fxFlexOffset="120px" fxFlex="50">Déjeuner</div>
+      <div fxFlex="50">Dîner</div>
     </div>
     <div class="meals-week">
-      <div *ngFor="let date of dates" class="row">
-        <div class="first-column">{{date | date:'EEE dd/LL'}}</div>
+      <div *ngFor="let date of dates" class="row" fxLayout="row">
+        <div fxFlex="120px">{{date | date:'EEE dd/LL'}}</div>
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getLunch(date)}"></ng-container>
         <ng-container [ngTemplateOutlet]="meal" [ngTemplateOutletContext]="{meal: getDinner(date)}"></ng-container>
         <ng-template #meal let-meal="meal">
-          <div [ngClass]="{'second-column': meal?.isLunch(), 'third-column': meal?.isDinner()}" class="meals-cell second-column" (click)="viewMeal(meal)">
+          <div class="meals-cell" (click)="viewMeal(meal)" fxFlex="50">
             <ng-container *ngIf="meal">
-              <span><strong>Entrée :</strong> {{meal.starter.name}}</span>
+              <span>
+                <strong>Entrée :</strong> {{meal.starter.name}}</span>
               <br>
-              <span><strong>Plat:</strong> {{meal.dish.name}}</span>
+              <span>
+                <strong>Plat:</strong> {{meal.dish.name}}</span>
             </ng-container>
           </div>
         </ng-template>

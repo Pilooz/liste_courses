@@ -1,24 +1,11 @@
+.meals-type>div {
+    text-align: center;
+}
+
 .meals-week {
     overflow-y: auto;
 }
 
-.row, .meals-type {
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
-}
-
-.first-column {
-    grid-column: 1;
-}
-
-.second-column {
-    grid-column: 2;
-}
-
-.third-column {
-    grid-column: 3;
-}
-
-.meals-type .second-column, .meals-type .third-column {
+.meals-week>.row>div:not(:first-child) {
     text-align: center;
 }
