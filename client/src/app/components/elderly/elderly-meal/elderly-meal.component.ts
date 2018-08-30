@@ -65,4 +65,8 @@ export class ElderlyMealComponent implements OnInit {
   goToDetails(mealType, id) {
     this.router.navigate(['elderly', this.meal.elderlyId, 'meal', this.meal.id, mealType, id]);
   }
+
+  goToCalendar() {
+    this.headerService.doReturn();
+  }
 }

@@ -10,15 +10,16 @@
         <span class="background-blue recipe-type">Entrée</span>
         <span class="recipe-name">{{meal.starter.name}}</span>
       </div>
-      <button *ngIf="edit" mat-button type="button" (click)="replaceStarter()">Chercher une autre entrée</button>
-      <button *ngIf="!edit" mat-button type="button" (click)="goToDetails('starter', meal.starter.id)">Voir la recette</button>
+      <button *ngIf="edit" mat-button type="button" class="background-blue" (click)="replaceStarter()">Chercher une autre entrée</button>
+      <button *ngIf="!edit" mat-button type="button" class="background-blue" (click)="goToDetails('starter', meal.starter.id)">Voir la recette</button>
 
       <div class="recipe-header" fxLayout="row" fxLayoutAlign="center center">
         <span class="background-blue recipe-type">Plat</span>
         <span class="recipe-name">{{meal.dish.name}}</span>
       </div>
-      <button *ngIf="edit" mat-button type="button" (click)="replaceDish()">Chercher un autre plat</button>
-      <button *ngIf="!edit" mat-button type="button" (click)="goToDetails('dish', meal.dish.id)">Voir la recette</button>
+      <button *ngIf="edit" mat-button type="button" class="background-blue" (click)="replaceDish()">Chercher un autre plat</button>
+      <button *ngIf="!edit" mat-button type="button" class="background-blue" (click)="goToDetails('dish', meal.dish.id)">Voir la recette</button>
     </div>
   </div>
+  <button *ngIf="edit" mat-button type="button" (click)="goToCalendar()">Revenir au calendrier</button>
 </div>
