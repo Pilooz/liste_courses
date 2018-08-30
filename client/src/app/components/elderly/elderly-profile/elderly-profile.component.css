@@ -75,9 +75,17 @@
     padding: 15px 15px 0px 15px;
 }
 
+.menu-button.button-meal {
+    width: 150px;
+}
+
 .menu-button img, .list-button img {
     color: white;
     width: 70px;
+}
+
+.show-button {
+    width: 200px;
 }
 
 app-elderly-meal {
