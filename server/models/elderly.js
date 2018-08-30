@@ -467,11 +467,9 @@ module.exports = function(Elderly) {
         }],
       };
 
-      let info = await transporter.sendMail(mailOptions);
-
-      console.log(info);
+      await transporter.sendMail(mailOptions);
     } catch (e) {
-      console.error(e);
+      throw e;
     }
   };
 
