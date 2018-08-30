@@ -82,7 +82,7 @@
   },
   "meal": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "dish": {
     "dataSource": "db",

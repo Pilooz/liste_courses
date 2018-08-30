@@ -43,11 +43,12 @@
           Vous avez {{todaysMeals.length}} repas planifié(s) aujourd'hui
         </span>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
-          <div *ngFor="let meal of todaysMeals" class="menu-button background-blue clickable" fxLayout="column" fxLayoutAlign="center center"
-            (click)="displayMeal(meal)">
-            <img class="form-img" src="/assets/img/cutlery_white.svg">
-            <span>Voir le {{meal.getTypeName()}}</span>
-          </div>
+          <a *ngFor="let meal of todaysMeals" [routerLink]="['/elderly', elderly.id, 'meal', meal.id]">
+            <div class="menu-button background-blue clickable" fxLayout="column" fxLayoutAlign="center center">
+              <img class="form-img" src="/assets/img/cutlery_white.svg">
+              <span>Voir le {{meal.getTypeName()}}</span>
+            </div>
+          </a>
           <ng-template #noMeal>
             <span>Vous n'avez pas de repas planifié aujourd'hui</span>
           </ng-template>
@@ -124,15 +125,13 @@
 <!-- Care giver identity template, to be injected in panel  -->
 <ng-template #caregivers let-elderly="elderly">
   <ng-container *ngIf="elderly?.caregivers">
-      <span>
-        <strong>{{elderly.caregivers.firstname}} {{elderly.caregivers.lastname | uppercase}}</strong>
-      </span>
-      <span>{{elderly.caregivers.address}}</span>
-      <span>{{elderly.caregivers.postalCode}} {{elderly.caregivers.city}}</span>
-      <span>{{elderly.caregivers.phone}}</span>
-      <span>{{elderly.caregivers.email}}</span>
+    <span>
+      <strong>{{elderly.caregivers.firstname}} {{elderly.caregivers.lastname | uppercase}}</strong>
+    </span>
+    <span>{{elderly.caregivers.address}}</span>
+    <span>{{elderly.caregivers.postalCode}} {{elderly.caregivers.city}}</span>
+    <span>{{elderly.caregivers.phone}}</span>
+    <span>{{elderly.caregivers.email}}</span>
   </ng-container>
   <ng-container *ngIf="!elderly?.caregivers">Vous n'avez pas encore déclaré de proche aidant</ng-container>
 </ng-template>
-
-<app-elderly-meal *ngIf="meal || showMeal" [viewOnly]="true" [meal]="meal" (closeMeal)="closeMeal($event)"></app-elderly-meal>

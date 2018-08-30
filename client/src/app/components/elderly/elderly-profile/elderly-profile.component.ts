@@ -76,14 +76,4 @@ export class ElderlyProfileComponent implements OnInit {
   initDoReturn() {
     this.headerService.doReturn = () => this.router.navigate(['/home']);
   }
-
-  closeMeal() {
-    this.showMeal = undefined;
-    this.meal = undefined;
-    this.initDoReturn();
-  }
-
-  displayMeal(meal: MealClass) {
-    this.meal = meal;
-  }
 }

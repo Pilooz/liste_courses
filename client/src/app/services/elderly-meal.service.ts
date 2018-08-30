@@ -50,7 +50,7 @@ export class ElderlyMealService {
   }
 
   /**
-   * Get elderly meals
+   * Get elderly meal
    * @param elderlyId 
    * @param date 
    */

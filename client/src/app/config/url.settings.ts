@@ -33,6 +33,9 @@ export class UrlSettings {
   public static readonly elderlyReplaceDish = 'replaceDish';
   public static readonly elderlyCaregivers = 'caregivers';
   
+  // Meal
+  public static readonly mealModel = 'meals';
+
   // Starter
   public static readonly starterModel = 'starters';
   public static readonly starterIngredients = 'ingredients';
