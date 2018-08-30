@@ -4,7 +4,7 @@
 </div>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput type="number" [(ngModel)]="data.ingredient.quantity" placeholder="{{'Quantité (' + data.ingredient.unit + ')'}}">
+    <input matInput type="number" [(ngModel)]="data.ingredient.quantity" placeholder="Quantité {{data.ingredient.unit ? '(' + data.ingredient.unit + ')' : ''}}">
   </mat-form-field>
 </div>
 <div mat-dialog-actions fxLayoutAlign="space-around center">
