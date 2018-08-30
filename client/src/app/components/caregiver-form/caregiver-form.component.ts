@@ -36,6 +36,7 @@ export class CaregiverFormComponent implements OnInit, Deactivable {
       'address': new FormControl(this.elderly.caregivers.address),
       'postalCode': new FormControl(this.elderly.caregivers.postalCode, Validators.pattern(CustomRegExp.ZIPCODE)),
       'email': new FormControl(this.elderly.caregivers.email),
+      'city': new FormControl(this.elderly.caregivers.city),
       'phone': new FormControl(this.elderly.caregivers.phone)
     });
 

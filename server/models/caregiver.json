@@ -39,6 +39,13 @@
           "dataType": "character varying"
         }
       },
+      "city": {
+        "type": "string",
+        "length": 50,
+        "postgresql": {
+          "dataType": "character varying"
+        }
+      },
       "phone": {
         "type": "string",
         "length": 20,
