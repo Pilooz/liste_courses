@@ -4,6 +4,7 @@ const _ = require('lodash');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 const jsonUtils = require('../util/JsonUtils');
+const moment = require('moment');
 
 module.exports = function(Elderly) {
   /**
@@ -443,7 +444,7 @@ module.exports = function(Elderly) {
     let elderly = await Elderly.findById(id, {include: 'caregivers'});
     let data = await Elderly.getShoppinglistWithIngredients(id, date);
     try {
-      let body = await ejs.renderFile('./server/views/mail.ejs', data);
+      let body = await ejs.renderFile('./server/views/mail.ejs', {elderly: elderly, shoppingList: data, moment: moment});
       let transporter = nodemailer.createTransport({
         host: 'smtp.erasme.org',
         port: 465,
@@ -459,19 +460,11 @@ module.exports = function(Elderly) {
         to: elderly.caregivers().email,
         subject: 'Votre liste de courses',
         html: body,
-        attachments: [{
-          filename: 'notepad.jpg',
-          path: './server/views/notepad.jpg',
-          cid: 'notepad_image',
-          contentType: 'image/jpg',
-        }],
       };
 
-      let info = await transporter.sendMail(mailOptions);
-
-      console.log(info);
+      await transporter.sendMail(mailOptions);
     } catch (e) {
-      console.error(e);
+      throw e;
     }
   };
 

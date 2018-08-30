@@ -64,7 +64,6 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
       order: 'date, type'
     }).subscribe(meals => {
       this.meals = meals;
-      console.log(meals);
       document.getElementById('header').style.display = 'none';
       this.printingMenu = true;
       setTimeout(function () {
