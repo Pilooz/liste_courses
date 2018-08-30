@@ -32,7 +32,7 @@ export class RecipeComponent implements OnInit {
 
   ngOnInit() {
     this.headerService.doReturn = () => {
-      return this.router.navigate(['/elderly', this.elderly.id], { queryParams: { showMeal: this.mealId } });
+      return this.router.navigate(['/elderly', this.elderly.id, 'meal', this.mealId]);
     };
     this.headerService.showHome = true;
     this.headerService.showProfile = true;

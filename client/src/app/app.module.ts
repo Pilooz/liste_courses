@@ -45,6 +45,7 @@ import { DishResolver } from './resolver/dish.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
+import { MealResolver } from './resolver/meal.resolver';
 import { StarterResolver } from './resolver/starter.resolver';
 
 // Services
@@ -55,6 +56,7 @@ import { ElderlyMealService } from './services/elderly-meal.service';
 import { ElderlyShoppingListService } from './services/elderly-shoppingList.service';
 import { ElderlySkillService } from './services/elderly-skill.service';
 import { HeaderService } from './services/header.services';
+import { MealService } from './services/meal.service';
 import { SkillService } from './services/skill.service';
 import { StarterService } from './services/starter.service';
 import { UserService } from './services/user.service';
@@ -190,6 +192,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyShoppingListService,
     ElderlySkillService,
     HeaderService,
+    MealService,
     StarterService,
     SkillService,
     UserService,
@@ -200,6 +203,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ElderlyMealsResolver,
     ElderlyShoppingListResolver,
     DishResolver,
+    MealResolver,
     StarterResolver
   ],
   bootstrap: [AppComponent]

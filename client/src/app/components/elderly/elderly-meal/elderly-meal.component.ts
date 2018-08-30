@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Classes
 import { MealClass } from '../../../domain/meal.class';
@@ -15,24 +15,37 @@ import { HeaderService } from '../../../services/header.services';
 })
 export class ElderlyMealComponent implements OnInit {
 
-  @Input() public meal: MealClass;
-  @Input() public startDate: Date;
-  @Input() public endDate: Date;
-  @Input() public viewOnly: boolean = false;
+  public meal: MealClass;
+  public startDate: Date;
+  public endDate: Date;
+  public edit: boolean = false;
+  public standalone: boolean = false;
   @Output() public closeMeal: EventEmitter<MealClass> = new EventEmitter<MealClass>();
 
   constructor(
     private headerService: HeaderService,
     private elderlyMealService: ElderlyMealService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) {
+    this.meal = this.route.snapshot.data['meal'];
+    this.startDate = new Date(+this.route.snapshot.queryParamMap.get('startDate'));
+    this.endDate = new Date(+this.route.snapshot.queryParamMap.get('endDate'));
+    this.edit = this.route.snapshot.queryParamMap.get('edit') === 'true';
+    this.standalone = this.route.snapshot.queryParamMap.get('standalone') === 'true';
+  }
 
   ngOnInit() {
     this.headerService.doReturn = () => {
-      this.closeMeal.emit(this.meal);
+      if (this.edit) {
+        this.router.navigate(['/elderly', this.meal.elderlyId, 'mealsCalendarContent'], { queryParams: { standalone: this.standalone, startDate: this.startDate.getTime(), endDate: this.endDate.getTime() } });
+      } else {
+        this.router.navigate(['/elderly', this.meal.elderlyId]);
+      }
     };
+
     this.headerService.showHome = true;
-    /* this.headerService.showProfile = true;
-    this.headerService.elderlyId = this.meal.elderlyId; */
+    this.headerService.showProfile = true;
+    this.headerService.elderlyId = this.meal.elderlyId;
   }
 
   replaceStarter() {

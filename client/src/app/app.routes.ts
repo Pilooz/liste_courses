@@ -6,12 +6,15 @@ import { AuthGuard } from './guards/auth.guard';
 import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 // Components
+import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
+import { CaregiverAvailabilityFormComponent } from './components/caregiver-availability-form/caregiver-availability-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { ElderlyProfileFormComponent } from './components/elderly/elderly-profile-form/elderly-profile-form.component';
 import { ElderlySkillsFormComponent } from './components/elderly/elderly-skills-form/elderly-skills-form.component';
 import { ElderlyFoodFormComponent } from './components/elderly/elderly-food-form/elderly-food-form.component';
 import { ElderlyCookingImplicationComponent } from './components/elderly/elderly-cooking-implication/elderly-cooking-implication.component';
 import { ElderlyProfileComponent } from './components/elderly/elderly-profile/elderly-profile.component';
+import { ElderlyMealComponent } from './components/elderly/elderly-meal/elderly-meal.component';
 import { MealsCalendarComponent } from './components/elderly/meals-calendar/meals-calendar.component';
 import { MealsCalendarContentComponent } from './components/elderly/meals-calendar-content/meals-calendar-content.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
@@ -24,8 +27,7 @@ import { ElderlyMealsResolver } from './resolver/elderly-meals.resolver';
 import { ElderlyResolver } from './resolver/elderly.resolver';
 import { ElderlyShoppingListResolver } from './resolver/elderly-shoppingList.resolver';
 import { StarterResolver } from './resolver/starter.resolver';
-import { CaregiverFormComponent } from './components/caregiver-form/caregiver-form.component';
-import { CaregiverAvailabilityFormComponent } from './components/caregiver-availability-form/caregiver-availability-form.component';
+import { MealResolver } from './resolver/meal.resolver';
 
 const ROUTES: Routes = [{
   path: 'home',
@@ -82,6 +84,11 @@ const ROUTES: Routes = [{
       path: 'shopping-list',
       component: ShoppingListComponent,
       resolve: { shoppingList: ElderlyShoppingListResolver }
+    }, {
+      path: 'meal/:mealId',
+      component: ElderlyMealComponent,
+      canActivate: [AuthGuard],
+      resolve: { meal: MealResolver }
     }, {
       path: 'meal/:mealId/dish/:dishId',
       component: RecipeComponent,

@@ -16,11 +16,15 @@
         <ng-template #meal let-meal="meal">
           <div class="meals-cell" (click)="viewMeal(meal)" fxFlex="50">
             <ng-container *ngIf="meal">
-              <span>
-                <strong>Entrée :</strong> {{meal.starter.name}}</span>
-              <br>
-              <span>
-                <strong>Plat:</strong> {{meal.dish.name}}</span>
+              <a [routerLink]="['/elderly', meal.elderlyId, 'meal', meal.id]" [queryParams]="{standalone: standalone, startDate: startDate.getTime(), endDate : endDate.getTime(), edit: true}">
+                <span>
+                  <strong>Entrée :</strong> {{meal.starter.name}}
+                </span>
+                <br>
+                <span>
+                  <strong>Plat:</strong> {{meal.dish.name}}
+                </span>
+              </a>
             </ng-container>
           </div>
         </ng-template>
@@ -31,4 +35,4 @@
   <button mat-button type="button" (click)="goToShoppingList()">Accéder à la liste de courses</button>
 </div>
 
-<app-elderly-meal *ngIf="meal" [meal]="meal" [startDate]="startDate" [endDate]="endDate" (closeMeal)="closeMeal($event)"></app-elderly-meal>
+<!-- <app-elderly-meal *ngIf="meal" [meal]="meal" [startDate]="startDate" [endDate]="endDate" (closeMeal)="closeMeal($event)"></app-elderly-meal> -->
