@@ -1,7 +1,7 @@
 {
   "email": {
     "shoppingList": {
-      "template": "applis/liste_courses/server/views/verify.ejs"
+      "template": "applis/liste_courses/server/views/mail.ejs"
     }
   }
 }
