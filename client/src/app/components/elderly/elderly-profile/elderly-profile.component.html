@@ -96,30 +96,43 @@
 <!-- Food template, to be injected in panel -->
 <ng-template #food let-elderly="elderly">
   <span>
-    <strong>Allergies :</strong> {{elderly.allergies}}
+    <strong>Allergies :</strong>
+    <ng-container *ngIf="elderly?.allergies"> {{elderly.allergies}}</ng-container>
+    <ng-container *ngIf="!elderly?.allergies"> -</ng-container>
   </span>
   <span>
-    <strong>Restrictions alimentaires :</strong> {{elderly.restrictions}}
+    <strong>Restrictions alimentaires :</strong>
+    <ng-container *ngIf="elderly?.restrictions"> {{elderly.restrictions}}</ng-container>
+    <ng-container *ngIf="!elderly?.restrictions"> -</ng-container>
   </span>
   <span>
-    <strong>Adore :</strong> {{elderly.likes}}
+    <strong>Adore :</strong>
+    <ng-container *ngIf="elderly?.likes"> {{elderly.likes}}</ng-container>
+    <ng-container *ngIf="!elderly?.likes"> -</ng-container>
   </span>
   <span>
-    <strong>Déteste :</strong> {{elderly.dislikes}}
+    <strong>Déteste :</strong>
+    <ng-container *ngIf="elderly?.dislikes"> {{elderly.dislikes}}</ng-container>
+    <ng-container *ngIf="!elderly?.dislikes"> -</ng-container>
   </span>
   <span>
-    <strong>Habitudes de repas :</strong> {{elderly.habits}}
+    <strong>Habitudes de repas :</strong>
+    <ng-container *ngIf="elderly?.habits"> {{elderly.habits}}</ng-container>
+    <ng-container *ngIf="!elderly?.habits"> -</ng-container>
   </span>
 </ng-template>
 
 <!-- Food template, to be injected in panel -->
 <ng-template #skills let-elderly="elderly">
-  <span>
-    <strong>{{elderly.firstname}} peut :</strong>
-  </span>
-  <div fxLayout="row wrap" fxLayoutGap="10px">
-    <span *ngFor="let skill of elderly.skills" class="elderly-skill">{{skill.label}}</span>
-  </div>
+  <ng-container *ngIf="elderly.skills.length > 0">
+    <span>
+      <strong>{{elderly.firstname}} peut :</strong>
+    </span>
+    <div fxLayout="row wrap" fxLayoutGap="10px">
+      <span *ngFor="let skill of elderly.skills" class="elderly-skill">{{skill.label}}</span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="elderly.skills.length === 0">Vous n'avez pas encore déclaré de compétences culinaires</ng-container>
 </ng-template>
 
 <!-- Care giver identity template, to be injected in panel  -->
