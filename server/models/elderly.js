@@ -453,7 +453,7 @@ module.exports = function(Elderly) {
     let elderly = await Elderly.findById(id, {include: 'caregivers'});
     let data = await Elderly.getShoppinglistWithIngredients(id, date);
     try {
-      let body = await ejs.renderFile('./server/views/mail.ejs', {elderly: elderly, shoppingList: data, moment: moment});
+      let body = await ejs.renderFile(Elderly.app.get('email').shoppingList.template, {elderly: elderly, shoppingList: data, moment: moment});
       let transporter = nodemailer.createTransport({
         host: 'smtp.erasme.org',
         port: 465,
