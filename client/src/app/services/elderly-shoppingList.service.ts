@@ -67,4 +67,15 @@ export class ElderlyShoppingListService {
     return this.restangular.one(UrlSettings.elderlyModel, shoppingList.elderlyId).one(UrlSettings.elderlyShoppingLists, shoppingList.id)
     .customPUT(shoppingList).pipe(map(res => new IngredientClass(res)));
   }
+
+  /**
+   * Print shopping list
+   * 
+   * @param elderlyId 
+   * @param shoppingListId 
+   */
+  printShoppingList(elderlyId: number, shoppingListId: number): Observable<any> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).one(UrlSettings.elderlyShoppingLists, shoppingListId).all(UrlSettings.print)
+      .customPOST();
+  }
 }

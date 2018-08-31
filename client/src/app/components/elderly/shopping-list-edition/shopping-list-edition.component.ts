@@ -70,6 +70,11 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
         window.print();
       }, 500);
     });
+
+    /* TODO: get raspberry endpoint url
+    this.elderlyMealService.printMeals(this.elderly.id, this.today).subscribe(res => {
+      console.log(res);
+    }); */
   }
 
   printShoppingList() {
@@ -80,6 +85,11 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
       setTimeout(function () {
         window.print();
       }, 500);
+
+      /* TODO: get raspberry endpoint url
+      this.elderlyShoppingListService.printShoppingList(this.elderly.id, this.shoppingList.id).subscribe(res => {
+        console.log(res);
+      }); */
     });
   }
 

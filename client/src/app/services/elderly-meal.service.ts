@@ -134,4 +134,15 @@ export class ElderlyMealService {
       .customPOST({ startDate: startDate, endDate: endDate }, UrlSettings.elderlyReplaceDish)
       .pipe(map(res => new DishClass(res)));
   }
+
+  /**
+   * Print incoming meals
+   * 
+   * @param elderlyId 
+   * @param date 
+   */
+  printMeals(elderlyId: number, date: Date): Observable<any> {
+    return this.restangular.one(UrlSettings.elderlyModel, elderlyId).all(UrlSettings.elderlyMeals).all(UrlSettings.print)
+      .customPOST({ date: date });
+  }
 }
