@@ -12,6 +12,7 @@ import { ElderlyService } from '../../../services/elderly.service';
 import { ElderlyShoppingListService } from '../../../services/elderly-shoppingList.service';
 import { ElderlyMealService } from '../../../services/elderly-meal.service';
 import { MealClass } from '../../../domain/meal.class';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-shopping-list-edition',
@@ -33,7 +34,8 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
     private router: Router,
     private headerService: HeaderService,
     private elderlyShoppingListService: ElderlyShoppingListService,
-    private elderlyMealService: ElderlyMealService) {
+    private elderlyMealService: ElderlyMealService,
+    private notificationsService: NotificationsService) {
     super(elderlyService, route);
   }
 
@@ -52,7 +54,10 @@ export class ShoppingListEditionComponent extends AbstractElderlyModifier implem
 
   sendMail() {
     const today: Date = new Date(moment().format("MM/DD/YYYY"));
-    return this.elderlyService.sendShoppingListMail(this.elderly.id, today);
+    this.elderlyService.sendShoppingListMail(this.elderly.id, today).subscribe(
+      () => this.notificationsService.success('Email', 'L\'email a bien été envoyé'),
+      () => this.notificationsService.success('Email', 'Erreur lors de l\'envoi de l\'email')
+    );
   }
 
   printMenu() {
