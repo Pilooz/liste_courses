@@ -110,7 +110,7 @@
   },
   "shoppingList": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "shoppingListIngredients": {
     "dataSource": "db",
