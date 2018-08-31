@@ -10,6 +10,7 @@ export class UrlSettings {
   public static readonly suffixRelation = 'rel';
   public static readonly count = 'count';
   public static readonly latest = 'latest';
+  public static readonly print = 'print';
 
   /* Models endpoint */
 

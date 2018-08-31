@@ -5,6 +5,15 @@ const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 const jsonUtils = require('../util/JsonUtils');
 const moment = require('moment');
+const httpUtils = require('../util/HttpUtils');
+
+async function sendMeals(meals) {
+  // TODO : Set raspberrypi api rest URL
+  const HOST = 'localhost';
+  const PORT = '3000';
+  const PATH = '/api/elderlies';
+  return JSON.parse(await httpUtils.sendRequest(HOST, PORT, PATH, 'POST', null, JSON.stringify(meals), false));
+}
 
 module.exports = function(Elderly) {
   /**
@@ -475,5 +484,56 @@ module.exports = function(Elderly) {
       {arg: 'date', type: 'date', required: true},
     ],
     http: {path: '/:id/shoppingLists/sendMail', verb: 'post'},
+  });
+
+  /**
+    * Print meals
+    *
+    * @param {number} shoppingListId
+    */
+  Elderly.print = async function(elderlyId, date, res) {
+    var meals = await Elderly.app.models.meal.find({
+      where: {
+        and: [{
+          elderlyId: elderlyId,
+        }, {
+          date: {gte: date},
+        }, {
+          starterId: {neq: null},
+        }, {
+          dishId: {neq: null},
+        }],
+      },
+      include: [{
+        relation: 'starter',
+        scope: {
+          fields: ['name'],
+        },
+      }, {
+        relation: 'dish',
+        scope: {
+          fields: ['name'],
+        },
+      }],
+    });
+
+    if (!meals || !meals.length) {
+      res.status(404).send('No meals found');
+      return null;
+    }
+
+    meals = jsonUtils.toJsonIfExists(meals);
+    return await sendMeals(meals);
+  };
+
+  Elderly.remoteMethod('print', {
+    description: '[Custom] Print meals',
+    accepts: [
+      {arg: 'id', type: 'number'},
+      {arg: 'date', type: 'date'},
+      {arg: 'res', type: 'object', http: {source: 'res'}},
+    ],
+    returns: {arg: 'result', type: 'object', root: true},
+    http: {path: '/:id/meals/print', verb: 'post'},
   });
 };
