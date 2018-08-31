@@ -16,7 +16,7 @@
 
   <mat-form-field>
     <input matInput autocomplete="new-password" [matDatepicker]="birthPicker" [max]="today" formControlName="birthdate" placeholder="Date de naissance">
-    <mat-datepicker-toggle matSuffix [for]="birthPicker"></mat-datepicker-toggle>
+    <mat-datepicker-toggle class="datepicker" matSuffix [for]="birthPicker"></mat-datepicker-toggle>
     <mat-datepicker #birthPicker></mat-datepicker>
   </mat-form-field>
 

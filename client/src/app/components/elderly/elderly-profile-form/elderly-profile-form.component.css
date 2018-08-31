@@ -1,0 +1,4 @@
+::ng-deep .datepicker .mat-icon-button {
+    width: 2.3em ! important;
+    height: 2.3em ! important;
+}
