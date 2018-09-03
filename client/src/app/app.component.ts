@@ -7,6 +7,12 @@ import * as moment from 'moment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  public readonly notificationOptions: { showProgressBar: boolean, timeOut: number } = {
+    showProgressBar: true,
+    timeOut: 3000
+  }
+
   constructor() {
     moment.locale('fr');
   }

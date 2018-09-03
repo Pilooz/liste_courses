@@ -3,6 +3,7 @@ textarea {
     resize: none;
     height: 75px;
     margin-bottom: 1.25em;
+    padding: 0.5em;
 }
 
 form.profile-form>*:not(button) {

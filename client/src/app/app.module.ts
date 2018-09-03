@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 // Locale
 import { LOCALE_ID } from '@angular/core';
@@ -159,6 +160,7 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     ReactiveFormsModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot(),
     // Material
     MatButtonModule,
     MatDatepickerModule,

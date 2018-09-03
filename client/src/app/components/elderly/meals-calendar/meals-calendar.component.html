@@ -23,7 +23,7 @@
     <span>Jusqu'à quelle date souhaitez-vous préparer vos repas ?</span>
     <mat-form-field>
       <input matInput [matDatepicker]="endDate" [min]="minDate" [value]="endDate" (dateChange)="setEndDate($event)" disabled>
-      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker-toggle class="datepicker" matSuffix [for]="endDate"></mat-datepicker-toggle>
       <mat-datepicker #endDate disabled="false"></mat-datepicker>
     </mat-form-field>
   </div>
