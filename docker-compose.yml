@@ -1,0 +1,56 @@
+version: "3"
+services:
+  lc-client:
+    image: makeitici/liste_courses:client_latest
+    hostname: lc-client
+    ports:
+      - 8080:8080
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - lc-server
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  lc-server:
+    image: makeitici/liste_courses:server_latest
+    hostname: lc-server
+    volumes:
+      - /data/nodejs:/applis/liste_courses/data/storage
+    networks:
+      - backend
+    depends_on:
+      - lc-db
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  lc-db:
+    image: makeitici/liste_courses:base_latest
+    hostname: lc-db
+    environment: 
+     PGUSER: postgres
+     PGPORT: 5432
+     PGPASSWORD: postgrespassord
+     PGDATA: /var/lib/postgresql/data
+    volumes:
+      - /data/postgresql:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+    frontend:
+    backend:
