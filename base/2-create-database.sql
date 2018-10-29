@@ -1,5 +1,5 @@
-CREATE DATABASE liste_courses_dev
+CREATE DATABASE db_name
     WITH 
-    OWNER = liste_courses_dev
+    OWNER = username
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;

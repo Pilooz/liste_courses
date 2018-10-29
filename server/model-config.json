@@ -17,16 +17,25 @@
     "dataSource": "db",
     "options": {
       "postgresql": {
-        "schema": "liste_courses_dev"
+        "schema": "schema_name"
       }
-    }
+    },
+    "acls": [
+      {
+        "accessType": "READ",
+        "principalType": "ROLE",
+        "principalId": "$owner",
+        "permission": "ALLOW",
+        "property": "*"
+      }
+    ]
   },
   "AccessToken": {
     "dataSource": "db",
     "public": false,
     "options": {
       "postgresql": {
-        "schema": "liste_courses_dev"
+        "schema": "schema_name"
       }
     }
   },
@@ -35,7 +44,7 @@
     "public": false,
     "options": {
       "postgresql": {
-        "schema": "liste_courses_dev"
+        "schema": "schema_name"
       }
     }
   },
@@ -45,7 +54,7 @@
     "options": {
       "strictObjectIDCoercion": true,
       "postgresql": {
-        "schema": "liste_courses_dev"
+        "schema": "schema_name"
       }
     }
   },
@@ -54,7 +63,7 @@
     "public": false,
     "options": {
       "postgresql": {
-        "schema": "liste_courses_dev"
+        "schema": "schema_name"
       }
     }
   }

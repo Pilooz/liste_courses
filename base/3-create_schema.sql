@@ -1,3 +1,3 @@
-DROP SCHEMA IF EXISTS liste_courses_dev CASCADE;
-CREATE SCHEMA liste_courses_dev
-    AUTHORIZATION liste_courses_dev;
+DROP SCHEMA IF EXISTS schema_name CASCADE;
+CREATE SCHEMA schema_name
+    AUTHORIZATION username;

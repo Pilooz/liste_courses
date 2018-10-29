@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Restangular
 import { UrlSettings } from './config/url.settings';
-import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularModule } from 'ngx-restangular';
 
 // Routing
 import { appRoutingProviders, routing } from './app.routes';
@@ -18,8 +18,13 @@ import { appRoutingProviders, routing } from './app.routes';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 
+// Guards
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthGuard } from './guards/unauth.guard';
+
 // Components
 import { HomeComponent } from './components/home/home.component';
+import { IndexComponent } from './components/index/index.component';
 
 /**
  * Function for settting the default restangular configuration
@@ -67,7 +72,8 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +92,9 @@ export function startupServiceFactory(authenticationService: AuthenticationServi
     },
     appRoutingProviders,
     AuthenticationService,
-    UserService
+    UserService,
+    AuthGuard,
+    UnauthGuard
   ],
   bootstrap: [AppComponent]
 })

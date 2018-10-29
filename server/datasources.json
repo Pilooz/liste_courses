@@ -2,11 +2,11 @@
   "db": {
     "host": "127.0.0.1",
     "port": 5432,
-    "database": "liste_courses_dev",
-    "password": "liste_courses_dev",
+    "database": "db_name",
+    "password": "password",
     "name": "db",
-    "user": "liste_courses_dev",
+    "user": "username",
     "connector": "postgresql",
-    "schema": "liste_courses_dev"
+    "schema": "schema_name"
   }
 }

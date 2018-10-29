@@ -1,3 +1,5 @@
 <p>
   header works!
 </p>
+<button *ngIf="!isConnected()" (click)="authenticate()">connexion</button>
+<button *ngIf="isConnected()" (click)="logoff()">déconnexion</button>

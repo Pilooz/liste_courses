@@ -1,5 +1,5 @@
 {
-  "name": "cuisine_collective",
+  "name": "project_name",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {

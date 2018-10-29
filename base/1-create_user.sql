@@ -1,4 +1,4 @@
-CREATE USER liste_courses_dev WITH
+CREATE USER username WITH
                 LOGIN
                 NOSUPERUSER
                 NOCREATEDB
@@ -6,4 +6,4 @@ CREATE USER liste_courses_dev WITH
                 INHERIT
                 NOREPLICATION
                 CONNECTION LIMIT -1
-                PASSWORD 'liste_courses_dev';
+                PASSWORD 'password';
