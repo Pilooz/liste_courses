@@ -19,7 +19,6 @@ export class UserService {
    * @param userId
    */
   getById(userId: number): Observable<UserClass> {
-    return this.restangular.one(UrlSettings.userModel, userId).get().pipe(
-      map(res => new UserClass(res)));
+    return this.restangular.one(UrlSettings.userModel, userId).get().pipe(map(res => new UserClass(res)));
   }
 }

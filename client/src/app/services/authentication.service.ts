@@ -17,6 +17,7 @@ export class AuthenticationService {
 
   private static readonly ACCESS_TOKEN = 'access_token';
   private static readonly REGISTERED_USER = 'registered_user';
+  private static readonly AUTHORIZATION_HEADER = 'Authorization';
 
   constructor(private restangular: Restangular,
     private userService: UserService) { }
@@ -78,7 +79,7 @@ export class AuthenticationService {
         // Store token in local storage
         localStorage.setItem(AuthenticationService.ACCESS_TOKEN, JSON.stringify(token));
         // Set Restangular header's configuration with new autorization key
-        this.restangular.configuration.defaultHeaders = { 'Authorization': token['id'] };
+        this.restangular.configuration.defaultHeaders = { [AuthenticationService.AUTHORIZATION_HEADER]: token.id };
       }),
       mergeMap((token: LoopbackToken) => this.userService.getById(token.userId).pipe(
         tap((user) => localStorage.setItem(AuthenticationService.REGISTERED_USER, JSON.stringify(user)))
@@ -103,8 +104,8 @@ export class AuthenticationService {
    */
   private resetSession() {
     // Clear local storage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('registered_user');
+    localStorage.removeItem(AuthenticationService.ACCESS_TOKEN);
+    localStorage.removeItem(AuthenticationService.REGISTERED_USER);
     // Clear Restangular header's configuration
     this.restangular.configuration.defaultHeaders = {};
   }
