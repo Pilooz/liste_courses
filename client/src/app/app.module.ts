@@ -51,13 +51,13 @@ export function RestangularConfigFactory(RestangularProvider) {
   }
 
   // Authentication token if exists
-  const accessToken = localStorage.getItem('access_token');
+  const accessToken = localStorage.getItem(AuthenticationService.ACCESS_TOKEN);
   if (accessToken) {
     const accessTokenId = JSON.parse(accessToken).id;
     if (!accessTokenId) {
       throw new Error('Error with access token ID');
     }
-    RestangularProvider.setDefaultHeaders({ 'Authorization': accessTokenId });
+    RestangularProvider.setDefaultHeaders({ [AuthenticationService.AUTHORIZATION_HEADER]: accessTokenId });
   }
 }
 

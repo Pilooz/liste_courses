@@ -15,9 +15,9 @@ export class AuthenticationService {
   public static readonly INDEX: string[] = ['/index'];
   public static readonly HOME: string[] = ['/home'];
 
-  private static readonly ACCESS_TOKEN = 'access_token';
-  private static readonly REGISTERED_USER = 'registered_user';
-  private static readonly AUTHORIZATION_HEADER = 'Authorization';
+  public static readonly ACCESS_TOKEN = 'access_token';
+  public static readonly REGISTERED_USER = 'registered_user';
+  public static readonly AUTHORIZATION_HEADER = 'Authorization';
 
   constructor(private restangular: Restangular,
     private userService: UserService) { }
@@ -30,14 +30,14 @@ export class AuthenticationService {
   }
 
   /**
-   * Authenticated user's ID
+   * Authenticated user
    */
   public get user(): UserClass {
     return localStorage[AuthenticationService.REGISTERED_USER] ? JSON.parse(localStorage[AuthenticationService.REGISTERED_USER]) : null;
   }
 
   /**
-   * Returns user's home that's differ from the authenticated state (logged in or not) and from the role (ie admin or not)
+   * Returns user's home that's differ from the authenticated state (logged-in or not) and from the role (ie admin or not)
    */
   public get homePage(): string[] {
     return !this.isConnected ? AuthenticationService.INDEX : AuthenticationService.HOME;
@@ -47,23 +47,20 @@ export class AuthenticationService {
    * To know if there's a connected user or not
    */
   public computeIsLoggedIn(): Promise<boolean> {
-    let obs: Promise<boolean>;
     const user = this.user;
     if (user) {
       // There's a session stored in localStorage. Let see if the corresponding token is OK with the server
-      obs = this.restangular.one(UrlSettings.userModel, user.id).all(UrlSettings.userAccessTokens).getList().toPromise()
+      return this.restangular.one(UrlSettings.userModel, user.id).all(UrlSettings.userAccessTokens).getList().toPromise()
         .catch(() => {
           console.error('Invalid client token');
           this.resetSession();
         });
-    } else {
-      this.resetSession();
-      console.error('Client token is missing');
-      obs = new Promise(resolve => {
-        resolve(false);
-      });
     }
-    return obs;
+    this.resetSession();
+    console.error('Client token is missing');
+    return new Promise(resolve => {
+      resolve(false);
+    });
   }
 
   /**
