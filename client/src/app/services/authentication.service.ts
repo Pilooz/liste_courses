@@ -26,14 +26,14 @@ export class AuthenticationService {
    * Are we connected or not ?
    */
   public get isConnected(): boolean {
-    return !!localStorage[AuthenticationService.ACCESS_TOKEN];
+    return !!localStorage.getItem(AuthenticationService.ACCESS_TOKEN);
   }
 
   /**
    * Authenticated user
    */
   public get user(): UserClass {
-    return localStorage[AuthenticationService.REGISTERED_USER] ? JSON.parse(localStorage[AuthenticationService.REGISTERED_USER]) : null;
+    return localStorage.getItem(AuthenticationService.REGISTERED_USER) ? JSON.parse(localStorage.getItem(AuthenticationService.REGISTERED_USER)) : null;
   }
 
   /**
